@@ -27,9 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -97,9 +102,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js"
+            ]
           }
         },
         "lint": {

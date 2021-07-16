@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-
+declare let L: any;
+declare let $: any;
 
 @Component({
   selector: 'app-root',
@@ -9,20 +10,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mapa';
-  OnInit(){
+  ngOnInit() {
     this.iniciarMapa();
   }
 
-  iniciarMapa(){
-    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-    
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'your.mapbox.access.token'
-}).addTo(mymap);
+  iniciarMapa() {
+    const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+      detectRetina: true
+    });
+    const osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
+    var miMapa = L.map('mapid', {
+      center: [-34.921136, -57.954712],
+      zoom: 8,
+      zoomControl: false,
+      maxZoom: 20
+    }).addLayer(googleHybrid);
+
   }
 }
