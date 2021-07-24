@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDatosWebService } from './servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
+import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
 
 declare let L;
 let miMapa: any;
@@ -12,10 +13,11 @@ let miMapa: any;
 })
 export class AppComponent implements OnInit{
   title = 'mapa';
-  public layerWFS: any;
-  //public miMapa: any;
+  public layerWFSIgn: any;
+  public layerWFSArba: any;
   constructor(private servicioDatosWeb: GetDatosWebService,
-    private servicioIGN: CapaIgnPartidosService) { }
+    private servicioIGN: CapaIgnPartidosService,
+    private servicioArba: CapaArbaPartidosService) { }
 
   ngOnInit() {
     this.iniciarMapa();
@@ -93,20 +95,35 @@ export class AppComponent implements OnInit{
   }
 
   //===================================================================
-  // el wfs del ign
+  // el wfs del ign, ojo es muy lento!
   //===================================================================
-  capaWFS() {
+  capaWFSIgn() {
 
-    if (miMapa.hasLayer(this.layerWFS)) {
-      miMapa.removeLayer(this.layerWFS);
+    if (miMapa.hasLayer(this.layerWFSIgn)) {
+      miMapa.removeLayer(this.layerWFSIgn);
     }
     this.servicioDatosWeb.getWfsIgn()
       .subscribe(respuestaJson => {
         //console.log('El ign respondió: ', respuestaJson);
-        this.layerWFS = this.servicioIGN.getWfs(respuestaJson, 'Partido');
-        //this.layerWFS = this.servicioIGN.getWfs(respuestaJson, '');
-        miMapa.addLayer(this.layerWFS);
-        miMapa.fitBounds(this.layerWFS.getBounds());
+        this.layerWFSIgn = this.servicioIGN.getWfs(respuestaJson, 'Partido');
+        miMapa.addLayer(this.layerWFSIgn);
+        miMapa.fitBounds(this.layerWFSIgn.getBounds());
       });
   }
+  //===================================================================
+  // el wfs de Arba
+  //===================================================================
+  capaWFSArba() {
+
+    if (miMapa.hasLayer(this.layerWFSArba)) {
+      miMapa.removeLayer(this.layerWFSArba);
+    }
+    this.servicioDatosWeb.getWfsArba()
+      .subscribe(respuestaJson => {
+        this.layerWFSArba = this.servicioArba.getWfs(respuestaJson, '');
+        miMapa.addLayer(this.layerWFSArba);
+        miMapa.fitBounds(this.layerWFSArba.getBounds());
+      });
+  }
+
 }

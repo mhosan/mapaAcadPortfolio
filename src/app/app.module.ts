@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { GetDatosWebService } from './servicios/get-datos-web.service'
 import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
+import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
   ],
   providers: [
     GetDatosWebService,
-    CapaIgnPartidosService
+    CapaIgnPartidosService,
+    CapaArbaPartidosService
   ],
   bootstrap: [AppComponent]
 })
