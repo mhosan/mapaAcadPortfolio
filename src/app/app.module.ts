@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GetDatosWebService } from './servicios/get-datos-web.service'
+import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GetDatosWebService } from './servicios/get-datos-web.service'
     HttpClientModule
   ],
   providers: [
-    GetDatosWebService
+    GetDatosWebService,
+    CapaIgnPartidosService
   ],
   bootstrap: [AppComponent]
 })
