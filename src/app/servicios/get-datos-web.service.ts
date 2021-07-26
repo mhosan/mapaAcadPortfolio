@@ -10,6 +10,11 @@ export class GetDatosWebService {
   elJsonDelIGN: any;
   elJsonDeArba: any;
   constructor(private http: HttpClient) { }
+  
+  getCircuitosElectorales(): Observable<any> {
+    let losCircuitos = this.http.get<any>("./assets/circuitosElectoralesBuenosAires.geojson");
+    return losCircuitos;
+  }
 
   getWfsIgn(): Observable<any> {
     let laUrlCompleta = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json';

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetDatosWebService } from './servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
+import { CapaCircuitosService } from './servicios/capa-circuitos.service';
 
 declare let L;
 let miMapa: any;
@@ -16,9 +17,11 @@ export class AppComponent implements OnInit {
   title = 'mapa';
   public layerWFSIgn: any;
   public layerWFSArba: any;
+  public layerCircuitos: any;
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
-    private servicioArba: CapaArbaPartidosService) { }
+    private servicioArba: CapaArbaPartidosService,
+    private servicioCircuitos: CapaCircuitosService,) { }
 
   ngOnInit() {
     this.iniciarMapa();
@@ -28,24 +31,39 @@ export class AppComponent implements OnInit {
   // Iniciar el mapa
   //===================================================================
   iniciarMapa() {
+    //-----------------------------------------------------------------
     const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
     });
+    //-----------------------------------------------------------------
+
+    //-----------------------------------------------------------------
     const osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
     //-----------------------------------------------------------------
-    const osm1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      id: 'mapbox.streets'
-    });
-
+    
+    //-----------------------------------------------------------------
+    // const osm1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    //     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    //     'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    //   id: 'mapbox.streets'
+    // });
+    //-----------------------------------------------------------------
+    const osm1 = L.tileLayer.wms("https://wms.ign.gob.ar/geoserver/gwc/service/wmts?", {
+	   layers: "capabaseargenmap",
+	   //format: 'image/jpeg',
+	   //transparent: true
+	   //version: '1.3.0',//wms version (ver get capabilities)
+	   //attribution: "PNOA WMS. Cedido por © Instituto Geográfico Nacional de España"
+	  });
+    
     //-----------------------------------------------------------------
     const openmap = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       attribution: 'terms and feedback'
     });
+    //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
     const googleMaps = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -53,6 +71,7 @@ export class AppComponent implements OnInit {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
     });
+    //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
     //let urlBing2 ="http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=0&amp;dir=dir_n&username=''";         
@@ -62,13 +81,17 @@ export class AppComponent implements OnInit {
     //-----------------------------------------------------------------
     const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       { maxZoom: 22 });
+    //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
     const esriTransportes = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}');
-    const wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
-      layers: 'TOPO-OSM-WMS'
-    });
+    //-----------------------------------------------------------------
 
+    //-----------------------------------------------------------------
+    const wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
+      layers: 'OSM-WMS'
+    });
+    //-----------------------------------------------------------------
     miMapa = L.map('mapid', {
       contextmenu: true,
       contextmenuWidth: 180,
@@ -106,7 +129,7 @@ export class AppComponent implements OnInit {
       "Google Fisico": googleTerrain,
       "Google Satelital": googleSatelite, */
       "Open Street Map": osm2,
-      "Mapbox": osm1,
+      //"Mapbox": osm1,
       "Mundialis": wmsLayer,
       "Google callejero ": googleMaps,
       "Google hibrido": googleHybrid,
@@ -126,7 +149,7 @@ export class AppComponent implements OnInit {
       //"FFCC marcadores": layerFFCCFerroviariokMarcadores
       //"Centros educativos Pcia. Bs.As.": layerJsonEdu
     };
-    controlLayers = L.control.layers(baseMaps, overlayMaps, { position: 'topleft' }).addTo(miMapa);
+    controlLayers = L.control.layers(baseMaps, overlayMaps, { position: 'topright' }).addTo(miMapa);
   }
   //===================================================================
   // 
@@ -190,5 +213,24 @@ export class AppComponent implements OnInit {
         miMapa.fitBounds(this.layerWFSArba.getBounds());
       });
   }
+  
+  //===================================================================
+  // traer todos los circuitos electorales
+  //===================================================================
+  capaCircuitos() {
+   //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
+   //   miMapa.removeLayer(this.elCircuitoFiltrado);
+   // }
+    if (miMapa.hasLayer(this.layerCircuitos)) {
+      miMapa.removeLayer(this.layerCircuitos);
+    }
+    this.servicioDatosWeb.getCircuitosElectorales()
+      .subscribe(respuestaJson => {
+        this.layerCircuitos = this.servicioCircuitos.getCircuitosDepurado(respuestaJson, '');
+        miMapa.addLayer(this.layerCircuitos);
+        miMapa.fitBounds(this.layerCircuitos.getBounds());
+      });
+  }
+
 
 }
