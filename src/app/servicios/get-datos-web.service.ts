@@ -10,6 +10,11 @@ export class GetDatosWebService {
   elJsonDelIGN: any;
   elJsonDeArba: any;
   constructor(private http: HttpClient) { }
+
+  getSeccionesElectorales(): Observable<any> {
+    let lasSecciones = this.http.get<any>("./assets/seccionesElectorales.geojson");
+    return lasSecciones;
+  }
   
   getCircuitosElectorales(): Observable<any> {
     let losCircuitos = this.http.get<any>("./assets/circuitosElectoralesBuenosAires.geojson");
