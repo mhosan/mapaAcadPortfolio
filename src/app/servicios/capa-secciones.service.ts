@@ -15,7 +15,7 @@ export class CapaSeccionesService {
     this.capaSecciones = L.geoJson(elJson, {
       filter: elFiltradorDeCircuitos,
       style: (feature) => {
-        return { color: 'rgb(255, 32, 0)', "weight": 0.5, "opacity": 0.60, "fillColor": "#000000", "fillOpacity": 0.1 };
+        return { color: 'rgb(0, 32, 255)', "weight": 1.5, "opacity": 0.60, "fillColor": "#000000", "fillOpacity": 0.1 };
       },
       onEachFeature: (feature, layer) => {
         let colorBordeOriginal: string = '';
@@ -25,20 +25,16 @@ export class CapaSeccionesService {
         <table class="table table-striped table-borderless table-sm" style="font-family: 'Arial Narrow'">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" class="text-center">Partido</th>
+              <th scope="col" class="text-center">Cabecera</th>
               <th scope="col" class="text-center">Municipio</th>
-              <th scope="col" class="text-center">Circuito</th>
-              <th scope="col" class="text-center">Indec_d(?)</th>
-              <th scope="col" class="text-center">gid</th>
+              <th scope="col" class="text-center">Seccion</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="text-center">${feature.properties.departamen}</td>  
               <td class="text-center">${feature.properties.cabecera}</td>
-              <td class="text-center">${feature.properties.circuito}</td>
-              <td class="text-center">${feature.properties.indec_d}</td>
-              <td class="text-center">${feature.properties.gid}</td>
+              <td class="text-center">${feature.properties.municipio_nombre}</td>
+              <td class="text-center">${feature.properties.seccion}</td>
             </tr>
           </tbody>
         </table>
@@ -63,7 +59,7 @@ export class CapaSeccionesService {
               sticky: true,
               opacity: 0.8
             })
-              .setContent('<b>Pdo:</b>' + feature.properties.departamen)
+              .setContent('<b>Sección Electoral:</b>' + feature.properties.seccion)
               .setLatLng(e.latlng);
             laCapa.bindTooltip(miTooltip);
           },

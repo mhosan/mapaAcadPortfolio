@@ -12,7 +12,7 @@ export class GetDatosWebService {
   constructor(private http: HttpClient) { }
 
   getSeccionesElectorales(): Observable<any> {
-    let lasSecciones = this.http.get<any>("./assets/seccionesElectorales.geojson");
+    let lasSecciones = this.http.get<any>("./assets/seccElec.geojson");
     return lasSecciones;
   }
   
