@@ -3,6 +3,7 @@ import { GetDatosWebService } from './servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from './servicios/capa-circuitos.service';
+import { CapaSeccionesService } from './servicios/capa-secciones.service';
 
 declare let L;
 let miMapa: any;
@@ -18,10 +19,12 @@ export class AppComponent implements OnInit {
   public layerWFSIgn: any;
   public layerWFSArba: any;
   public layerCircuitos: any;
+  public layerSecciones: any;
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
     private servicioArba: CapaArbaPartidosService,
-    private servicioCircuitos: CapaCircuitosService,) { }
+    private servicioCircuitos: CapaCircuitosService,
+    private servicioSecciones: CapaSeccionesService) { }
 
   ngOnInit() {
     this.iniciarMapa();
@@ -250,6 +253,22 @@ export class AppComponent implements OnInit {
         miMapa.fitBounds(this.layerCircuitos.getBounds());
       });
   }
-
+  //===================================================================
+  // traer todos las secciones  electorales
+  //===================================================================
+  capaSecciones() {
+    //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
+    //   miMapa.removeLayer(this.elCircuitoFiltrado);
+    // }
+     if (miMapa.hasLayer(this.layerSecciones)) {
+       miMapa.removeLayer(this.layerSecciones);
+     }
+     this.servicioDatosWeb.getSeccionesElectorales()
+       .subscribe(respuestaJson => {
+         this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
+         miMapa.addLayer(this.layerSecciones);
+         miMapa.fitBounds(this.layerSecciones.getBounds());
+       });
+   }
 
 }
