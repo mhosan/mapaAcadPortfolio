@@ -4,6 +4,7 @@ import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from './servicios/capa-circuitos.service';
 import { CapaSeccionesService } from './servicios/capa-secciones.service';
+import { GetApiNasaService } from './servicios/get-api-nasa.service';
 
 declare let L;
 let miMapa: any;
@@ -20,11 +21,13 @@ export class AppComponent implements OnInit {
   public layerWFSArba: any;
   public layerCircuitos: any;
   public layerSecciones: any;
+  public urlImagen: any;
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
     private servicioArba: CapaArbaPartidosService,
     private servicioCircuitos: CapaCircuitosService,
-    private servicioSecciones: CapaSeccionesService) { }
+    private servicioSecciones: CapaSeccionesService,
+    private servicioNasa: GetApiNasaService) { }
 
   ngOnInit() {
     this.iniciarMapa();
@@ -268,6 +271,17 @@ export class AppComponent implements OnInit {
          this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
          miMapa.addLayer(this.layerSecciones);
          miMapa.fitBounds(this.layerSecciones.getBounds());
+       });
+   }
+
+  //===================================================================
+  // datos de la Nasa
+  //===================================================================
+  datosNasa() {
+     this.servicioNasa.getApodImage()
+       .subscribe(respuestaJson => {
+         this.urlImagen = respuestaJson.url;
+         console.log(this.urlImagen);
        });
    }
 
