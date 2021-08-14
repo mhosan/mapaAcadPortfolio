@@ -31,7 +31,7 @@
       <button class="btn btn-secondary btn-sm" (click)="datosNasa()"
         style="position: absolute; z-index: 5000; top: 170px; left: 10px;">Nasa
       </button>
-      <img [src]="urlImagen" alt="nada che!" width="400" style="position:absolute; z-index: 10000; left: 10px;">
+      <img *ngIf="imagenNasaVisible" [src]="urlImagen" alt="nada che!" width="400" style="position:absolute; z-index: 10000; left: 200px;">
     </div>
   </div>
 </body>

@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
   public layerCircuitos: any;
   public layerSecciones: any;
   public urlImagen: any;
+  public imagenNasaVisible: boolean = false;
+
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
     private servicioArba: CapaArbaPartidosService,
@@ -48,7 +50,7 @@ export class AppComponent implements OnInit {
     //-----------------------------------------------------------------
     const osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
     //-----------------------------------------------------------------
-    
+
     //-----------------------------------------------------------------
     // const osm1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -58,13 +60,13 @@ export class AppComponent implements OnInit {
     // });
     //-----------------------------------------------------------------
     const osm1 = L.tileLayer.wms("https://wms.ign.gob.ar/geoserver/gwc/service/wmts?", {
-	   layers: "capabaseargenmap",
-	   //format: 'image/jpeg',
-	   //transparent: true
-	   //version: '1.3.0',//wms version (ver get capabilities)
-	   //attribution: "PNOA WMS. Cedido por © Instituto Geográfico Nacional de España"
-	  });
-    
+      layers: "capabaseargenmap",
+      //format: 'image/jpeg',
+      //transparent: true
+      //version: '1.3.0',//wms version (ver get capabilities)
+      //attribution: "PNOA WMS. Cedido por © Instituto Geográfico Nacional de España"
+    });
+
     //-----------------------------------------------------------------
     const openmap = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       attribution: 'terms and feedback'
@@ -126,24 +128,24 @@ export class AppComponent implements OnInit {
       maxZoom: 20
     }).addLayer(osm2);
     L.control.scale().addTo(miMapa);
-  //   L.control.coordinates({
-  //     position:"bottomleft", //optional default "bootomright"
-  //     decimals:2, //optional default 4
-  //     decimalSeperator:".", //optional default "."
-  //     labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
-  //     labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
-  //     enableUserInput:true, //optional default true
-  //     useDMS:false, //optional default false
-  //     useLatLngOrder: true, //ordering of labels, default false-> lng-lat
-  //     markerType: L.marker, //optional default L.marker
-  //     markerProps: {}, //optional default {},
-  //     labelFormatterLng : funtion(lng){return lng+" lng"}, //optional default none,
-  //     labelFormatterLat : funtion(lat){return lat+" lat"}, //optional default none
-  //     customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
-  // }).addTo(map);
+    //   L.control.coordinates({
+    //     position:"bottomleft", //optional default "bootomright"
+    //     decimals:2, //optional default 4
+    //     decimalSeperator:".", //optional default "."
+    //     labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+    //     labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+    //     enableUserInput:true, //optional default true
+    //     useDMS:false, //optional default false
+    //     useLatLngOrder: true, //ordering of labels, default false-> lng-lat
+    //     markerType: L.marker, //optional default L.marker
+    //     markerProps: {}, //optional default {},
+    //     labelFormatterLng : funtion(lng){return lng+" lng"}, //optional default none,
+    //     labelFormatterLat : funtion(lat){return lat+" lat"}, //optional default none
+    //     customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
+    // }).addTo(map);
     L.control.coordinates({
-      labelTemplateLat : "Latitud: {y}",
-      labelTemplateLng : "Longitud: {x}"
+      labelTemplateLat: "Latitud: {y}",
+      labelTemplateLng: "Longitud: {x}"
     }).addTo(miMapa);
     L.control.zoom({
       position: 'bottomright'
@@ -238,14 +240,14 @@ export class AppComponent implements OnInit {
         miMapa.fitBounds(this.layerWFSArba.getBounds());
       });
   }
-  
+
   //===================================================================
   // traer todos los circuitos electorales
   //===================================================================
   capaCircuitos() {
-   //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
-   //   miMapa.removeLayer(this.elCircuitoFiltrado);
-   // }
+    //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
+    //   miMapa.removeLayer(this.elCircuitoFiltrado);
+    // }
     if (miMapa.hasLayer(this.layerCircuitos)) {
       miMapa.removeLayer(this.layerCircuitos);
     }
@@ -263,26 +265,35 @@ export class AppComponent implements OnInit {
     //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
     //   miMapa.removeLayer(this.elCircuitoFiltrado);
     // }
-     if (miMapa.hasLayer(this.layerSecciones)) {
-       miMapa.removeLayer(this.layerSecciones);
-     }
-     this.servicioDatosWeb.getSeccionesElectorales()
-       .subscribe(respuestaJson => {
-         this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
-         miMapa.addLayer(this.layerSecciones);
-         miMapa.fitBounds(this.layerSecciones.getBounds());
-       });
-   }
+    if (miMapa.hasLayer(this.layerSecciones)) {
+      miMapa.removeLayer(this.layerSecciones);
+    }
+    this.servicioDatosWeb.getSeccionesElectorales()
+      .subscribe(respuestaJson => {
+        this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
+        miMapa.addLayer(this.layerSecciones);
+        miMapa.fitBounds(this.layerSecciones.getBounds());
+      });
+  }
 
   //===================================================================
   // datos de la Nasa
   //===================================================================
   datosNasa() {
-     this.servicioNasa.getApodImage()
-       .subscribe(respuestaJson => {
-         this.urlImagen = respuestaJson.url;
-         console.log(this.urlImagen);
-       });
-   }
+    this.imagenNasaVisible = !this.imagenNasaVisible;
+
+    if (this.imagenNasaVisible) {
+      if (!this.urlImagen) {
+        console.log("voy a buscar la imagen");
+        this.servicioNasa.getApodImage()
+          .subscribe(respuestaJson => {
+            this.urlImagen = respuestaJson.url;
+            console.log(this.urlImagen);
+          });
+      }
+
+    }
+
+  }
 
 }
