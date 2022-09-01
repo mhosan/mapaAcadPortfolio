@@ -18,21 +18,30 @@
           d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
       </svg>
     </button>
-    <div class="collapse" id="menu">
-      <button class="btn btn-secondary btn-sm" (click)="capaWFSArba()"
-        style="position: absolute; z-index: 5000; top: 50px; left: 10px;">Capa Partidos de Arba
-      </button>
-      <button class="btn btn-secondary btn-sm" (click)="capaCircuitos()"
-        style="position: absolute; z-index: 5000; top: 90px; left: 10px;">Capa Circuitos Electorales
-      </button>
-      <button class="btn btn-secondary btn-sm" (click)="capaSecciones()"
-        style="position: absolute; z-index: 5000; top: 130px; left: 10px;">Capa Secciones Electorales
-      </button>
-      <button class="btn btn-secondary btn-sm" (click)="datosNasa()"
-        style="position: absolute; z-index: 5000; top: 170px; left: 10px;">Nasa
-      </button>
-      <img *ngIf="imagenNasaVisible" [src]="urlImagen" alt="nada che!" width="400" style="position:absolute; z-index: 10000; left: 200px;">
+    <button class="btn btn-primary mt-5 ml-5" style="position: absolute; z-index: 5000" (click)="message()">
+      Hola mundo
+    </button>
+
+    <div class="card collapse" id="menu" style="z-index: 5000;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <button class="btn btn-secondary btn-sm" (click)="capaWFSArba()"
+          style="position: absolute; z-index: 5000; top: 50px; left: 10px;">Capa Partidos de Arba
+        </button>
+        <button class="btn btn-secondary btn-sm" (click)="capaCircuitos()"
+          style="position: absolute; z-index: 5000; top: 90px; left: 10px;">Capa Circuitos Electorales
+        </button>
+        <button class="btn btn-secondary btn-sm" (click)="capaSecciones()"
+          style="position: absolute; z-index: 5000; top: 130px; left: 10px;">Capa Secciones Electorales
+        </button>
+        <button class="btn btn-secondary btn-sm" (click)="datosNasa()"
+          style="position: absolute; z-index: 5000; top: 170px; left: 10px;">Nasa
+        </button>
+        <img *ngIf="imagenNasaVisible" [src]="urlImagen" alt="nada che!" width="400"
+          style="position:absolute; z-index: 10000; left: 200px;">
+      </div>
     </div>
+
   </div>
 </body>
 

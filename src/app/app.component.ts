@@ -35,6 +35,14 @@ export class AppComponent implements OnInit {
     this.iniciarMapa();
   }
 
+  toggle() {
+    this.imagenNasaVisible = !this.imagenNasaVisible;
+  }
+
+  message() {
+    alert('hola mundo');
+  }
+
   //===================================================================
   // Iniciar el mapa
   //===================================================================
