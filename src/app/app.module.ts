@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 
 import { GetDatosWebService } from './servicios/get-datos-web.service'
 import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
-import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service'
+import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service';
+import { MapaComponent } from './components/mapa/mapa.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
