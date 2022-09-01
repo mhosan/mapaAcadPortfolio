@@ -39,10 +39,7 @@ export class MapaComponent implements OnInit {
     this.imagenNasaVisible = !this.imagenNasaVisible;
   }
 
-  message() {
-    alert('hola mundo');
-  }
-    //===================================================================
+  //===================================================================
   // Iniciar el mapa
   //===================================================================
   iniciarMapa() {
@@ -59,12 +56,12 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    // const osm1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    //     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    //     'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    //   id: 'mapbox.streets'
-    // });
+    const osm14 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      id: 'mapbox.streets'
+    });
     //-----------------------------------------------------------------
     const osm1 = L.tileLayer.wms("https://wms.ign.gob.ar/geoserver/gwc/service/wmts?", {
       layers: "capabaseargenmap",
@@ -103,9 +100,9 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    const wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
-      layers: 'OSM-WMS'
-    });
+    //https://www.terrestris.de/en/
+    const wmsTerrestrisTopo = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', { layers: 'TOPO-OSM-WMS' });
+    const wmsTerrestrisOsm = L.tileLayer.wms('http://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
     //-----------------------------------------------------------------
     miMapa = L.map('mapid', {
       contextmenu: true,
@@ -135,24 +132,24 @@ export class MapaComponent implements OnInit {
       maxZoom: 20
     }).addLayer(osm2);
     L.control.scale().addTo(miMapa);
-    //   L.control.coordinates({
-    //     position:"bottomleft", //optional default "bootomright"
-    //     decimals:2, //optional default 4
-    //     decimalSeperator:".", //optional default "."
-    //     labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
-    //     labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
-    //     enableUserInput:true, //optional default true
-    //     useDMS:false, //optional default false
-    //     useLatLngOrder: true, //ordering of labels, default false-> lng-lat
-    //     markerType: L.marker, //optional default L.marker
-    //     markerProps: {}, //optional default {},
-    //     labelFormatterLng : funtion(lng){return lng+" lng"}, //optional default none,
-    //     labelFormatterLat : funtion(lat){return lat+" lat"}, //optional default none
-    //     customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
-    // }).addTo(map);
+    /* L.control.coordinates({
+      position:"bottomleft", //optional default "bootomright"
+      decimals:2, //optional default 4
+      decimalSeperator:".", //optional default "."
+      labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+      labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+      enableUserInput:true, //optional default true
+      useDMS:false, //optional default false
+      useLatLngOrder: true, //ordering of labels, default false-> lng-lat
+      markerType: L.marker, //optional default L.marker
+      markerProps: {}, //optional default {},
+      labelFormatterLng : function(lng){return lng+" lng"}, //optional default none,
+      labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
+      //customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
+ }).addTo(miMapa); */
     L.control.coordinates({
-      labelTemplateLat: "Latitud: {y}",
-      labelTemplateLng: "Longitud: {x}"
+      labelTemplateLat: "Lat.: {y}",
+      labelTemplateLng: "Lon.: {x},"
     }).addTo(miMapa);
     L.control.zoom({
       position: 'bottomright'
@@ -164,7 +161,9 @@ export class MapaComponent implements OnInit {
       "Google Satelital": googleSatelite, */
       "Open Street Map": osm2,
       //"Mapbox": osm1,
-      "Mundialis": wmsLayer,
+      //Terrestris topo:
+      "Terrestris topo (https://www.terrestris.de/en/)": wmsTerrestrisTopo,
+      "Terrestris Osm (https://www.terrestris.de/en/)": wmsTerrestrisOsm,
       "Google callejero ": googleMaps,
       "Google hibrido": googleHybrid,
       //"Bing": bing,
@@ -173,7 +172,7 @@ export class MapaComponent implements OnInit {
       "Esri transportes": esriTransportes
     };
     let overlayMaps = {
-      //"Capa Cursos": capaCursos
+      //"Capa OSM14": osm14
       //"Industrias cuenca Riachuelo": layerJson,
       //"Centros y Organizaciones Sociales": layerJsonCtos,
       //"Centros educativos Pcia.Bs.As.":  layerEducacionJson,
@@ -185,9 +184,7 @@ export class MapaComponent implements OnInit {
     };
     controlLayers = L.control.layers(baseMaps, overlayMaps, { position: 'topright' }).addTo(miMapa);
   }
-  //===================================================================
-  // 
-  //===================================================================
+
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
     popupCoordenadas
@@ -196,23 +193,15 @@ export class MapaComponent implements OnInit {
       .openOn(miMapa);
   }
 
-  //===================================================================
-  //
-  //===================================================================
   centrarMapa(e) {
     miMapa.panTo(e.latlng);
   }
 
-  //===================================================================
-  //
-  //===================================================================
   acercar(e) {
     miMapa.zoomIn();
   }
 
-  //===================================================================
   alejar(e) {
-    //=================================================================
     miMapa.zoomOut();
   }
 
@@ -220,7 +209,6 @@ export class MapaComponent implements OnInit {
   // el wfs del ign, ojo es muy lento!
   //===================================================================
   capaWFSIgn() {
-
     if (miMapa.hasLayer(this.layerWFSIgn)) {
       miMapa.removeLayer(this.layerWFSIgn);
     }
@@ -236,7 +224,6 @@ export class MapaComponent implements OnInit {
   // el wfs de Arba
   //===================================================================
   capaWFSArba() {
-
     if (miMapa.hasLayer(this.layerWFSArba)) {
       miMapa.removeLayer(this.layerWFSArba);
     }
@@ -249,7 +236,7 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // traer todos los circuitos electorales
+  // circuitos electorales
   //===================================================================
   capaCircuitos() {
     //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
@@ -266,7 +253,7 @@ export class MapaComponent implements OnInit {
       });
   }
   //===================================================================
-  // traer todos las secciones  electorales
+  // secciones  electorales
   //===================================================================
   capaSecciones() {
     //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
@@ -281,24 +268,6 @@ export class MapaComponent implements OnInit {
         miMapa.addLayer(this.layerSecciones);
         miMapa.fitBounds(this.layerSecciones.getBounds());
       });
-  }
-
-  //===================================================================
-  // datos de la Nasa
-  //===================================================================
-  datosNasa() {
-    this.imagenNasaVisible = !this.imagenNasaVisible;
-
-    if (this.imagenNasaVisible) {
-      if (!this.urlImagen) {
-        console.log("voy a buscar la imagen");
-        this.servicioNasa.getApodImage()
-          .subscribe(respuestaJson => {
-            this.urlImagen = respuestaJson.url;
-            console.log(this.urlImagen);
-          });
-      }
-    }
   }
 
 }

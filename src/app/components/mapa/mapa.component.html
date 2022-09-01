@@ -1,37 +1,58 @@
 <body>
-  <div id="mapid">
-    <button class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#menu"
-      style="position: absolute; z-index: 5000; top: 10px; left: 10px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-      </svg>
-    </button>
-    <button class="btn btn-primary mt-5 ml-5" style="position: absolute; z-index: 5000" (click)="message()">
-      Hola mundo
-    </button>
+    <nav class="navbar fixed-top" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../../assets/images/coordenadas.png" class="mb-2 mx-1" alt="" width="22" height="22">
+                <span class="fw-bold px-2">ArgenGis</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end offcanvas-menu"  tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ArgenGis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" (click)="capaWFSArba()">Capa partidos de Arba</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" (click)="capaSecciones()">Capa secc. elect.</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" (click)="capaCircuitos()">Capa circuitos elect.</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <!-- <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="card collapse" id="menu" style="z-index: 5000;">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <button class="btn btn-secondary btn-sm" (click)="capaWFSArba()"
-          style="position: absolute; z-index: 5000; top: 50px; left: 10px;">Capa Partidos de Arba
-        </button>
-        <button class="btn btn-secondary btn-sm" (click)="capaCircuitos()"
-          style="position: absolute; z-index: 5000; top: 90px; left: 10px;">Capa Circuitos Electorales
-        </button>
-        <button class="btn btn-secondary btn-sm" (click)="capaSecciones()"
-          style="position: absolute; z-index: 5000; top: 130px; left: 10px;">Capa Secciones Electorales
-        </button>
-        <button class="btn btn-secondary btn-sm" (click)="datosNasa()"
-          style="position: absolute; z-index: 5000; top: 170px; left: 10px;">Nasa
-        </button>
-        <img *ngIf="imagenNasaVisible" [src]="urlImagen" alt="nada che!" width="400"
-          style="position:absolute; z-index: 10000; left: 200px;">
-      </div>
+    <div id="mapid">
     </div>
-
-  </div>
 </body>
-
