@@ -126,8 +126,8 @@ export class MapaComponent implements OnInit {
           callback: this.alejar,
           icon: 'assets/images/zoom-out.png'
         }],
-      center: [-34.921136, -57.954712],
-      zoom: 8,
+      center: [-36.214269, -61.073242],
+      zoom: 6.5,
       zoomControl: false,
       maxZoom: 20
     }).addLayer(osm2);
