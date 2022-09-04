@@ -9,7 +9,6 @@ import { GetApiNasaService } from '../../servicios/get-api-nasa.service';
 declare let L;
 let miMapa: any;
 let controlLayers;
-
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -183,7 +182,7 @@ export class MapaComponent implements OnInit {
       //"Centros educativos Pcia. Bs.As.": layerJsonEdu
     };
     controlLayers = L.control.layers(baseMaps, overlayMaps, { position: 'topright' }).addTo(miMapa);
-  }
+  }  //end iniciarMapa
 
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
@@ -233,6 +232,7 @@ export class MapaComponent implements OnInit {
         miMapa.addLayer(this.layerWFSArba);
         miMapa.fitBounds(this.layerWFSArba.getBounds());
       });
+
   }
 
   //===================================================================
