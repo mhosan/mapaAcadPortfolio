@@ -34,6 +34,22 @@ export class MapaComponent implements OnInit {
     this.iniciarMapa();
   }
 
+  geoloca(){
+    miMapa.locate({setView: true, maxZoom: 16})
+      .on('locationfound', (e)=> {
+        let marker =L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
+        miMapa.addLayer(marker);
+        var radius = e.accuracy * 300;
+        var location = e.latlng
+        let circle = L.circle(location, radius);
+        miMapa.addLayer(circle);
+      })
+      .on('locationerror', (e)=>{
+        console.log(e);
+        alert('Location access denied');
+      })
+  }
+
   toggle() {
     this.imagenNasaVisible = !this.imagenNasaVisible;
   }
