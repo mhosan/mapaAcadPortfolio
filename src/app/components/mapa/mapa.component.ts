@@ -34,22 +34,6 @@ export class MapaComponent implements OnInit {
     this.iniciarMapa();
   }
 
-  geoloca(){
-    miMapa.locate({setView: true, maxZoom: 16})
-      .on('locationfound', (e)=> {
-        let marker =L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
-        miMapa.addLayer(marker);
-        var radius = e.accuracy * 300;
-        var location = e.latlng
-        let circle = L.circle(location, radius);
-        miMapa.addLayer(circle);
-      })
-      .on('locationerror', (e)=>{
-        console.log(e);
-        alert('Location access denied');
-      })
-  }
-
   toggle() {
     this.imagenNasaVisible = !this.imagenNasaVisible;
   }
@@ -220,6 +204,22 @@ export class MapaComponent implements OnInit {
     miMapa.zoomOut();
   }
 
+  navBarMsgDrv(msg){
+    switch(msg){
+      case 'partidos':
+        this.capaWFSArba();
+        break;
+      case 'secciones':
+        this.capaSecciones();
+        break;
+      case 'circuitos':
+        this.capaCircuitos();
+        break;
+      case 'geoloca':
+        this.geoloca();
+    }
+  }
+
   //===================================================================
   // el wfs del ign, ojo es muy lento!
   //===================================================================
@@ -285,5 +285,24 @@ export class MapaComponent implements OnInit {
         miMapa.fitBounds(this.layerSecciones.getBounds());
       });
   }
+  //===================================================================
+  // geolocalizar al usuario
+  //===================================================================
+  geoloca(){
+    miMapa.locate({setView: true, maxZoom: 16})
+      .on('locationfound', (e)=> {
+        let marker =L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
+        miMapa.addLayer(marker);
+        var radius = e.accuracy * 300;
+        var location = e.latlng
+        let circle = L.circle(location, radius);
+        miMapa.addLayer(circle);
+      })
+      .on('locationerror', (e)=>{
+        console.log(e);
+        alert('Location access denied');
+      })
+  }
+
 
 }

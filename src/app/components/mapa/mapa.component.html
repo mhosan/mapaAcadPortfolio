@@ -1,63 +1,6 @@
+
+<app-navbar (msgNavbar)="navBarMsgDrv($event)" style="z-index: 1100;"></app-navbar>
 <body>
-    <!-- #c9c9c9 #e3f2fd-->
-    <nav class="navbar fixed-top py-0" style="background-color: #d9d9d9;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <span class="fw-bold px-2">ArgenGis</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" id="OpenMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end offcanvas-menu"  tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ArgenGis</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" (click)="capaWFSArba()">Capa partidos de Arba</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" (click)="capaSecciones()">Capa secc. elect.</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" (click)="capaCircuitos()">Capa circuitos elect.</a>
-                        <li class="nav-item">
-                            <button class="btn btn-primary btn-sm mt-3" (click)="geoloca()">
-                                Geolocalizarme!
-                            </button>
-                        </li>
-
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li> -->
-                    </ul>
-                    <!-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
-                </div>
-            </div>
-        </div>
-    </nav>
-
     <div id="mapid">
     </div>
 </body>
