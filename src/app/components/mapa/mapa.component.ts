@@ -161,14 +161,14 @@ export class MapaComponent implements OnInit {
       "Open Street Map": osm2,
       //"Mapbox": osm1,
       //Terrestris topo:
-      "Terrestris topo (https://www.terrestris.de/en/)": wmsTerrestrisTopo,
-      "Terrestris Osm (https://www.terrestris.de/en/)": wmsTerrestrisOsm,
       "Google callejero ": googleMaps,
       "Google hibrido": googleHybrid,
       //"Bing": bing,
       "ArcGis OnLine": openmap,
       "Esri sat": esriSat,
-      "Esri transportes": esriTransportes
+      "Esri transportes": esriTransportes,
+      "Terrestris topo (https://www.terrestris.de/en/)": wmsTerrestrisTopo,
+      "Terrestris Osm (https://www.terrestris.de/en/)": wmsTerrestrisOsm,
     };
     let overlayMaps = {
       //"Capa OSM14": osm14
@@ -204,21 +204,7 @@ export class MapaComponent implements OnInit {
     miMapa.zoomOut();
   }
 
-  navBarMsgDrv(msg){
-    switch(msg){
-      case 'partidos':
-        this.capaWFSArba();
-        break;
-      case 'secciones':
-        this.capaSecciones();
-        break;
-      case 'circuitos':
-        this.capaCircuitos();
-        break;
-      case 'geoloca':
-        this.geoloca();
-    }
-  }
+
 
   //===================================================================
   // el wfs del ign, ojo es muy lento!
@@ -255,9 +241,6 @@ export class MapaComponent implements OnInit {
   // circuitos electorales
   //===================================================================
   capaCircuitos() {
-    //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
-    //   miMapa.removeLayer(this.elCircuitoFiltrado);
-    // }
     if (miMapa.hasLayer(this.layerCircuitos)) {
       miMapa.removeLayer(this.layerCircuitos);
     }
@@ -272,9 +255,6 @@ export class MapaComponent implements OnInit {
   // secciones  electorales
   //===================================================================
   capaSecciones() {
-    //if (miMapa.hasLayer(this.elCircuitoFiltrado)) {
-    //   miMapa.removeLayer(this.elCircuitoFiltrado);
-    // }
     if (miMapa.hasLayer(this.layerSecciones)) {
       miMapa.removeLayer(this.layerSecciones);
     }
@@ -288,21 +268,91 @@ export class MapaComponent implements OnInit {
   //===================================================================
   // geolocalizar al usuario
   //===================================================================
-  geoloca(){
-    miMapa.locate({setView: true, maxZoom: 16})
-      .on('locationfound', (e)=> {
-        let marker =L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
+  geoloca() {
+    miMapa.locate({ setView: true, maxZoom: 16 })
+      .on('locationfound', (e) => {
+        let marker = L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
         miMapa.addLayer(marker);
         var radius = e.accuracy * 300;
         var location = e.latlng
         let circle = L.circle(location, radius);
         miMapa.addLayer(circle);
       })
-      .on('locationerror', (e)=>{
+      .on('locationerror', (e) => {
         console.log(e);
         alert('Location access denied');
       })
   }
 
+  //===================================================================
+  // gestor de msgs de la navBar
+  //=================================================================== 
+  navBarMsgDrv(seleccion: {}) {
+    if (seleccion['accion']) {
+      console.log('geolocalizar...');
+      this.geoloca();
+      return
+    }
+    let laCapa: any;
+    console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
+    if (!seleccion['capaBase']) {              //es una capa overlay
+      switch (seleccion['encendido']) {
+        case true:                            //hay que apagar la capa
+          switch (seleccion['nombre']) {
+            case 'partidos':
+              if (miMapa.hasLayer(this.layerWFSArba)) {
+                miMapa.removeLayer(this.layerWFSArba);
+              }
+              break;
+            case 'secciones':
+              if (miMapa.hasLayer(this.layerSecciones)) {
+                miMapa.removeLayer(this.layerSecciones);
+              }
+              break;
+            case 'circuitos':
+              if (miMapa.hasLayer(this.layerCircuitos)) {
+                miMapa.removeLayer(this.layerCircuitos);
+              }
+              break;
+          }
+          break;
+        case false:                           //hay que encender la capa 
+          switch (seleccion['nombre']) {
+            case 'partidos':
+              this.capaWFSArba();
+              break;
+            case 'secciones':
+              this.capaSecciones();
+              break;
+            case 'circuitos':
+              this.capaCircuitos();
+              break;
+          }
+          break;
+      }
+    } else {                                  //es una capa base
+      alert('capa base ...');
+    }
+    return
 
-}
+          //case 'wfsIgn':                  //<----- capa Base ----->
+            /*             if (miMapa.hasLayer(this.capaBaseActiva)) {
+                          miMapa.removeLayer(this.capaBaseActiva);
+                        }
+                        this.cargarCapa();
+                        this.capaBaseActiva = this.capaOGC; */
+            //break;
+          //case 'googleHibrid':
+            /* if (miMapa.hasLayer(this.capaBaseActiva)) {
+              miMapa.removeLayer(this.capaBaseActiva);
+            }
+            this.baseMaps["Google hibrido"].addTo(miMapa);
+            this.capaBaseActiva = this.googleHybrid; */
+            //break;
+        //}
+        //break;
+    }
+  }
+
+
+

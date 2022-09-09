@@ -17,3 +17,61 @@
     font-size: 0.5em;
     vertical-align: top
 }
+ul li:hover{
+    cursor: pointer;
+    /* background-color: rgba(226, 216, 216, 0.5); */
+  }
+  .list-group-item, .card-header, .card-footer {
+    background-color: rgba(242, 242, 242, 0.6); 
+}
+/*-----------grande ------------------*/
+@media (min-width: 576px) {
+  .botonMenu{
+    position: absolute; 
+    z-index: 450; 
+    right: 18px;
+  }
+  .tarjeta{
+    position:absolute;
+    z-index: 450; 
+    top:33px; 
+    right: 15px; 
+    width: 18rem;
+  }
+  .card-title{
+    font-size: 12px;
+  }
+  select option {
+    font-size: 12px;
+    font-style: oblique;
+  }
+  .form-control {
+    font-size: 12px;
+  }
+}
+
+/*---------chico --------------------*/
+@media (max-width: 575.98px) {
+  .botonMenu{
+    position: absolute; 
+    z-index: 450; 
+    right: 26px;
+  }
+  .tarjeta{
+    position:absolute;
+    z-index: 450; 
+    top:60px; 
+    right: 22px; 
+    width: 18rem;
+  }
+  .card-title{
+    font-size: 12px;
+  }
+  select option {
+    font-size: 12px;
+  }
+  .form-control {
+    font-size: 12px;
+  }
+}
+ 
