@@ -20,8 +20,17 @@ export class MapaComponent implements OnInit {
   public layerWFSArba: any;
   public layerCircuitos: any;
   public layerSecciones: any;
+  public osm2: any;
+  public googleMaps: any;
+  public googleHybrid: any;
+  public openmap: any;
+  public esriSat: any;
+  public esriTransportes: any;
+  public wmsTerrestrisTopo: any;
+  public wmsTerrestrisOsm: any;
   public urlImagen: any;
   public imagenNasaVisible: boolean = false;
+  public capaBaseActiva: any;
 
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
@@ -43,7 +52,7 @@ export class MapaComponent implements OnInit {
   //===================================================================
   iniciarMapa() {
     //-----------------------------------------------------------------
-    const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+    this.googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
@@ -51,7 +60,7 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    const osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
+    this.osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
@@ -71,13 +80,13 @@ export class MapaComponent implements OnInit {
     });
 
     //-----------------------------------------------------------------
-    const openmap = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+    this.openmap = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       attribution: 'terms and feedback'
     });
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    const googleMaps = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    this.googleMaps = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
@@ -90,18 +99,18 @@ export class MapaComponent implements OnInit {
     //const bing = L.tileLayer(urlBing2);
 
     //-----------------------------------------------------------------
-    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    this.esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       { maxZoom: 22 });
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    const esriTransportes = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}');
+    this.esriTransportes = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}');
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
     //https://www.terrestris.de/en/
-    const wmsTerrestrisTopo = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', { layers: 'TOPO-OSM-WMS' });
-    const wmsTerrestrisOsm = L.tileLayer.wms('http://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
+    this.wmsTerrestrisTopo = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', { layers: 'TOPO-OSM-WMS' });
+    this.wmsTerrestrisOsm = L.tileLayer.wms('http://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
     //-----------------------------------------------------------------
     miMapa = L.map('mapid', {
       contextmenu: true,
@@ -129,7 +138,7 @@ export class MapaComponent implements OnInit {
       zoom: 6.5,
       zoomControl: false,
       maxZoom: 20
-    }).addLayer(osm2);
+    }).addLayer(this.osm2);
     L.control.scale().addTo(miMapa);
     /* L.control.coordinates({
       position:"bottomleft", //optional default "bootomright"
@@ -153,36 +162,11 @@ export class MapaComponent implements OnInit {
     L.control.zoom({
       position: 'bottomright'
     }).addTo(miMapa);
-    const baseMaps = {
-      /*"Google Hibrido": googleHibrido,
-      "Google Callejero": googleCallejero,
-      "Google Fisico": googleTerrain,
-      "Google Satelital": googleSatelite, */
-      "Open Street Map": osm2,
-      //"Mapbox": osm1,
-      //Terrestris topo:
-      "Google callejero ": googleMaps,
-      "Google hibrido": googleHybrid,
-      //"Bing": bing,
-      "ArcGis OnLine": openmap,
-      "Esri sat": esriSat,
-      "Esri transportes": esriTransportes,
-      "Terrestris topo (https://www.terrestris.de/en/)": wmsTerrestrisTopo,
-      "Terrestris Osm (https://www.terrestris.de/en/)": wmsTerrestrisOsm,
-    };
-    let overlayMaps = {
-      //"Capa OSM14": osm14
-      //"Industrias cuenca Riachuelo": layerJson,
-      //"Centros y Organizaciones Sociales": layerJsonCtos,
-      //"Centros educativos Pcia.Bs.As.":  layerEducacionJson,
-      //"Escuelas": layerEscuelasJson,
-      //"FFCC (Ign, cortesia @FerroviarioK)": layerFFCC
-      //"FFCC versi�n @FerroviarioK": layerFFCCFerroviariok,
-      //"FFCC marcadores": layerFFCCFerroviariokMarcadores
-      //"Centros educativos Pcia. Bs.As.": layerJsonEdu
-    };
-    controlLayers = L.control.layers(baseMaps, overlayMaps, { position: 'topright' }).addTo(miMapa);
-  }  //end iniciarMapa
+
+    this.capaBaseActiva = this.osm2;
+
+  }  //<--------------------------------------end iniciarMapa
+
 
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
@@ -331,28 +315,64 @@ export class MapaComponent implements OnInit {
           break;
       }
     } else {                                  //es una capa base
-      alert('capa base ...');
-    }
-    return
-
-          //case 'wfsIgn':                  //<----- capa Base ----->
-            /*             if (miMapa.hasLayer(this.capaBaseActiva)) {
-                          miMapa.removeLayer(this.capaBaseActiva);
-                        }
-                        this.cargarCapa();
-                        this.capaBaseActiva = this.capaOGC; */
-            //break;
-          //case 'googleHibrid':
-            /* if (miMapa.hasLayer(this.capaBaseActiva)) {
-              miMapa.removeLayer(this.capaBaseActiva);
-            }
-            this.baseMaps["Google hibrido"].addTo(miMapa);
-            this.capaBaseActiva = this.googleHybrid; */
-            //break;
-        //}
-        //break;
+      switch (seleccion['nombreFantasia']) {
+        case 'Open Street Map':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.osm2.addTo(miMapa);
+          this.capaBaseActiva = this.osm2;
+          break;
+        case 'Google callejero':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.googleMaps.addTo(miMapa);
+          this.capaBaseActiva = this.googleMaps;
+          break;
+        case 'Google hibrido':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.googleHybrid.addTo(miMapa);
+          this.capaBaseActiva = this.googleHybrid;
+          break;
+        case 'ArcGis OnLine':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.openmap.addTo(miMapa);
+          this.capaBaseActiva = this.openmap;
+          break;
+        case 'Esri sat':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.esriSat.addTo(miMapa);
+          this.capaBaseActiva = this.esriSat;
+          break;
+        case 'Esri transportes':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.esriTransportes.addTo(miMapa);
+          this.capaBaseActiva = this.esriTransportes;
+          break;
+        case 'Terrestris topo (https://www.terrestris.de/en/)':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.wmsTerrestrisTopo.addTo(miMapa);
+          this.capaBaseActiva = this.wmsTerrestrisTopo;
+          break;
+        case 'Terrestris Osm (https://www.terrestris.de/en/)':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.wmsTerrestrisOsm.addTo(miMapa);
+          this.capaBaseActiva = this.wmsTerrestrisOsm;
+          break;
+      }
     }
   }
-
-
-
+}

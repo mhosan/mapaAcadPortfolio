@@ -102,12 +102,21 @@ export class NavbarComponent implements OnInit {
     this.msgNavbar.emit({accion: 'geoloca'});
   }
 
-  capaSeleccionadaBase(idCapaSeleccionada: number, tipoCapaSeleccionada: boolean, nombreCapaSeleccionada: string, encendidoCapaSeleccionada: boolean) {
+  capaSeleccionadaBase(
+    idCapaSeleccionada: number, 
+    tipoCapaSeleccionada: boolean, 
+    nombreCapaSeleccionada: string, 
+    nombreFantasiaCapaSeleccionada: string,
+    encendidoCapaSeleccionada: boolean) {
     if (encendidoCapaSeleccionada) {
       alert("La capa ya está encendida...");
       return;
     } else { 
-      let capaEnviar = { nombre: nombreCapaSeleccionada, capaBase: tipoCapaSeleccionada, encendido: encendidoCapaSeleccionada };
+      let capaEnviar = { 
+        nombre: nombreCapaSeleccionada, 
+        capaBase: tipoCapaSeleccionada,
+        nombreFantasia: nombreFantasiaCapaSeleccionada, 
+        encendido: encendidoCapaSeleccionada };
       this.capasBase.forEach(element => {
         element.encendido = false;
       });
@@ -116,8 +125,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  capaSeleccionadaOverlay(idCapaSeleccionada: number, tipoCapaSeleccionada: boolean, nombreCapaSeleccionada: string, encendidoCapaSeleccionada: boolean) {
-    let capaEnviar = {id: idCapaSeleccionada, nombre: nombreCapaSeleccionada, capaBase: tipoCapaSeleccionada, encendido: encendidoCapaSeleccionada}
+  capaSeleccionadaOverlay(
+    idCapaSeleccionada: number, 
+    tipoCapaSeleccionada: boolean, 
+    nombreCapaSeleccionada: string,
+    encendidoCapaSeleccionada: boolean) {
+    let capaEnviar = {
+      id: idCapaSeleccionada,
+      nombre: nombreCapaSeleccionada,
+      capaBase: tipoCapaSeleccionada, 
+      encendido: encendidoCapaSeleccionada}
     this.capasOverlay[idCapaSeleccionada]['encendido'] = !encendidoCapaSeleccionada;
     this.msgNavbar.emit(capaEnviar); 
   }

@@ -24,7 +24,7 @@
                     <h5 class="card-title mt-3">CAPAS BASE</h5>
                     <ul class=" list-group" *ngFor="let item of capasBase">
                         <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.encendido);"
+                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.nombreFantasia, item.encendido);"
                             *ngIf="item.encendido==true">
                             <small>{{item.nombreFantasia}}</small>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -36,7 +36,7 @@
                             </svg>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.encendido);"
+                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.nombreFantasia, item.encendido);"
                             *ngIf="item.encendido==false">
                             <small>{{item.nombreFantasia}}</small>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
