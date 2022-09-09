@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
       nombreFantasia: "Open Street Map",
       capaBase: true,
       nombre: 'osm2',
-      encendido: false
+      encendido: true
     };
     this.capasBase[1] = {
       id: 1,
@@ -93,7 +93,7 @@ export class NavbarComponent implements OnInit {
       nombreFantasia: "Terrestris Osm (https://www.terrestris.de/en/)",
       capaBase: true,
       nombre: 'wmsTerrestrisOsm',
-      encendido: true
+      encendido: false
     };
 
   }
