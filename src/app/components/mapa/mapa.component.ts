@@ -4,7 +4,6 @@ import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.servic
 import { CapaArbaPartidosService } from '../../servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from '../../servicios/capa-circuitos.service';
 import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
-import { GetApiNasaService } from '../../servicios/get-api-nasa.service';
 
 declare let L;
 let miMapa: any;
@@ -15,7 +14,7 @@ let controlLayers;
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
-  title = 'mapa';
+  title = 'mhMapa';
   public layerWFSIgn: any;
   public layerWFSArba: any;
   public layerCircuitos: any;
@@ -36,15 +35,10 @@ export class MapaComponent implements OnInit {
     private servicioIGN: CapaIgnPartidosService,
     private servicioArba: CapaArbaPartidosService,
     private servicioCircuitos: CapaCircuitosService,
-    private servicioSecciones: CapaSeccionesService,
-    private servicioNasa: GetApiNasaService) { }
+    private servicioSecciones: CapaSeccionesService) { }
 
   ngOnInit(): void {
     this.iniciarMapa();
-  }
-
-  toggle() {
-    this.imagenNasaVisible = !this.imagenNasaVisible;
   }
 
   //===================================================================
@@ -94,11 +88,6 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    //let urlBing2 ="http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=0&amp;dir=dir_n&username=''";         
-    //let urlBing ="http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1";
-    //const bing = L.tileLayer(urlBing2);
-
-    //-----------------------------------------------------------------
     this.esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       { maxZoom: 22 });
     //-----------------------------------------------------------------
@@ -112,6 +101,8 @@ export class MapaComponent implements OnInit {
     this.wmsTerrestrisTopo = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', { layers: 'TOPO-OSM-WMS' });
     this.wmsTerrestrisOsm = L.tileLayer.wms('http://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
     //-----------------------------------------------------------------
+
+
     miMapa = L.map('mapid', {
       contextmenu: true,
       contextmenuWidth: 180,
@@ -188,8 +179,6 @@ export class MapaComponent implements OnInit {
     miMapa.zoomOut();
   }
 
-
-
   //===================================================================
   // el wfs del ign, ojo es muy lento!
   //===================================================================
@@ -218,7 +207,6 @@ export class MapaComponent implements OnInit {
         miMapa.addLayer(this.layerWFSArba);
         miMapa.fitBounds(this.layerWFSArba.getBounds());
       });
-
   }
 
   //===================================================================
@@ -279,9 +267,9 @@ export class MapaComponent implements OnInit {
     }
     let laCapa: any;
     console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
-    if (!seleccion['capaBase']) {              //es una capa overlay
+    if (!seleccion['capaBase']) {               //es una capa overlay
       switch (seleccion['encendido']) {
-        case true:                            //hay que apagar la capa
+        case true:                              //hay que apagar la capa
           switch (seleccion['nombre']) {
             case 'partidos':
               if (miMapa.hasLayer(this.layerWFSArba)) {
@@ -300,7 +288,7 @@ export class MapaComponent implements OnInit {
               break;
           }
           break;
-        case false:                           //hay que encender la capa 
+        case false:                             //hay que encender la capa 
           switch (seleccion['nombre']) {
             case 'partidos':
               this.capaWFSArba();
@@ -314,7 +302,7 @@ export class MapaComponent implements OnInit {
           }
           break;
       }
-    } else {                                  //es una capa base
+    } else {                                    //es una capa base
       switch (seleccion['nombreFantasia']) {
         case 'Open Street Map':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
@@ -358,14 +346,14 @@ export class MapaComponent implements OnInit {
           this.esriTransportes.addTo(miMapa);
           this.capaBaseActiva = this.esriTransportes;
           break;
-        case 'Terrestris topo (https://www.terrestris.de/en/)':
+        case 'Terrestris topo':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
             miMapa.removeLayer(this.capaBaseActiva);
           }
           this.wmsTerrestrisTopo.addTo(miMapa);
           this.capaBaseActiva = this.wmsTerrestrisTopo;
           break;
-        case 'Terrestris Osm (https://www.terrestris.de/en/)':
+        case 'Terrestris Osm':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
             miMapa.removeLayer(this.capaBaseActiva);
           }

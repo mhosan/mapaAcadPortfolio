@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top py-0" style="background-color: #d9d9d9;">
+<nav class="navbar fixed-top py-0" style="background-color: #d9d9d9">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <span class="fw-bold px-2">ArgenGis</span>
@@ -15,75 +15,157 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <button class="btn btn-secondary btn-sm mt-3" (click)="geoloca()">
-                        Geolocalizarme!
-                    </button>
-                    <!-- ---------------------------------------------------------- -->
-                    <!-- CAPAS BASE -->
-                    <!-- ---------------------------------------------------------- -->
-                    <h5 class="card-title mt-3">CAPAS BASE</h5>
-                    <ul class=" list-group" *ngFor="let item of capasBase">
-                        <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.nombreFantasia, item.encendido);"
-                            *ngIf="item.encendido==true">
-                            <small>{{item.nombreFantasia}}</small>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-eye" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                <path
-                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                            </svg>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaBase(item.id, item.capaBase, item.nombre, item.nombreFantasia, item.encendido);"
-                            *ngIf="item.encendido==false">
-                            <small>{{item.nombreFantasia}}</small>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-eye-slash" viewBox="0 0 16 16">
-                                <path
-                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
-                                <path
-                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
-                                <path
-                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
-                            </svg>
-                        </li>
-                    </ul>
-                    <!-- ---------------------------------------------------------- -->
-                    <!-- CAPAS OVERLAY -->
-                    <!-- ---------------------------------------------------------- -->
-                    <h5 class="card-title mt-3">CAPAS SUPERPUESTAS (OVERLAY) </h5>
-                    <ul class=" list-group" *ngFor="let item of capasOverlay">
-                        <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaOverlay(item.id, item.capaBase, item.nombre, item.encendido);"
-                            *ngIf="item.encendido==true">
-                            <small>{{item.nombreFantasia}}</small>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-eye" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                <path
-                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                            </svg>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                            (click)="capaSeleccionadaOverlay(item.id, item.capaBase, item.nombre, item.encendido);"
-                            *ngIf="item.encendido==false">
-                            <small>{{item.nombreFantasia}}</small>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-eye-slash" viewBox="0 0 16 16">
-                                <path
-                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
-                                <path
-                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
-                                <path
-                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
-                            </svg>
-                        </li>
-                    </ul>
+                    <div class="card" style="width: 18rem; height: 9rem; overflow:auto;">
+                        <div class="card-body">
+                            <h6 class="card-header">CAPAS BASE</h6>
+                            <ul class="list-group" *ngFor="let item of capasBase">
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                    (click)="capaSeleccionadaBase(item.id,item.capaBase,item.nombre,item.nombreFantasia,item.encendido)"
+                                    *ngIf="item.encendido == true">
+                                    <small>{{ item.nombreFantasia }}</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5
+                                        8 5.5S16 8 16 8zM1.173 8a13.133
+                                        13.133 0 0 1 1.66-2.043C4.12 4.668
+                                        5.88 3.5 8 3.5c2.12 0 3.879 1.168
+                                        5.168 2.457A13.133 13.133 0 0 1
+                                        14.828
+                                        8c-.058.087-.122.183-.195.288-.335.48-.83
+                                        1.12-1.465 1.755C11.879 11.332
+                                        10.119 12.5 8 12.5c-2.12
+                                        0-3.879-1.168-5.168-2.457A13.134
+                                        13.134 0 0 1 1.172 8z" />
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5
+                                        2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1
+                                        1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                    </svg>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                    (click)="capaSeleccionadaBase(item.id,item.capaBase,item.nombre,item.nombreFantasia,item.encendido)"
+                                    *ngIf="item.encendido == false">
+                                    <small>{{ item.nombreFantasia }}</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                        <path d="M13.359 11.238C15.06 9.72
+                                            16 8 16 8s-3-5.5-8-5.5a7.028
+                                            7.028 0 0
+                                            0-2.79.588l.77.771A5.944
+                                            5.944 0 0 1 8 3.5c2.12 0
+                                            3.879 1.168 5.168
+                                            2.457A13.134 13.134 0 0 1
+                                            14.828
+                                            8c-.058.087-.122.183-.195.288-.335.48-.83
+                                            1.12-1.465
+                                            1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                        <path d="M11.297 9.176a3.5 3.5
+                                            0 0
+                                            0-4.474-4.474l.823.823a2.5
+                                            2.5 0 0 1 2.829
+                                            2.829l.822.822zm-2.943
+                                            1.299.822.822a3.5 3.5 0
+                                            0
+                                            1-4.474-4.474l.823.823a2.5
+                                            2.5 0 0 0 2.829 2.829z" />
+                                        <path d="M3.35
+                                            5.47c-.18.16-.353.322-.518.487A13.134
+                                            13.134 0 0 0 1.172
+                                            8l.195.288c.335.48.83
+                                            1.12 1.465
+                                            1.755C4.121 11.332
+                                            5.881 12.5 8
+                                            12.5c.716 0
+                                            1.39-.133
+                                            2.02-.36l.77.772A7.029
+                                            7.029 0 0 1 8 13.5C3
+                                            13.5 0 8 0
+                                            8s.939-1.721
+                                            2.641-3.238l.708.709zm10.296
+                                            8.884-12-12
+                                            .708-.708 12
+                                            12-.708.708z" />
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <!-- <li class="nav-item dropdown">
+                    <div class="card mt-3" style="width: 18rem; height: 9rem; overflow:auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">CAPAS SUPERPUESTAS (OVERLAY)</h5>
+                            <ul class="list-group" *ngFor="let item of capasOverlay">
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                    (click)="capaSeleccionadaOverlay(item.id,item.capaBase,item.nombre,item.encendido)"
+                                    *ngIf="item.encendido == true">
+                                    <small>{{ item.nombreFantasia }}</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5
+                                            8 5.5S16 8 16 8zM1.173 8a13.133
+                                            13.133 0 0 1 1.66-2.043C4.12 4.668
+                                            5.88 3.5 8 3.5c2.12 0 3.879 1.168
+                                            5.168 2.457A13.133 13.133 0 0 1
+                                            14.828
+                                            8c-.058.087-.122.183-.195.288-.335.48-.83
+                                            1.12-1.465 1.755C11.879 11.332
+                                            10.119 12.5 8 12.5c-2.12
+                                            0-3.879-1.168-5.168-2.457A13.134
+                                            13.134 0 0 1 1.172 8z" />
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5
+                                                2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1
+                                                1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                    </svg>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                    (click)="capaSeleccionadaOverlay(item.id,item.capaBase,item.nombre,item.encendido)"
+                                    *ngIf="item.encendido == false">
+                                    <small>{{ item.nombreFantasia }}</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                        <path d="M13.359 11.238C15.06 9.72
+                                            16 8 16 8s-3-5.5-8-5.5a7.028
+                                            7.028 0 0
+                                            0-2.79.588l.77.771A5.944
+                                            5.944 0 0 1 8 3.5c2.12 0
+                                            3.879 1.168 5.168
+                                            2.457A13.134 13.134 0 0 1
+                                            14.828
+                                            8c-.058.087-.122.183-.195.288-.335.48-.83
+                                            1.12-1.465
+                                            1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                        <path d="M11.297 9.176a3.5 3.5
+                                            0 0
+                                            0-4.474-4.474l.823.823a2.5
+                                            2.5 0 0 1 2.829
+                                            2.829l.822.822zm-2.943
+                                            1.299.822.822a3.5 3.5 0
+                                            0
+                                            1-4.474-4.474l.823.823a2.5
+                                            2.5 0 0 0 2.829 2.829z" />
+                                        <path d="M3.35
+                                            5.47c-.18.16-.353.322-.518.487A13.134
+                                            13.134 0 0 0 1.172
+                                            8l.195.288c.335.48.83
+                                            1.12 1.465
+                                            1.755C4.121 11.332
+                                            5.881 12.5 8
+                                            12.5c.716 0
+                                            1.39-.133
+                                            2.02-.36l.77.772A7.029
+                                            7.029 0 0 1 8 13.5C3
+                                            13.5 0 8 0
+                                            8s.939-1.721
+                                            2.641-3.238l.708.709zm10.296
+                                            8.884-12-12
+                                            .708-.708 12
+                                            12-.708.708z" />
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Dropdown
@@ -97,12 +179,16 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li> -->
-            </ul>
-            <form class="d-flex mt-4" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                </ul>
+                <button class="btn btn-secondary btn-sm mt-3" (click)="geoloca()">
+                    Geolocalizarme!
+                </button>
+
+                <form class="d-flex mt-4" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 </nav>

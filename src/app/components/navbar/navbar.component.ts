@@ -83,14 +83,14 @@ export class NavbarComponent implements OnInit {
     };
     this.capasBase[6] = {
       id: 6,
-      nombreFantasia: "Terrestris topo (https://www.terrestris.de/en/)",
+      nombreFantasia: "Terrestris topo",
       capaBase: true,
       nombre: 'wmsTerrestrisTopo',
       encendido: false
     };
     this.capasBase[7] = {
       id: 7,
-      nombreFantasia: "Terrestris Osm (https://www.terrestris.de/en/)",
+      nombreFantasia: "Terrestris Osm",
       capaBase: true,
       nombre: 'wmsTerrestrisOsm',
       encendido: false
