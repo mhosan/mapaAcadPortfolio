@@ -48,48 +48,55 @@ export class NavbarComponent implements OnInit {
     };
     this.capasBase[1] = {
       id: 1,
+      nombreFantasia: "ArgenMap IGN (xyz)",
+      capaBase: true,
+      nombre: 'argenMap',
+      encendido: false
+    };
+    this.capasBase[2] = {
+      id: 2,
       nombreFantasia: "Google callejero",
       capaBase: true,
       nombre: 'googleMaps',
       encendido: false
     };
-    this.capasBase[2] = {
-      id: 2,
+    this.capasBase[3] = {
+      id: 3,
       nombreFantasia: "Google hibrido",
       capaBase: true,
       nombre: 'googleHybrid',
       encendido: false
     };
-    this.capasBase[3] = {
-      id: 3,
+    this.capasBase[4] = {
+      id: 4,
       nombreFantasia: "ArcGis OnLine",
       capaBase: true,
       nombre: 'openmap',
       encendido: false
     };
-    this.capasBase[4] = {
-      id: 4,
+    this.capasBase[5] = {
+      id: 5,
       nombreFantasia: "Esri sat",
       capaBase: true,
       nombre: 'esriSat',
       encendido: false
     };
-    this.capasBase[5] = {
-      id: 5,
+    this.capasBase[6] = {
+      id: 6,
       nombreFantasia: "Esri transportes",
       capaBase: true,
       nombre: 'esriTransportes',
       encendido: false
     };
-    this.capasBase[6] = {
-      id: 6,
+    this.capasBase[7] = {
+      id: 7,
       nombreFantasia: "Terrestris topo",
       capaBase: true,
       nombre: 'wmsTerrestrisTopo',
       encendido: false
     };
-    this.capasBase[7] = {
-      id: 7,
+    this.capasBase[8] = {
+      id: 8,
       nombreFantasia: "Terrestris Osm",
       capaBase: true,
       nombre: 'wmsTerrestrisOsm',

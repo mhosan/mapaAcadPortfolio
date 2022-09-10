@@ -20,6 +20,7 @@ export class MapaComponent implements OnInit {
   public layerCircuitos: any;
   public layerSecciones: any;
   public osm2: any;
+  public argenMap: any;
   public googleMaps: any;
   public googleHybrid: any;
   public openmap: any;
@@ -58,19 +59,8 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    const osm14 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      id: 'mapbox.streets'
-    });
-    //-----------------------------------------------------------------
-    const osm1 = L.tileLayer.wms("https://wms.ign.gob.ar/geoserver/gwc/service/wmts?", {
-      layers: "capabaseargenmap",
-      //format: 'image/jpeg',
-      //transparent: true
-      //version: '1.3.0',//wms version (ver get capabilities)
-      //attribution: "PNOA WMS. Cedido por © Instituto Geográfico Nacional de España"
+    this.argenMap =new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+      minZoom: 1, maxZoom: 20
     });
 
     //-----------------------------------------------------------------
@@ -205,7 +195,7 @@ export class MapaComponent implements OnInit {
       .subscribe(respuestaJson => {
         this.layerWFSArba = this.servicioArba.getWfs(respuestaJson, '');
         miMapa.addLayer(this.layerWFSArba);
-        miMapa.fitBounds(this.layerWFSArba.getBounds());
+        //miMapa.fitBounds(this.layerWFSArba.getBounds());
       });
   }
 
@@ -220,7 +210,7 @@ export class MapaComponent implements OnInit {
       .subscribe(respuestaJson => {
         this.layerCircuitos = this.servicioCircuitos.getCircuitosDepurado(respuestaJson, '');
         miMapa.addLayer(this.layerCircuitos);
-        miMapa.fitBounds(this.layerCircuitos.getBounds());
+        //miMapa.fitBounds(this.layerCircuitos.getBounds());
       });
   }
   //===================================================================
@@ -234,7 +224,7 @@ export class MapaComponent implements OnInit {
       .subscribe(respuestaJson => {
         this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
         miMapa.addLayer(this.layerSecciones);
-        miMapa.fitBounds(this.layerSecciones.getBounds());
+        //miMapa.fitBounds(this.layerSecciones.getBounds());
       });
   }
   //===================================================================
@@ -304,13 +294,20 @@ export class MapaComponent implements OnInit {
       }
     } else {                                    //es una capa base
       switch (seleccion['nombreFantasia']) {
-        case 'Open Street Map':
+        case 'ArgenMap IGN (xyz)':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
             miMapa.removeLayer(this.capaBaseActiva);
           }
-          this.osm2.addTo(miMapa);
-          this.capaBaseActiva = this.osm2;
+          this.argenMap.addTo(miMapa);
+          this.capaBaseActiva = this.argenMap;
           break;
+        case 'Open Street Map':
+            if (miMapa.hasLayer(this.capaBaseActiva)) {
+              miMapa.removeLayer(this.capaBaseActiva);
+            }
+            this.osm2.addTo(miMapa);
+            this.capaBaseActiva = this.osm2;
+            break;
         case 'Google callejero':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
             miMapa.removeLayer(this.capaBaseActiva);
