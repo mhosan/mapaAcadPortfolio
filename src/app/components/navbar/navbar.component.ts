@@ -17,22 +17,22 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.capasOverlay[0] = {
+   /*  this.capasOverlay[0] = {
       id: 0,
       nombreFantasia: "Capa partidos de Arba (WFS)",
       capaBase: false,
       nombre: 'partidos',
       encendido: false
-    };
-    this.capasOverlay[1] = {
-      id: 1,
+    }; */
+    this.capasOverlay[0] = {
+      id: 0,
       nombreFantasia: "Capa secc. elect. (GeoJson)",
       capaBase: false,
       nombre: 'secciones',
       encendido: false
     };
-    this.capasOverlay[2] = {
-      id: 2,
+    this.capasOverlay[1] = {
+      id: 1,
       nombreFantasia: "Capa circuitos elect. (GeoJson)",
       capaBase: false,
       nombre: 'circuitos',

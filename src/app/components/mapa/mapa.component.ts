@@ -262,8 +262,8 @@ export class MapaComponent implements OnInit {
         case true:                              //hay que apagar la capa
           switch (seleccion['nombre']) {
             case 'partidos':
-              if (miMapa.hasLayer(this.layerWFSArba)) {
-                miMapa.removeLayer(this.layerWFSArba);
+              if (miMapa.hasLayer(this.layerWFSIgn)) {
+                miMapa.removeLayer(this.layerWFSIgn);
               }
               break;
             case 'secciones':
@@ -281,7 +281,7 @@ export class MapaComponent implements OnInit {
         case false:                             //hay que encender la capa 
           switch (seleccion['nombre']) {
             case 'partidos':
-              this.capaWFSArba();
+              this.capaWFSIgn();
               break;
             case 'secciones':
               this.capaSecciones();
