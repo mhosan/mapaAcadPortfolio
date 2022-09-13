@@ -59,7 +59,7 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    this.argenMap =new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+    this.argenMap = new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
       minZoom: 1, maxZoom: 20
     });
 
@@ -228,9 +228,9 @@ export class MapaComponent implements OnInit {
       });
   }
   //===================================================================
-  // geolocalizar al usuario
+  // geolocalizar al usuario con Leaflet
   //===================================================================
-  geoloca() {
+  geolocaLeaflet() {
     miMapa.locate({ setView: true, maxZoom: 16 })
       .on('locationfound', (e) => {
         let marker = L.marker([e.latitude, e.longitude]).bindPopup('Ud. está aqui!');
@@ -245,15 +245,62 @@ export class MapaComponent implements OnInit {
         alert('Location access denied');
       })
   }
-
+  //===================================================================
+  // geolocalizar al usuario con html
+  //===================================================================
+  geolocaHtml() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+    function onSuccess(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      let marker = L.marker([latitude, longitude]).bindPopup('Ud. está aqui!');
+      miMapa.addLayer(marker);
+      var radius = 300;
+      var location = [latitude, longitude]
+      let circle = L.circle(location, radius);
+      miMapa.addLayer(circle);
+      const today = new Date();
+      const date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+      const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date + ' ' + time;
+      alert(dateTime);
+    }
+    function onError(error) {
+      var txt;
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          txt = 'Location permission denied';
+          break;
+        case error.POSITION_UNAVAILABLE:
+          txt = 'Location position unavailable';
+          break;
+        case error.TIMEOUT:
+          txt = 'Location position lookup timed out';
+          break;
+        default:
+          txt = 'Unknown position.'
+      }
+      alert(txt)
+    }
+  }
   //===================================================================
   // gestor de msgs de la navBar
   //=================================================================== 
   navBarMsgDrv(seleccion: {}) {
     if (seleccion['accion']) {
-      console.log('geolocalizar...');
-      this.geoloca();
-      return
+      if (seleccion['accion'] == 'geolocaLeaflet') {
+        console.log('geolocalizar con Leaflet');
+        this.geolocaLeaflet();
+        return
+      }
+      if (seleccion['accion'] == 'geolocaHtml') {
+        console.log('geolocalizar con html');
+        this.geolocaHtml();
+        return
+      }
+
     }
     let laCapa: any;
     console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
@@ -302,12 +349,12 @@ export class MapaComponent implements OnInit {
           this.capaBaseActiva = this.argenMap;
           break;
         case 'Open Street Map':
-            if (miMapa.hasLayer(this.capaBaseActiva)) {
-              miMapa.removeLayer(this.capaBaseActiva);
-            }
-            this.osm2.addTo(miMapa);
-            this.capaBaseActiva = this.osm2;
-            break;
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.osm2.addTo(miMapa);
+          this.capaBaseActiva = this.osm2;
+          break;
         case 'Google callejero':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
             miMapa.removeLayer(this.capaBaseActiva);
