@@ -19,6 +19,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "bootstrap": "^5.2.1",
+    "font-awesome": "^4.7.0",
     "leaflet": "^1.7.1",
     "leaflet-contextmenu": "^1.4.0",
     "leaflet.coordinates": "^0.1.5",
