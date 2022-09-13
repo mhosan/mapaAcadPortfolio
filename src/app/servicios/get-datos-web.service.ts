@@ -30,11 +30,11 @@ export class GetDatosWebService {
   }
   getWfsArba(): Observable<any> {
     //dominio del server: https://geo.arba.gov.ar
-
     //let laUrlArbaProxy = '/geoserver/idera/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=idera:Departamento&outputFormat=application/json&srsName=EPSG:4326'
     //let laUrlArba = 'https://geo.arba.gov.ar/geoserver/idera/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=idera:Departamento&outputFormat=application/json&srsName=EPSG:4326'
-    let laUrlSecGobAmbSust = 'http://geo2.ambiente.gob.ar/geoserver/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=ordenamiento:apn_sifal2016&outputFormat=application/json'
-    this.elJsonDeArba = this.http.get<any>(laUrlSecGobAmbSust);
+    //let laUrlSecGobAmbSust = 'http://geo2.ambiente.gob.ar/geoserver/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=ordenamiento:apn_sifal2016&outputFormat=application/json'
+    //this.elJsonDeArba = this.http.get<any>(laUrlSecGobAmbSust);
+    this.elJsonDeArba = this.http.get<any>("./assets/partidos.txt");
     return this.elJsonDeArba;
   }
 }
