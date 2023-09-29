@@ -1,20 +1,26 @@
 <nav class="navbar fixed-top py-0" style="background-color: #d9d9d9">
-    <div class="container-fluid">
+    
         <a class="navbar-brand" href="#">
-            <span class="fw-bold px-2">ArgenGis</span>
+            <span class="fw-bold px-2">MH - ArgenGis</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" id="OpenMenu">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" id="OpenMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="offcanvas offcanvas-end offcanvas-menu" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ArgenGis</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
                     <h6 class="card-title">CAPAS BASE</h6>
-                    <div class="card" style="width: 18rem; height: 9rem; overflow:auto;">
+                    <div class="card" style="width: 17rem; height: 9rem; overflow:auto;">
                         <div class="card-body">
                             <ul class="list-group" *ngFor="let item of capasBase">
                                 <li class="list-group-item d-flex justify-content-between align-items-center py-0" (click)="capaSeleccionadaBase(item.id,item.capaBase,item.nombre,item.nombreFantasia,item.encendido)">
@@ -27,7 +33,7 @@
                     </div>
 
                     <h5 class="card-title mt-3">CAPAS SUPERPUESTAS (OVERLAY)</h5>
-                    <div class="card" style="width: 18rem; height: 9rem; overflow:auto;">
+                    <div class="card" style="width: 17rem; height: 9rem; overflow:auto; margin-right: 1vh;">
                         <div class="card-body">
                             <ul class="list-group" *ngFor="let item of capasOverlay">
                                 <li class="list-group-item d-flex justify-content-between align-items-center py-0" (click)="capaSeleccionadaOverlay(item.id,item.capaBase,item.nombre,item.encendido)">
@@ -67,5 +73,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    
 </nav>
