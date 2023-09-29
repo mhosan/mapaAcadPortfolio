@@ -188,8 +188,10 @@ export class MapaComponent implements OnInit {
   // el wfs de Arba (desde un geoJson: ./assets/partidos.txt)
   //===================================================================
   capaWFSArba() {
-    if (miMapa.hasLayer(this.layerWFSArba)) {
-      miMapa.removeLayer(this.layerWFSArba);
+    if(!this.layerWFSArba===undefined){
+      if (miMapa.hasLayer(this.layerWFSArba)) {
+        miMapa.removeLayer(this.layerWFSArba);
+      }
     }
     this.servicioDatosWeb.getWfsArba()
       .subscribe(respuestaJson => {
@@ -203,9 +205,11 @@ export class MapaComponent implements OnInit {
   // circuitos electorales (desde un geoJson: ./assets/circuitosElectoralesBuenosAires.geojson)
   //===================================================================
   capaCircuitos() {
+    if(!this.layerCircuitos===undefined){
     if (miMapa.hasLayer(this.layerCircuitos)) {
       miMapa.removeLayer(this.layerCircuitos);
     }
+  }
     this.servicioDatosWeb.getCircuitosElectorales()
       .subscribe(respuestaJson => {
         this.layerCircuitos = this.servicioCircuitos.getCircuitosDepurado(respuestaJson, '');
@@ -217,9 +221,11 @@ export class MapaComponent implements OnInit {
   // secciones  electorales (desde un geoJson: ./assets/seccElec.geojson)
   //===================================================================
   capaSecciones() {
+   if(!this.layerSecciones===undefined){
     if (miMapa.hasLayer(this.layerSecciones)) {
       miMapa.removeLayer(this.layerSecciones);
     }
+  }
     this.servicioDatosWeb.getSeccionesElectorales()
       .subscribe(respuestaJson => {
         this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
