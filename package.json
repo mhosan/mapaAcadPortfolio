@@ -21,7 +21,7 @@
     "@angular/router": "^16.2.7",
     "bootstrap": "^5.2.1",
     "font-awesome": "^4.7.0",
-    "leaflet": "^1.7.1",
+    "leaflet": "^1.9.4",
     "leaflet-contextmenu": "^1.4.0",
     "leaflet.coordinates": "^0.1.5",
     "rxjs": "~6.6.0",
