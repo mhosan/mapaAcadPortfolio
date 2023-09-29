@@ -21,6 +21,9 @@ export class GetDatosWebService {
     return losCircuitos;
   }
 
+  //===================================================================
+  // cuando lee el wms del ign se pone muy lento
+  //===================================================================
   getWfsIgn(): Observable<any> {
     //let laUrlCompleta = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json';
     //let laUrlFiltrada = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json&CQL_FILTER=geometryType=%27MultiPolygon%27&PROPERTYNAME=gna&CQL_FILTER=gna=%27Partido%27';
