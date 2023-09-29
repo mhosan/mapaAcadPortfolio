@@ -31,6 +31,8 @@ export class GetDatosWebService {
     this.elJsonDelIGN = this.http.get<any>('./assets/partidos.geojson');
     return this.elJsonDelIGN;
   }
+
+  
   getWfsArba(): Observable<any> {
     //dominio del server: https://geo.arba.gov.ar
     //let laUrlArbaProxy = '/geoserver/idera/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=idera:Departamento&outputFormat=application/json&srsName=EPSG:4326'

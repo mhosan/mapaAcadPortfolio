@@ -185,7 +185,7 @@ export class MapaComponent implements OnInit {
       });
   }
   //===================================================================
-  // el wfs de Arba
+  // el wfs de Arba (desde un geoJson: ./assets/partidos.txt)
   //===================================================================
   capaWFSArba() {
     if (miMapa.hasLayer(this.layerWFSArba)) {
@@ -200,7 +200,7 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // circuitos electorales
+  // circuitos electorales (desde un geoJson: ./assets/circuitosElectoralesBuenosAires.geojson)
   //===================================================================
   capaCircuitos() {
     if (miMapa.hasLayer(this.layerCircuitos)) {
@@ -214,7 +214,7 @@ export class MapaComponent implements OnInit {
       });
   }
   //===================================================================
-  // secciones  electorales
+  // secciones  electorales (desde un geoJson: ./assets/seccElec.geojson)
   //===================================================================
   capaSecciones() {
     if (miMapa.hasLayer(this.layerSecciones)) {
@@ -227,8 +227,9 @@ export class MapaComponent implements OnInit {
         //miMapa.fitBounds(this.layerSecciones.getBounds());
       });
   }
+
   //===================================================================
-  // geolocalizar al usuario con Leaflet
+  // geolocalizar al usuario con Leaflet (en local no funca)
   //===================================================================
   geolocaLeaflet() {
     miMapa.locate({ setView: true, maxZoom: 16 })
@@ -245,6 +246,7 @@ export class MapaComponent implements OnInit {
         alert('Location access denied');
       })
   }
+
   //===================================================================
   // geolocalizar al usuario con html
   //===================================================================
@@ -265,7 +267,7 @@ export class MapaComponent implements OnInit {
       const date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
       const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       const dateTime = date + ' ' + time;
-      alert(dateTime);
+      alert(`Ok, ubicación resuelta. ${dateTime}`);
     }
     function onError(error) {
       var txt;
