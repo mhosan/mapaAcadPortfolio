@@ -4,8 +4,10 @@ import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.servic
 import { CapaArbaPartidosService } from '../../servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from '../../servicios/capa-circuitos.service';
 import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
+import 'leaflet-routing-machine';
 
 declare let L;
+
 let miMapa: any;
 let controlLayers;
 @Component({
@@ -40,6 +42,7 @@ export class MapaComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarMapa();
+    this.iniciarRuteo();
   }
 
   //===================================================================
@@ -136,19 +139,50 @@ export class MapaComponent implements OnInit {
       labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
       //customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
  }).addTo(miMapa); */
-    L.control.coordinates({
+    
+ L.control.coordinates({
       labelTemplateLat: "Lat.: {y}",
       labelTemplateLng: "Lon.: {x},"
     }).addTo(miMapa);
+
     L.control.zoom({
       position: 'bottomright'
     }).addTo(miMapa);
 
+      let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
+        miMapa.addLayer(marker);
+
     this.capaBaseActiva = this.osm2;
 
   }  //<--------------------------------------end iniciarMapa
+  
 
+  //===================================================================
+  // Iniciar ruteo
+  //===================================================================
+  iniciarRuteo(){
+    var control = L.Routing.control({ 
+      waypoints: [ 
+        L.latLng(-34.893832, -57.957300), 
+        L.latLng(-34.908368, -57.960863) ],
+        routeWhileDragging: true,
+        reverseWaypoints: true,
+        showAlternatives: true,
+        altLineOptions: {
+           styles: [
+               {color: 'black', opacity: 0.15, weight: 9},
+               {color: 'white', opacity: 0.8, weight: 6},
+               {color: 'blue', opacity: 0.5, weight: 2}
+           ]}
+    }).addTo(miMapa);
+    L.Routing.errorControl(control).addTo(miMapa);
+    L.Routing.Formatter = L.Class.extend({
+      options: {
+      language: 'sp'
+      } 
+    });
 
+}
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
     popupCoordenadas
@@ -168,6 +202,7 @@ export class MapaComponent implements OnInit {
   alejar(e) {
     miMapa.zoomOut();
   }
+  
 
   //===================================================================
   // el wfs del ign, ojo es muy lento!
