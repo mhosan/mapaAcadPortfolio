@@ -26,16 +26,18 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles": [ 
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css",
-              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css"
+              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css",
+              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css"
             ],
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js",
-              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js"
+              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js",
+              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -107,12 +109,14 @@
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css",
-              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css"
+              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css",
+              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css"
             ],
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js",
-              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js"
+              "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js",
+              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"
             ]
           }
         },
