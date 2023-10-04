@@ -471,12 +471,24 @@ export class MapaComponent implements OnInit {
     }
   }
   ruteoPuntoA() {
-    this.seleccionUbicacion(true, "A");
+    const iconoSalida = L.icon({
+      iconUrl: 'assets/ruteo/ruteoSalida05.png',
+      iconSize: [27, 30],
+      iconAnchor: [12, 22],
+      popupAnchor: [1, -20],
+    });
+    this.seleccionUbicacion(true, iconoSalida);
     this.vengoDe="A";
   }
 
   ruteoPuntoB() {
-    this.seleccionUbicacion(true, "B");
+    const iconoLlegada = L.icon({
+      iconUrl: 'assets/ruteo/ruteoLlegada05.png',
+      iconSize: [27, 30],
+      iconAnchor: [12, 22],
+      popupAnchor: [1, -20],
+    });
+    this.seleccionUbicacion(true, iconoLlegada);
     this.vengoDe="B";
   }
   comenzarRuteo(){
@@ -488,12 +500,12 @@ export class MapaComponent implements OnInit {
   //===================================================================
   // ACTIVAR seleccion de una posición en el mapa 
   //===================================================================
-  seleccionUbicacion(activar: boolean, puntoRuteo: string) {
+  seleccionUbicacion(activar: boolean, iconoAUtilizar: any) {
     if (activar) {
       miMapa.on('click', (e) => {
         let coordPunto = e.latlng;
 
-        let marcadorPunto = L.marker(coordPunto, { draggable: 'true' })
+        let marcadorPunto = L.marker(coordPunto, { icon: iconoAUtilizar, draggable: 'true' })
           .bindPopup(coordPunto.toString());
         localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
           lat: coordPunto.lat,
@@ -504,7 +516,7 @@ export class MapaComponent implements OnInit {
           marcadorPunto = event.target;
           coordPunto = "";
           coordPunto = marcadorPunto.getLatLng();
-          marcadorPunto.setLatLng(coordPunto, { draggable: 'true' }).bindPopup(coordPunto.toString()).update();
+          marcadorPunto.setLatLng(coordPunto, {  icon: iconoAUtilizar, draggable: 'true' }).bindPopup(coordPunto.toString()).update();
           localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
             lat: coordPunto.lat,
             lng: coordPunto.lng
@@ -527,6 +539,4 @@ export class MapaComponent implements OnInit {
       miMapa.off('click');
     }
   }
-
-
 }
