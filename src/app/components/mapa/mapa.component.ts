@@ -471,8 +471,9 @@ export class MapaComponent implements OnInit {
     console.log(this.marcadorRuteoPuntoA._latlng);
     console.log(this.marcadorRuteoPuntoB._latlng);
     this.cardPuntosRuteo = false;
-    this.iniciarRuteo(this.marcadorRuteoPuntoA, this.marcadorRuteoPuntoB)
-
+    this.iniciarRuteo(this.marcadorRuteoPuntoA, this.marcadorRuteoPuntoB);
+    this.marcadoresLayerA.clearLayers();
+    this.marcadoresLayerB.clearLayers();
   }
 
   //===================================================================
