@@ -105,13 +105,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  geolocaLeaflet() {
-    this.msgNavbar.emit({ accion: 'geolocaLeaflet' });
-  }
-
-  geolocaHtml() {
-    this.msgNavbar.emit({ accion: 'geolocaHtml' });
-  }
+  
 
   capaSeleccionadaBase(
     idCapaSeleccionada: number,

@@ -2,4 +2,27 @@
 <body>
     <div id="mapid">
     </div>
+    <div class="card cardRuteo">
+        <div class="card-body">
+            <h5 class="card-title">Ruteo</h5>
+            <div class="inline-container">
+                <label for="botonA">Posición inicio</label>
+                <button id="botonA" class="btn btn-primary btn-sm ms-2" (click)="ruteoPuntoA()">
+                    Punto A
+                </button>
+            </div>
+            <div class="inline-container mt-3">
+                <label for="botonB" >Posición final</label>
+                <button id="botonB" class="btn btn-primary btn-sm ms-2" (click)="ruteoPuntoB()">
+                    Punto B
+                </button>
+            </div>
+            <div class="inline-container mt-3">
+                <label for="botonFin" >Rutear</label>
+                <button id="botonFin" class="btn btn-primary btn-sm ms-2" (click)="comenzarRuteo()">
+                    Ok
+                </button>
+            </div>  
+        </div>
+    </div>
 </body>

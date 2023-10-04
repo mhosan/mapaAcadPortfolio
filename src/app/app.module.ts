@@ -10,6 +10,7 @@ import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
+//import { NgbOffcanvasModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

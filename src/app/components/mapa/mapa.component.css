@@ -7,3 +7,19 @@
     top: 6vh;
 }
 
+.cardRuteo {
+    z-index: 10000;
+    width: 25vw;
+    margin-top: 7vh;
+    margin-left: 1vh;
+}
+
+.inline-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+

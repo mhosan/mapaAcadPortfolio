@@ -57,6 +57,14 @@ ul li:hover {
     background-color: rgba(242, 242, 242, 0.6);
 }
 
+/* Estilos CSS para alinear en la misma línea */
+.inline-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 
 /*-----------grande ------------------*/
 

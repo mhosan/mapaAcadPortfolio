@@ -33,6 +33,11 @@ export class MapaComponent implements OnInit {
   public urlImagen: any;
   public imagenNasaVisible: boolean = false;
   public capaBaseActiva: any;
+  public marcadorRuteoPuntoA: any;
+  public marcadorRuteoPuntoB: any;
+  public marcadoresLayerA: any;
+  public marcadoresLayerB: any;
+  public vengoDe: string = " ";
 
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
@@ -42,7 +47,16 @@ export class MapaComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciarMapa();
-    this.iniciarRuteo();
+    this.agregarLayerGroupMarcadores();
+    //this.iniciarRuteo();
+  }
+
+  //===================================================================
+  // Agregar layer para los marcadores
+  //===================================================================
+  agregarLayerGroupMarcadores() {
+    this.marcadoresLayerA = L.layerGroup().addTo(miMapa);
+    this.marcadoresLayerB = L.layerGroup().addTo(miMapa);
   }
 
   //===================================================================
@@ -149,8 +163,8 @@ export class MapaComponent implements OnInit {
       position: 'bottomright'
     }).addTo(miMapa);
 
-      let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
-        miMapa.addLayer(marker);
+      /* let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
+        miMapa.addLayer(marker); */
 
     this.capaBaseActiva = this.osm2;
 
@@ -160,7 +174,7 @@ export class MapaComponent implements OnInit {
   //===================================================================
   // Iniciar ruteo
   //===================================================================
-  iniciarRuteo(){
+  /* iniciarRuteo(){ 
     var control = L.Routing.control({ 
       waypoints: [ 
         L.latLng(-34.893832, -57.957300), 
@@ -181,8 +195,7 @@ export class MapaComponent implements OnInit {
       language: 'sp'
       } 
     });
-
-}
+} */
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
     popupCoordenadas
@@ -219,6 +232,7 @@ export class MapaComponent implements OnInit {
         miMapa.fitBounds(this.layerWFSIgn.getBounds());
       });
   }
+
   //===================================================================
   // el wfs de Arba (desde un geoJson: ./assets/partidos.txt)
   //===================================================================
@@ -252,6 +266,7 @@ export class MapaComponent implements OnInit {
         //miMapa.fitBounds(this.layerCircuitos.getBounds());
       });
   }
+
   //===================================================================
   // secciones  electorales (desde un geoJson: ./assets/seccElec.geojson)
   //===================================================================
@@ -328,6 +343,7 @@ export class MapaComponent implements OnInit {
       alert(txt)
     }
   }
+
   //===================================================================
   // gestor de msgs de la navBar
   //=================================================================== 
@@ -343,7 +359,11 @@ export class MapaComponent implements OnInit {
         this.geolocaHtml();
         return
       }
-
+      /* if (seleccion['accion'] == 'localizarPuntoA') {
+        console.log('localizar punto A');
+        this.seleccionUbicacion(true);
+        return
+      } */
     }
     let laCapa: any;
     console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
@@ -450,4 +470,58 @@ export class MapaComponent implements OnInit {
       }
     }
   }
+  ruteoPuntoA() {
+    this.seleccionUbicacion(true, "A");
+    this.vengoDe="A";
+  }
+
+  ruteoPuntoB() {
+    this.seleccionUbicacion(true, "B");
+    this.vengoDe="B";
+  }
+  comenzarRuteo(){
+    this.seleccionUbicacion(false, "-");
+  }
+
+  //===================================================================
+  // ACTIVAR seleccion de una posición en el mapa 
+  //===================================================================
+  seleccionUbicacion(activar: boolean, puntoRuteo: string) {
+    if (activar) {
+      miMapa.on('click', (e) => {
+        let coordPunto = e.latlng;
+
+        let marcadorPunto = L.marker(coordPunto, { draggable: 'true' })
+          .bindPopup(`punto  ${puntoRuteo}`);
+
+        marcadorPunto.on('dragend', (event) => {
+          marcadorPunto = event.target;
+          coordPunto = "";
+          coordPunto = marcadorPunto.getLatLng();
+          marcadorPunto.setLatLng(coordPunto, { draggable: 'true' }).bindPopup(coordPunto).update();
+          localStorage.setItem("puntoRuteo", JSON.stringify({
+            posicion: puntoRuteo,
+            lat: coordPunto.lat,
+            lng: coordPunto.lng
+          }));
+        })
+        
+        if(this.vengoDe === "A"){
+          this.marcadorRuteoPuntoA = marcadorPunto;
+          miMapa.addLayer(this.marcadorRuteoPuntoA);
+          this.marcadoresLayerA.clearLayers();
+          this.marcadoresLayerA.addLayer(this.marcadorRuteoPuntoA);
+        } else if (this.vengoDe === "B"){
+          this.marcadorRuteoPuntoB = marcadorPunto;
+          miMapa.addLayer(this.marcadorRuteoPuntoB);
+          this.marcadoresLayerB.clearLayers();
+          this.marcadoresLayerB.addLayer(this.marcadorRuteoPuntoB);
+        }
+      });
+    } else {
+      miMapa.off('click');
+    }
+  }
+
+
 }
