@@ -38,6 +38,7 @@ export class MapaComponent implements OnInit {
   public marcadoresLayerA: any;
   public marcadoresLayerB: any;
   public vengoDe: string = " ";
+  public cardPuntosRuteo: boolean;
 
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
@@ -48,7 +49,6 @@ export class MapaComponent implements OnInit {
   ngOnInit(): void {
     this.iniciarMapa();
     this.agregarLayerGroupMarcadores();
-    //this.iniciarRuteo();
   }
 
   //===================================================================
@@ -171,31 +171,6 @@ export class MapaComponent implements OnInit {
   }  //<--------------------------------------end iniciarMapa
   
 
-  //===================================================================
-  // Iniciar ruteo
-  //===================================================================
-  /* iniciarRuteo(){ 
-    var control = L.Routing.control({ 
-      waypoints: [ 
-        L.latLng(-34.893832, -57.957300), 
-        L.latLng(-34.908368, -57.960863) ],
-        routeWhileDragging: true,
-        reverseWaypoints: true,
-        showAlternatives: true,
-        altLineOptions: {
-           styles: [
-               {color: 'black', opacity: 0.15, weight: 9},
-               {color: 'white', opacity: 0.8, weight: 6},
-               {color: 'blue', opacity: 0.5, weight: 2}
-           ]}
-    }).addTo(miMapa);
-    L.Routing.errorControl(control).addTo(miMapa);
-    L.Routing.Formatter = L.Class.extend({
-      options: {
-      language: 'sp'
-      } 
-    });
-} */
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
     popupCoordenadas
@@ -359,14 +334,14 @@ export class MapaComponent implements OnInit {
         this.geolocaHtml();
         return
       }
-      /* if (seleccion['accion'] == 'localizarPuntoA') {
-        console.log('localizar punto A');
-        this.seleccionUbicacion(true);
-        return
-      } */
     }
+    if (seleccion === 'activarRuteo') {
+      console.log('Activar ruteo');
+      this.cardPuntosRuteo = true
+    } 
+
     let laCapa: any;
-    console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
+    //console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
     if (!seleccion['capaBase']) {               //es una capa overlay
       switch (seleccion['encendido']) {
         case true:                              //hay que apagar la capa
@@ -495,6 +470,9 @@ export class MapaComponent implements OnInit {
     this.seleccionUbicacion(false, "-");
     console.log(this.marcadorRuteoPuntoA._latlng);
     console.log(this.marcadorRuteoPuntoB._latlng);
+    this.cardPuntosRuteo = false;
+    this.iniciarRuteo(this.marcadorRuteoPuntoA, this.marcadorRuteoPuntoB)
+
   }
 
   //===================================================================
@@ -539,4 +517,34 @@ export class MapaComponent implements OnInit {
       miMapa.off('click');
     }
   }
+
+  //===================================================================
+  // Iniciar ruteo
+  //===================================================================
+  iniciarRuteo(puntoA: any, puntoB: any){ 
+    var control = L.Routing.control({ 
+      waypoints: [ 
+        //L.latLng(-34.893832, -57.957300), 
+        //L.latLng(-34.908368, -57.960863) 
+        puntoA._latlng,
+        puntoB._latlng
+      ],
+        routeWhileDragging: true,
+        reverseWaypoints: true,
+        showAlternatives: true,
+        altLineOptions: {
+           styles: [
+               {color: 'black', opacity: 0.15, weight: 9},
+               {color: 'white', opacity: 0.8, weight: 6},
+               {color: 'blue', opacity: 0.5, weight: 2}
+           ]}
+    }).addTo(miMapa);
+    L.Routing.errorControl(control).addTo(miMapa);
+    L.Routing.Formatter = L.Class.extend({
+      options: {
+      language: 'sp'
+      } 
+    });
+} 
+
 }

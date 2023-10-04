@@ -105,8 +105,6 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  
-
   capaSeleccionadaBase(
     idCapaSeleccionada: number,
     tipoCapaSeleccionada: boolean,
@@ -144,6 +142,10 @@ export class NavbarComponent implements OnInit {
     }
     this.capasOverlay[idCapaSeleccionada]['encendido'] = !encendidoCapaSeleccionada;
     this.msgNavbar.emit(capaEnviar);
+  }
+
+  activarRuteo(){
+    this.msgNavbar.emit('activarRuteo');
   }
 
 }
