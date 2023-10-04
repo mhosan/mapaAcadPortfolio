@@ -481,6 +481,8 @@ export class MapaComponent implements OnInit {
   }
   comenzarRuteo(){
     this.seleccionUbicacion(false, "-");
+    console.log(this.marcadorRuteoPuntoA._latlng);
+    console.log(this.marcadorRuteoPuntoB._latlng);
   }
 
   //===================================================================
@@ -492,15 +494,18 @@ export class MapaComponent implements OnInit {
         let coordPunto = e.latlng;
 
         let marcadorPunto = L.marker(coordPunto, { draggable: 'true' })
-          .bindPopup(`punto  ${puntoRuteo}`);
+          .bindPopup(coordPunto.toString());
+        localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
+          lat: coordPunto.lat,
+          lng: coordPunto.lng
+        }));
 
         marcadorPunto.on('dragend', (event) => {
           marcadorPunto = event.target;
           coordPunto = "";
           coordPunto = marcadorPunto.getLatLng();
-          marcadorPunto.setLatLng(coordPunto, { draggable: 'true' }).bindPopup(coordPunto).update();
-          localStorage.setItem("puntoRuteo", JSON.stringify({
-            posicion: puntoRuteo,
+          marcadorPunto.setLatLng(coordPunto, { draggable: 'true' }).bindPopup(coordPunto.toString()).update();
+          localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
             lat: coordPunto.lat,
             lng: coordPunto.lng
           }));
