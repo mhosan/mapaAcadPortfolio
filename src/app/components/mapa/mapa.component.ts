@@ -48,6 +48,7 @@ export class MapaComponent implements OnInit {
     private servicioSecciones: CapaSeccionesService) { }
 
   ngOnInit(): void {
+    L.Icon.Default.imagePath = "assets/leaflet/"
     this.iniciarMapa();
     this.agregarLayerGroupMarcadores();
   }
@@ -559,16 +560,4 @@ export class MapaComponent implements OnInit {
       } 
     }); 
   }
-
-/*   iniciarRuteo(puntoA: any, puntoB: any){
-    var router = new L.Routing.control({
-      waypoints: [
-        puntoA._latlng,
-        puntoB._latlng
-      ],
-      language: 'en' // here's the magic
-  }).addTo(miMapa);
- 
-  }*/
-
 }
