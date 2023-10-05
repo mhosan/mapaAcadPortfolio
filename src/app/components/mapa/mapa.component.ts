@@ -4,6 +4,7 @@ import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.servic
 import { CapaArbaPartidosService } from '../../servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from '../../servicios/capa-circuitos.service';
 import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
+//import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 
 declare let L;
@@ -76,7 +77,7 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    this.argenMap = new L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+    this.argenMap = L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
       minZoom: 1, maxZoom: 20
     });
 
@@ -153,8 +154,8 @@ export class MapaComponent implements OnInit {
       labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
       //customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
  }).addTo(miMapa); */
-    
- L.control.coordinates({
+
+    L.control.coordinates({
       labelTemplateLat: "Lat.: {y}",
       labelTemplateLng: "Lon.: {x},"
     }).addTo(miMapa);
@@ -163,13 +164,13 @@ export class MapaComponent implements OnInit {
       position: 'bottomright'
     }).addTo(miMapa);
 
-      /* let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
-        miMapa.addLayer(marker); */
+    /* let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
+      miMapa.addLayer(marker); */
 
     this.capaBaseActiva = this.osm2;
 
   }  //<--------------------------------------end iniciarMapa
-  
+
 
   verCoordenadas(e) {
     const popupCoordenadas = L.popup();
@@ -190,7 +191,7 @@ export class MapaComponent implements OnInit {
   alejar(e) {
     miMapa.zoomOut();
   }
-  
+
 
   //===================================================================
   // el wfs del ign, ojo es muy lento!
@@ -212,7 +213,7 @@ export class MapaComponent implements OnInit {
   // el wfs de Arba (desde un geoJson: ./assets/partidos.txt)
   //===================================================================
   capaWFSArba() {
-    if(!this.layerWFSArba===undefined){
+    if (!this.layerWFSArba === undefined) {
       if (miMapa.hasLayer(this.layerWFSArba)) {
         miMapa.removeLayer(this.layerWFSArba);
       }
@@ -229,11 +230,11 @@ export class MapaComponent implements OnInit {
   // circuitos electorales (desde un geoJson: ./assets/circuitosElectoralesBuenosAires.geojson)
   //===================================================================
   capaCircuitos() {
-    if(!this.layerCircuitos===undefined){
-    if (miMapa.hasLayer(this.layerCircuitos)) {
-      miMapa.removeLayer(this.layerCircuitos);
+    if (!this.layerCircuitos === undefined) {
+      if (miMapa.hasLayer(this.layerCircuitos)) {
+        miMapa.removeLayer(this.layerCircuitos);
+      }
     }
-  }
     this.servicioDatosWeb.getCircuitosElectorales()
       .subscribe(respuestaJson => {
         this.layerCircuitos = this.servicioCircuitos.getCircuitosDepurado(respuestaJson, '');
@@ -246,11 +247,11 @@ export class MapaComponent implements OnInit {
   // secciones  electorales (desde un geoJson: ./assets/seccElec.geojson)
   //===================================================================
   capaSecciones() {
-   if(!this.layerSecciones===undefined){
-    if (miMapa.hasLayer(this.layerSecciones)) {
-      miMapa.removeLayer(this.layerSecciones);
+    if (!this.layerSecciones === undefined) {
+      if (miMapa.hasLayer(this.layerSecciones)) {
+        miMapa.removeLayer(this.layerSecciones);
+      }
     }
-  }
     this.servicioDatosWeb.getSeccionesElectorales()
       .subscribe(respuestaJson => {
         this.layerSecciones = this.servicioSecciones.getCircuitosDepurado(respuestaJson, '');
@@ -338,7 +339,7 @@ export class MapaComponent implements OnInit {
     if (seleccion === 'activarRuteo') {
       console.log('Activar ruteo');
       this.cardPuntosRuteo = true
-    } 
+    }
 
     let laCapa: any;
     //console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
@@ -453,7 +454,7 @@ export class MapaComponent implements OnInit {
       popupAnchor: [1, -20],
     });
     this.seleccionUbicacion(true, iconoSalida);
-    this.vengoDe="A";
+    this.vengoDe = "A";
   }
 
   ruteoPuntoB() {
@@ -464,9 +465,9 @@ export class MapaComponent implements OnInit {
       popupAnchor: [1, -20],
     });
     this.seleccionUbicacion(true, iconoLlegada);
-    this.vengoDe="B";
+    this.vengoDe = "B";
   }
-  comenzarRuteo(){
+  comenzarRuteo() {
     this.seleccionUbicacion(false, "-");
     console.log(this.marcadorRuteoPuntoA._latlng);
     console.log(this.marcadorRuteoPuntoB._latlng);
@@ -495,19 +496,19 @@ export class MapaComponent implements OnInit {
           marcadorPunto = event.target;
           coordPunto = "";
           coordPunto = marcadorPunto.getLatLng();
-          marcadorPunto.setLatLng(coordPunto, {  icon: iconoAUtilizar, draggable: 'true' }).bindPopup(coordPunto.toString()).update();
+          marcadorPunto.setLatLng(coordPunto, { icon: iconoAUtilizar, draggable: 'true' }).bindPopup(coordPunto.toString()).update();
           localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
             lat: coordPunto.lat,
             lng: coordPunto.lng
           }));
         })
-        
-        if(this.vengoDe === "A"){
+
+        if (this.vengoDe === "A") {
           this.marcadorRuteoPuntoA = marcadorPunto;
           miMapa.addLayer(this.marcadorRuteoPuntoA);
           this.marcadoresLayerA.clearLayers();
           this.marcadoresLayerA.addLayer(this.marcadorRuteoPuntoA);
-        } else if (this.vengoDe === "B"){
+        } else if (this.vengoDe === "B") {
           this.marcadorRuteoPuntoB = marcadorPunto;
           miMapa.addLayer(this.marcadorRuteoPuntoB);
           this.marcadoresLayerB.clearLayers();
@@ -522,30 +523,52 @@ export class MapaComponent implements OnInit {
   //===================================================================
   // Iniciar ruteo
   //===================================================================
-  iniciarRuteo(puntoA: any, puntoB: any){ 
-    var control = L.Routing.control({ 
-      waypoints: [ 
-        //L.latLng(-34.893832, -57.957300), 
-        //L.latLng(-34.908368, -57.960863) 
+  iniciarRuteo(puntoA: any, puntoB: any) {
+    var control = L.Routing.control({
+      waypoints: [
         puntoA._latlng,
         puntoB._latlng
       ],
-        routeWhileDragging: true,
-        reverseWaypoints: true,
-        showAlternatives: true,
-        altLineOptions: {
-           styles: [
-               {color: 'black', opacity: 0.15, weight: 9},
-               {color: 'white', opacity: 0.8, weight: 6},
-               {color: 'blue', opacity: 0.5, weight: 2}
-           ]}
-    }).addTo(miMapa);
+      router: L.Routing.osrmv1({
+        serviceUrl: 'http://router.project-osrm.org/route/v1'
+      }),
+      language: 'es',
+      collapsible: true,
+      autoRoute: true,
+      routeWhileDragging: true,
+      reverseWaypoints: true,
+      showAlternatives: true,
+      altLineOptions: {
+        styles: [
+          { color: 'black', opacity: 0.15, weight: 9 },  //sombra
+          { color: 'white', opacity: 0.8, weight: 6 },   //contorno
+          { color: 'blue', opacity: 0.5, weight: 2 }     //centro
+        ]
+      },
+      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',
+/*       formatter: new L.Routing.Formatter({
+        language: 'sp',
+      })
+ */    }).addTo(miMapa);
+
     L.Routing.errorControl(control).addTo(miMapa);
+
     L.Routing.Formatter = L.Class.extend({
       options: {
-      language: 'sp'
+      language: 'es'
       } 
-    });
-} 
+    }); 
+  }
+
+/*   iniciarRuteo(puntoA: any, puntoB: any){
+    var router = new L.Routing.control({
+      waypoints: [
+        puntoA._latlng,
+        puntoB._latlng
+      ],
+      language: 'en' // here's the magic
+  }).addTo(miMapa);
+ 
+  }*/
 
 }
