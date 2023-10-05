@@ -147,13 +147,6 @@ export class NavbarComponent implements OnInit {
   activarRuteo(){
     this.msgNavbar.emit('activarRuteo');
     let myOffcanvas = document.getElementById('offcanvasNavbar')
-    //myOffcanvas.addEventListener('hidden.bs.offcanvas', function () {
-    //  alert('fñasjdfkls');
-    //})
-    //if (myOffcanvas) {
-    //  myOffcanvas.classList.remove('show'); // Suponiendo que Bootstrap usa la clase 'show' para mostrar el Offcanvas
-    //}
-    //myOffcanvas.style.display = 'none';
     const eventoClick = new Event('click');
     //document.dispatchEvent(eventoClick);
     document.getElementById('OpenMenu').dispatchEvent(eventoClick);
