@@ -447,7 +447,7 @@ export class MapaComponent implements OnInit {
   }
   ruteoPuntoA() {
     const iconoSalida = L.icon({
-      iconUrl: 'assets/ruteo/ruteoSalida05.png',
+      iconUrl: 'assets/ruteo/ruteoSalida03.png',
       iconSize: [27, 30],
       iconAnchor: [12, 22],
       popupAnchor: [1, -20],
@@ -458,7 +458,7 @@ export class MapaComponent implements OnInit {
 
   ruteoPuntoB() {
     const iconoLlegada = L.icon({
-      iconUrl: 'assets/ruteo/ruteoLlegada05.png',
+      iconUrl: 'assets/ruteo/ruteoLlegada03.png',
       iconSize: [27, 30],
       iconAnchor: [12, 22],
       popupAnchor: [1, -20],
