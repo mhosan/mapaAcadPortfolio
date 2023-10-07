@@ -40,6 +40,7 @@ export class MapaComponent implements OnInit {
   public marcadoresLayerB: any;
   public vengoDe: string = " ";
   public cardPuntosRuteo: boolean;
+  public controlRuteo: any;
 
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
@@ -525,7 +526,7 @@ export class MapaComponent implements OnInit {
   // Iniciar ruteo
   //===================================================================
   iniciarRuteo(puntoA: any, puntoB: any) {
-    var control = L.Routing.control({
+    this.controlRuteo = L.Routing.control({
       waypoints: [
         puntoA._latlng,
         puntoB._latlng
@@ -552,7 +553,7 @@ export class MapaComponent implements OnInit {
       })
  */    }).addTo(miMapa);
 
-    L.Routing.errorControl(control).addTo(miMapa);
+    L.Routing.errorControl(this.controlRuteo).addTo(miMapa);
 
     L.Routing.Formatter = L.Class.extend({
       options: {
@@ -562,12 +563,14 @@ export class MapaComponent implements OnInit {
 
     let divRuteo = document.getElementsByClassName("leaflet-routing-container")[0] as HTMLElement;
     //console.log(divRuteo);
+    divRuteo.style.position = "absolute";
     divRuteo.style.left = "-150vh";
     divRuteo.style.top = "10vh";
     const botonCerrarRuteo = document.createElement("button");
     botonCerrarRuteo.textContent = "Cerrar ruteo";
     botonCerrarRuteo.onclick = () => {
       console.log("Se hizo clic en el botón");
+      this.controlRuteo.remove();
     };
     divRuteo.appendChild(botonCerrarRuteo);
   }
