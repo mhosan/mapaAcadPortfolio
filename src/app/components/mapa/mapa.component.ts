@@ -564,5 +564,11 @@ export class MapaComponent implements OnInit {
     //console.log(divRuteo);
     divRuteo.style.left = "-150vh";
     divRuteo.style.top = "10vh";
+    const botonCerrarRuteo = document.createElement("button");
+    botonCerrarRuteo.textContent = "Cerrar ruteo";
+    botonCerrarRuteo.onclick = () => {
+      console.log("Se hizo clic en el botón");
+    };
+    divRuteo.appendChild(botonCerrarRuteo);
   }
 }
