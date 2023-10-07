@@ -559,5 +559,10 @@ export class MapaComponent implements OnInit {
       language: 'es'
       } 
     }); 
+
+    let divRuteo = document.getElementsByClassName("leaflet-routing-container")[0] as HTMLElement;
+    //console.log(divRuteo);
+    divRuteo.style.left = "-150vh";
+    divRuteo.style.top = "10vh";
   }
 }

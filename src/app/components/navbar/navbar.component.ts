@@ -146,9 +146,8 @@ export class NavbarComponent implements OnInit {
 
   activarRuteo(){
     this.msgNavbar.emit('activarRuteo');
-    let myOffcanvas = document.getElementById('offcanvasNavbar')
     const eventoClick = new Event('click');
-    //document.dispatchEvent(eventoClick);
+    document.dispatchEvent(eventoClick);
     document.getElementById('OpenMenu').dispatchEvent(eventoClick);
   }
 
