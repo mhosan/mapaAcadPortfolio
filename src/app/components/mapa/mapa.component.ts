@@ -565,13 +565,15 @@ export class MapaComponent implements OnInit {
     //console.log(divRuteo);
     divRuteo.style.position = "absolute";
     divRuteo.style.left = "-150vh";
-    divRuteo.style.top = "10vh";
+    divRuteo.style.top = "3vh";
     const botonCerrarRuteo = document.createElement("button");
     botonCerrarRuteo.textContent = "Cerrar ruteo";
+    botonCerrarRuteo.className ="btn btn-primary btn-sm mt-1 mb-1 ms-1";
     botonCerrarRuteo.onclick = () => {
       console.log("Se hizo clic en el botón");
       this.controlRuteo.remove();
     };
     divRuteo.appendChild(botonCerrarRuteo);
+    
   }
 }
