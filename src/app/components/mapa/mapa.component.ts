@@ -52,7 +52,10 @@ export class MapaComponent implements OnInit {
     L.Icon.Default.imagePath = "assets/leaflet/"
     this.iniciarMapa();
     this.agregarLayerGroupMarcadores();
+    
   }
+
+  
 
   //===================================================================
   // Agregar layer para los marcadores
@@ -546,7 +549,7 @@ export class MapaComponent implements OnInit {
       router: L.Routing.osrmv1({
         serviceUrl: 'http://router.project-osrm.org/route/v1'
       }),
-      language: 'es',
+      language: 'it',
       collapsible: true,
       autoRoute: true,
       routeWhileDragging: true,
@@ -569,7 +572,7 @@ export class MapaComponent implements OnInit {
 
     L.Routing.Formatter = L.Class.extend({
       options: {
-      language: 'es'
+      language: 'it'
       } 
     }); 
 
@@ -585,12 +588,6 @@ export class MapaComponent implements OnInit {
       this.controlRuteo.remove();
     };
     divRuteo.appendChild(botonCerrarRuteo);
-
-    //divRuteo.addEventListener('DOMContentLoaded', () => {
-      // Iniciar la traducción del contenido del div.
-      //const elements = divRuteo.querySelectorAll('table');
-      //console.log(elements);
-    //});
-
   }
+
 }

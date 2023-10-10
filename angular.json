@@ -31,13 +31,14 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css",
               "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css",
-              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+              "src/app/leaflet-routing-machine/leaflet-routing-machine.css"
             ],
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js",
               "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js",
-              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"
+              "src/app/leaflet-routing-machine/leaflet-routing-machine.js",
+              "src/app/leaflet-routing-machine/localization.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -110,13 +111,14 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.css",
               "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css",
-              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+              "src/app/leaflet-routing-machine/leaflet-routing-machine.css"
             ],
             "scripts": [
               "node_modules/leaflet/dist/leaflet.js",
               "node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.js",
               "node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.min.js",
-              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"
+              "src/app/leaflet-routing-machine/leaflet-routing-machine.js",
+              "src/app/leaflet-routing-machine/localization.js"
             ]
           }
         },
