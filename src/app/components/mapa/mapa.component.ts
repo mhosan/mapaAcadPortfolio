@@ -448,6 +448,10 @@ export class MapaComponent implements OnInit {
       }
     }
   }
+
+  //===================================================================
+  // ruteo, seleccionar punto inicio
+  //===================================================================
   ruteoPuntoA() {
     const iconoSalida = L.icon({
       iconUrl: 'assets/ruteo/ruteoSalida03.png',
@@ -459,6 +463,9 @@ export class MapaComponent implements OnInit {
     this.vengoDe = "A";
   }
 
+  //===================================================================
+  // ruteo, seleccionar punto final
+  //===================================================================
   ruteoPuntoB() {
     const iconoLlegada = L.icon({
       iconUrl: 'assets/ruteo/ruteoLlegada03.png',
@@ -469,6 +476,10 @@ export class MapaComponent implements OnInit {
     this.seleccionUbicacion(true, iconoLlegada);
     this.vengoDe = "B";
   }
+
+  //===================================================================
+  // comenzar el ruteo
+  //===================================================================
   comenzarRuteo() {
     this.seleccionUbicacion(false, "-");
     console.log(this.marcadorRuteoPuntoA._latlng);
@@ -480,7 +491,8 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // ACTIVAR seleccion de una posición en el mapa 
+  // ACTIVAR seleccion de una posición en el mapa (viene de seleccionar
+  // punto A o B)
   //===================================================================
   seleccionUbicacion(activar: boolean, iconoAUtilizar: any) {
     if (activar) {
@@ -547,11 +559,11 @@ export class MapaComponent implements OnInit {
           { color: 'blue', opacity: 0.5, weight: 2 }     //centro
         ]
       },
-      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',
-/*       formatter: new L.Routing.Formatter({
-        language: 'sp',
-      })
- */    }).addTo(miMapa);
+      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',      
+    }).addTo(miMapa);
+    
+    const tables = document.querySelectorAll('table');
+    console.log(tables);
 
     L.Routing.errorControl(this.controlRuteo).addTo(miMapa);
 
@@ -562,7 +574,6 @@ export class MapaComponent implements OnInit {
     }); 
 
     let divRuteo = document.getElementsByClassName("leaflet-routing-container")[0] as HTMLElement;
-    //console.log(divRuteo);
     divRuteo.style.position = "absolute";
     divRuteo.style.left = "-150vh";
     divRuteo.style.top = "3vh";
@@ -574,6 +585,12 @@ export class MapaComponent implements OnInit {
       this.controlRuteo.remove();
     };
     divRuteo.appendChild(botonCerrarRuteo);
-    
+
+    //divRuteo.addEventListener('DOMContentLoaded', () => {
+      // Iniciar la traducción del contenido del div.
+      //const elements = divRuteo.querySelectorAll('table');
+      //console.log(elements);
+    //});
+
   }
 }
