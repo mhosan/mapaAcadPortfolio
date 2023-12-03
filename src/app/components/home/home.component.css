@@ -1,0 +1,29 @@
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 5vh;
+}
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+
+  }
+ 
+  .child {
+    /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]*/
+    /* If we don't want the items to stretch:*/
+    /*flex: 0 1 300px;*/
+    /* If we do want the items to stretch:*/
+    /*flex: 1 1 300px;*/
+    
+    border: 2px solid blue;
+    background: rgb(182, 199, 255);
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 10vh;
+    margin-right: 10vh;
+  }

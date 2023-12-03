@@ -10,14 +10,16 @@ import { CapaIgnPartidosService } from './servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from './servicios/capa-arba-partidos.service';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
+import { CadComponent } from './components/cad/cad.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     MapaComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    CadComponent
   ],
   imports: [
     BrowserModule,
