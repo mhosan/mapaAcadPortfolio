@@ -138,8 +138,8 @@ export class MapaComponent implements OnInit {
           callback: this.alejar,
           icon: 'assets/images/zoom-out.png'
         }],
-      center: [-36.214269, -61.073242],
-      zoom: 6.5,
+      center: [-34.92120403564976, -57.95442560727841], //[-36.214269, -61.073242]
+      zoom: 10.5,
       zoomControl: false,
       maxZoom: 20
     }).addLayer(this.osm2);
@@ -199,7 +199,7 @@ export class MapaComponent implements OnInit {
 
 
   //===================================================================
-  // el wfs del ign, ojo es muy lento!
+  // el wfs del ign, ojo es muy lento! este lee de la web
   //===================================================================
   capaWFSIgn() {
     if (miMapa.hasLayer(this.layerWFSIgn)) {
