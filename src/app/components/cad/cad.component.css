@@ -1,0 +1,17 @@
+.fondo {
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+    height: 100vh;
+    background-image: url('../../../assets/images/autocad01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+  }
+  h4 {
+    text-align: center;
+    color: rgb(150, 35, 35);
+    margin-top: 5vh;
+}
