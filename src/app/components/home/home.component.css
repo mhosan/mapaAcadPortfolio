@@ -1,21 +1,29 @@
-body {
-  /* margin: 0;
+.fondo {
+  margin: 0;
   padding: 0;
-  background-image: url('../../../assets/images/fondo1.jpg');
+  /*box-sizing: border-box;*/
+  height: 100vh;
+  background-image: url('../../../assets/images/fondo1.jpg'); /*url('../../../assets/images/tablet.png');*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh; 
   display: flex;
-  flex-direction: column; */
-  background-image: url('../../../assets/images/fondo1.jpg');
+  flex-direction: column;
 }
+
+
 h1 {
     text-align: center;
-    color: #333;
+    color: white;
     margin-top: 5vh;
 }
-.parent {
+h3 {
+  text-align: center;
+  color: white;
+  margin-top: 5vh;
+}
+
+.parent{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -24,20 +32,3 @@ h1 {
     margin-top: 10vh;
 
   }
- 
-  .child {
-    /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]*/
-    /* If we don't want the items to stretch:*/
-    /*flex: 0 1 300px;*/
-    /* If we do want the items to stretch:*/
-    /*flex: 1 1 300px;*/
-    
-    border: 2px solid blue;
-    background: rgb(182, 199, 255);
-    font-size: 2rem;
-    text-align: center;
-    margin-top: 10vh;
-    margin-right: 10vh;
-  }
-
-  
