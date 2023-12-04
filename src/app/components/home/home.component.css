@@ -20,7 +20,7 @@ h1 {
 h3 {
   text-align: center;
   color: white;
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 
 .parent{
@@ -29,6 +29,6 @@ h3 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 5vh;
 
   }
