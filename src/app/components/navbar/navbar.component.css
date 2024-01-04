@@ -1,13 +1,20 @@
+/* ---------- Reset CSS básico ---------- */
+body, h1, h2, h3, p, ul, ol, li, figure, figcaption, dl, dd, dt {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+/* ---------- Reset CSS básico ---------- */
+  
 h5 {
     font-size: 10px;
 }
 
-button {
-    position: fixed;
-    top: 4.5%;
-    left: 1%;
-    z-index: 10000;
-}
 
 /* .offcanvas-menu {
     width: 18vw;
@@ -21,11 +28,9 @@ button {
     background-color: #d9d9d9;
 } */
 
-
 .offcanvas-menu {
     width: 23vw;
 }
-
 
 
 /* .card-header {
@@ -44,8 +49,15 @@ button {
     overflow: auto;
 } */
 
+.navbar-toggler {
+    height: 22px;
+    vertical-align: top;
+}
 
-
+.navbar-toggler-icon {
+    font-size: 0.5em;
+    vertical-align: top
+}
 
 ul li:hover {
     cursor: pointer;

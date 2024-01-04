@@ -1,128 +1,123 @@
-<!-- <nav class="navbar fixed-top py-0" style="background-color: #d9d9d9"> -->
-<!-- <a class="navbar-brand" href="#">
+<nav class="navbar fixed-top py-0" style="background-color: #d9d9d9">
+    <a class="navbar-brand" href="#">
         <span class="fw-bold px-2">MH - ArgenGis</span>
-    </a> -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" id="OpenMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-    aria-controls="offcanvas" id="OpenMenu">
-    <span class="navbar-toggler-icon"></span>
-</button>
 
+    <!------ Offcanvas ------>
+    <div class="offcanvas offcanvas-end offcanvas-menu" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel" data-modal="false">
 
-<!------ Offcanvas ------>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvas" data-modal="false">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ArgenGis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
 
-    <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvasNavbarLabel">ArgenGis</h4>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-    </div>
+        <div class="offcanvas-body">
 
-    <div class="offcanvas-body">
+            <div class="accordion" id="accordionExample">
 
-        <div class="accordion" id="accordionExample">
+                <!-- ------------------ -->
+                <!-- accordion item UNO -->
+                <!-- ------------------ -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Gestión de capas
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <h6 class="card-title">CAPAS BASE</h6>
+                                <div class="card" style="width: 17rem; height: 9rem; overflow:auto;">
+                                    <div class="card-body">
+                                        <ul class="list-group" *ngFor="let item of capasBase">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                                (click)="capaSeleccionadaBase(item.id,item.capaBase,item.nombre,item.nombreFantasia,item.encendido)">
+                                                <h5>{{ item.nombreFantasia }}</h5>
+                                                <span *ngIf="item.encendido==false"><i
+                                                        class="fa fa-eye-slash fa-1x"></i></span>
+                                                <span *ngIf="item.encendido==true"><i
+                                                        class="fa fa-eye fa-1x"></i></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title mt-3">CAPAS SUPERPUESTAS (OVERLAY)</h5>
+                                <div class="card" style="width: 17rem; height: 9rem; overflow:auto; margin-right: 1vh;">
+                                    <div class="card-body">
+                                        <ul class="list-group" *ngFor="let item of capasOverlay">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center py-0"
+                                                (click)="capaSeleccionadaOverlay(item.id,item.capaBase,item.nombre,item.encendido)">
+                                                <h5>{{ item.nombreFantasia }}</h5>
+                                                <span *ngIf="item.encendido==false"><i
+                                                        class="fa fa-eye-slash fa-1x"></i></span>
+                                                <span *ngIf="item.encendido==true"><i
+                                                        class="fa fa-eye fa-1x"></i></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </ul>
 
-            <!-- ------------------ -->
-            <!-- accordion item UNO -->
-            <!-- ------------------ -->
-            <div class="accordion-item">
+                        </div>
+                    </div>
+                </div>
 
-                <!-- titulo del item uno -->
-               <h2 class="accordion-header" id="headingOne">
+                <!-- ------------------ -->
+                <!-- accordion item DOS -->
+                <!-- ------------------ -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ruteo
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <span class="inline-container">
+                                <!-- <label for="botonA">Posición inicio</label> -->
+                                <button id="botonA" class="btn btn-primary btn-sm ms-2" (click)="activarRuteo()">
+                                    Activar ruteo
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-                   <!-- boton colapsador/mostrador -->
-                   <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                       data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                       Gestión de capas
-                   </button>
-               </h2>
+                <!-- ------------------ -->
+                <!-- accordion item TRES-->
+                <!-- ------------------ -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Buscar
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <form class="d-flex mt-4" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search"
+                                    aria-label="Search" />
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                   data-bs-parent="#accordionExample">
-                   <div class="accordion-body">
-                       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                           
-                           <h6 class="card-title">CAPAS BASE</h6>
-                           <div class="card" style="width: 17rem; height: 9rem; overflow:auto;">
-                               <div class="card-body">
-                                   <ul class="list-group" *ngFor="let item of capasBase">
-                                       <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                                           (click)="capaSeleccionadaBase(item.id,item.capaBase,item.nombre,item.nombreFantasia,item.encendido)">
-                                           <h5>{{ item.nombreFantasia }}</h5>
-                                           <span *ngIf="item.encendido==false"><i
-                                                   class="fa fa-eye-slash fa-1x"></i></span>
-                                           <span *ngIf="item.encendido==true"><i class="fa fa-eye fa-1x"></i></span>
-                                       </li>
-                                   </ul>
-                               </div>
-                           </div>
-
-                           <h5 class="card-title mt-3">CAPAS SUPERPUESTAS (OVERLAY)</h5>
-                           <div class="card" style="width: 17rem; height: 9rem; overflow:auto; margin-right: 1vh;">
-                               <div class="card-body">
-                                   <ul class="list-group" *ngFor="let item of capasOverlay">
-                                       <li class="list-group-item d-flex justify-content-between align-items-center py-0"
-                                           (click)="capaSeleccionadaOverlay(item.id,item.capaBase,item.nombre,item.encendido)">
-                                           <h5>{{ item.nombreFantasia }}</h5>
-                                           <span *ngIf="item.encendido==false"><i
-                                                   class="fa fa-eye-slash fa-1x"></i></span>
-                                           <span *ngIf="item.encendido==true"><i class="fa fa-eye fa-1x"></i></span>
-                                       </li>
-                                   </ul>
-                               </div>
-                           </div>
-                           
-                       </ul>
-
-                   </div>
-               </div>
-           </div>
-
-           <!-- ------------------ -->
-           <!-- accordion item DOS -->
-           <!-- ------------------ -->
-           <div class="accordion-item">
-               <h2 class="accordion-header" id="headingTwo">
-                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                       data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                       Ruteo
-                   </button>
-               </h2>
-               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                   data-bs-parent="#accordionExample">
-                   <div class="accordion-body">
-                       <span class="inline-container">
-                           <!-- <label for="botonA">Posición inicio</label> -->
-                           <button id="botonA" class="btn btn-primary btn-sm ms-2" (click)="activarRuteo()">
-                               Activar ruteo
-                           </button>
-                       </span>
-                   </div>
-               </div>
-           </div>
-
-           <!-- ------------------ -->
-           <!-- accordion item TRES-->
-           <!-- ------------------ -->
-           <div class="accordion-item">
-               <h2 class="accordion-header" id="headingThree">
-                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                       data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                       Buscar
-                   </button>
-               </h2>
-               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                   data-bs-parent="#accordionExample">
-                   <div class="accordion-body">
-                       <form class="d-flex mt-4" role="search">
-                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                           <button class="btn btn-outline-success" type="submit">Search</button>
-                       </form>
-                   </div>
-               </div>
-           </div>
-
+            </div>
         </div>
     </div>
-</div>
 
-<!-- </nav> -->
+</nav>
