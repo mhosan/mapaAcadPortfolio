@@ -32,3 +32,11 @@ h3 {
     margin-top: 5vh;
 
   }
+  /* .card {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.5;
+  } */
+  .card {
+    height: 100%;
+  }
