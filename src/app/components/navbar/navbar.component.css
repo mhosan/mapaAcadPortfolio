@@ -2,6 +2,12 @@ h5 {
     font-size: 10px;
 }
 
+button {
+    position: fixed;
+    top: 4.5%;
+    left: 1%;
+    z-index: 10000;
+}
 
 /* .offcanvas-menu {
     width: 18vw;
@@ -15,9 +21,11 @@ h5 {
     background-color: #d9d9d9;
 } */
 
+
 .offcanvas-menu {
     width: 23vw;
 }
+
 
 
 /* .card-header {
@@ -36,15 +44,8 @@ h5 {
     overflow: auto;
 } */
 
-.navbar-toggler {
-    height: 22px;
-    vertical-align: top;
-}
 
-.navbar-toggler-icon {
-    font-size: 0.5em;
-    vertical-align: top
-}
+
 
 ul li:hover {
     cursor: pointer;

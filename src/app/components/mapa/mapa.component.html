@@ -1,7 +1,11 @@
-<app-navbar (msgNavbar)="navBarMsgDrv($event)"></app-navbar>
+<app-navbar (msgNavbar)="navBarMsgDrv($event)">
+</app-navbar>
+
 <body>
     <div id="mapid">
+        
     </div>
+   
     <div *ngIf="cardPuntosRuteo" class="card cardRuteo">
         <div class="card-body">
             <h5 class="card-title">Ruteo</h5>
@@ -25,4 +29,6 @@
             </div>  
         </div>
     </div>
+
+    
 </body>
