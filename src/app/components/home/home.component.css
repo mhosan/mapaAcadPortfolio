@@ -40,3 +40,6 @@ h3 {
   .card {
     height: 100%;
   }
+  .card .card-body {
+    overflow: auto;
+  }
