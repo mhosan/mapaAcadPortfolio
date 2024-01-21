@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
 import { GetDatosWebService } from './servicios/get-datos-web.service'
@@ -12,6 +13,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CadComponent } from './components/cad/cad.component'
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { CadComponent } from './components/cad/cad.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     HttpClientModule
   ],
   providers: [
