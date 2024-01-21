@@ -15,3 +15,8 @@
     color: rgb(150, 35, 35);
     margin-top: 5vh;
 }
+#divCards {
+  max-height: 85%; 
+  margin: 10vh 15vh;
+  border-radius: 10px;
+}

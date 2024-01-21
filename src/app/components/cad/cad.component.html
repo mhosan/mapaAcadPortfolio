@@ -2,42 +2,79 @@
   <app-navbar (msgNavbar)="navBarMsgDrv($event)">
   </app-navbar>
 
-  <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="assets/leaflet/layers.png" alt="Logo" width="30" height="24"
-          class="d-inline-block align-text-top ms-2 me-2">
-        Argengis
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-        </ul>
+  <h4 style="margin-top: 8vh; color:black;">Complementos (Plugin's) para Autocad</h4>
+
+  <div id="divCards" class="row">
+
+    <div class="col-sm-4">
+      
+      <div class="card h-100">
+        <h5 class="card-header text-center">Controles geográficos</h5>
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <!-- <h5 class="card-title">Controles geográficos</h5> -->
+          <p class="card-text">
+            Este plugin envia el plano activo a la página de
+            ARBA para que se le apliquen los controles geográficos
+            y muestra los resultados dentro de Autocad.
+          </p>
+          <p class="card-text">
+            La versión trial (de prueba) funciona por completo, sin
+            restricciones, en forma gratuita, por siete dias.
+          </p>
+        
+        </div>
+        <div class="card-footer text-center">
+          <a routerLink="/cad" class="btn btn-primary btn-sm">Descargar plugin</a>
+        </div>
       </div>
     </div>
-  </nav> -->
 
-  <h4>aqui va el contenido para Autocad</h4>
+    <div class="col-sm-4">
+      <div class="card h-100">
+        <h5 class="card-header text-center">Cálculo área poligonos en layer</h5>
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <!-- <h5 class="card-title">Cálculo área poligonos en layer</h5> -->
+          <p class="card-text">
+            Este plugin calcula el area de todos los poligonos hechos
+            con polilineas cerradas que se encuentran dentro de una 
+            determinada capa (layer)
+          </p>
+          <p class="card-text">
+            La versión trial (de prueba) funciona por completo, sin
+            restricciones, en forma gratuita, por siete dias.
+          </p>
+      
+        </div>
+        <div class="card-footer text-center">
+          <a routerLink="/cad" class="btn btn-primary btn-sm">Descargar plugin</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card h-100">
+        <h5 class="card-header text-center">Cambiar todos los textos a mayusculas o minusculas</h5>
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <!-- <h5 class="card-title">Controles geográficos</h5> -->
+          <p class="card-text">
+            Este plugin cambia todos los textos de un plano, o todos aquellos que se 
+            encuentren en una determinada capa (layer|), a mayusculas o minusculas
+          </p>
+          <p class="card-text">
+            La versión trial (de prueba) funciona por completo, sin
+            restricciones, en forma gratuita, por siete dias.
+          </p>
+       
+        </div>
+        <div class="card-footer text-center">
+          <a routerLink="/cad" class="btn btn-primary btn-sm">Descargar plugin</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
