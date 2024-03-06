@@ -1,20 +1,23 @@
-
 <div class="fondo">
   <div class="ms-2 mt-2">
     <a routerLink="/home" class="btn btn-primary btn-sm">Home</a>
- </div>
- 
+    <button class="btn btn-primary btn-sm text-center ms-2">
+      Instalación
+    </button>
+  
+  </div>
+
   <h4 style="margin-top: 8vh; color:black;">Complementos (Plugin's) para Autocad</h4>
 
   <div id="divCards" class="row">
 
     <div class="col-sm-4">
-      
       <div class="card h-100">
-        <h5 class="card-header text-center">Controles geográficos</h5>
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-header" style="display: flex; justify-content: space-between;">
+          <h5 class="d-inline">Controles geográficos</h5>
+          <button class="d-inline btn btn-primary btn-sm" (click)="verControlesGeograficos()">?</button>
+        </div>
         <div class="card-body">
-          <!-- <h5 class="card-title">Controles geográficos</h5> -->
           <p class="card-text">
             Este plugin envia el plano activo a la página de
             ARBA para que se le apliquen los controles geográficos
@@ -24,7 +27,6 @@
             La versión trial (de prueba) funciona por completo, sin
             restricciones, en forma gratuita, por siete dias.
           </p>
-        
         </div>
         <div class="card-footer text-center">
           <a class="btn btn-primary btn-sm" href="assets/ControlesGeo.msi" download>Descargar plugin</a>
@@ -34,23 +36,22 @@
 
     <div class="col-sm-4">
       <div class="card h-100">
-        <h5 class="card-header text-center">Cálculo área polígonos en layer</h5>
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-header" style="display: flex; justify-content: space-between;">
+          <h5 class="d-inline">Cálculo área polígonos en layer</h5>
+          <button class="d-inline btn btn-primary btn-sm" (click)="switchShowCardHelpAreaPoligonos()">?</button>
+        </div>
         <div class="card-body">
-          <!-- <h5 class="card-title">Cálculo área poligonos en layer</h5> -->
           <p class="card-text">
-            Este plugin calcula el área de todas las polílineas cuyo punto de 
-            inicio coincida con el punto final (polígonos cerrados), que se encuentran 
+            Este plugin calcula el área de todas las polílineas cuyo punto de
+            inicio coincida con el punto final (polígonos cerrados), que se encuentran
             en una determinada capa (layer).
           </p>
           <p class="card-text">
             La versión trial (de prueba) funciona por completo, sin
             restricciones, en forma gratuita, por siete dias.
           </p>
-      
         </div>
         <div class="card-footer text-center">
-          <!-- <a routerLink="/cad" class="btn btn-primary btn-sm">Descargar plugin</a> -->
           <a class="btn btn-primary btn-sm" href="assets/PoligonosAreasInstaller.msi" download>Descargar plugin</a>
         </div>
       </div>
@@ -59,27 +60,47 @@
     <div class="col-sm-4">
       <div class="card h-100">
         <h5 class="card-header text-center">Cambiar todos los textos a mayusculas o minusculas</h5>
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
         <div class="card-body">
-          <!-- <h5 class="card-title">Controles geográficos</h5> -->
           <p class="card-text">
-            Este plugin cambia todos los textos de un plano, o todos aquellos que se 
+            Este plugin cambia todos los textos de un plano, o todos aquellos que se
             encuentren en una determinada capa (layer|), a mayusculas o minusculas
           </p>
           <p class="card-text">
             La versión trial (de prueba) funciona por completo, sin
             restricciones, en forma gratuita, por siete dias.
           </p>
-       
         </div>
         <div class="card-footer text-center">
-          <!-- <a routerLink="/cad" class="btn btn-primary btn-sm">Descargar plugin</a> -->
-          <!-- <a class="btn btn-primary btn-sm" href="assets/AcadPluginsInstaller.msi" download>Descargar plugin</a> -->
           <button class="btn btn-primary btn-sm">No disponible aún</button>
         </div>
       </div>
     </div>
-
   </div>
 
+  
+  <div *ngIf="showControlesGeograficos" class="card" style="width: 18rem; position:absolute; top: 25vh; left: 5%">
+    <div class="card-body">
+      <p class="card-text">
+        Este plugin está diseñado para los profesionales de la Agrimensura de la Provincia
+        de Buenos Aires, Argentina, los cuales envian archivos cad en formato DXF a la
+        Agencia de Recaudación de la Provincia (ARBA).
+      </p>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-primary btn-sm" (click)="verControlesGeograficos()">Cerrar</button>
+    </div>
+  </div>
+
+  <div *ngIf="showAreaPoligonos" class="card" style="width: 18rem; position:absolute; top: 25vh; left: 40%">
+    <div class="card-body">
+      <p class="card-text">
+        Este plugin es de uso genérico. Proporciona información de las áreas de los polígonos que se encuentran
+        en el layer seleccionado y realiza la sumatoria de todas las áreas. Dispone de una opción para recalcular
+        en caso de modificaciones tanto en la cantidad de poligonos como en el área de cada uno.
+      </p>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-primary btn-sm" (click)="switchShowCardHelpAreaPoligonos()">Cerrar</button>
+    </div>
+  </div>
 </div>
