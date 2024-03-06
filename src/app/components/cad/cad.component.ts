@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class CadComponent {
   public showControlesGeograficos: boolean = false;
   public showAreaPoligonos: boolean = false;
+  public showHelpInstall: boolean = false;
   
   verControlesGeograficos(){
     this.showControlesGeograficos = !this.showControlesGeograficos;
@@ -15,5 +16,9 @@ export class CadComponent {
 
   switchShowCardHelpAreaPoligonos(){
     this.showAreaPoligonos = !this.showAreaPoligonos;
+  }
+
+  showCardHelpInstall(){
+    this.showHelpInstall = !this.showHelpInstall;
   }
 }

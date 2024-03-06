@@ -1,10 +1,10 @@
 <div class="fondo">
   <div class="ms-2 mt-2">
     <a routerLink="/home" class="btn btn-primary btn-sm">Home</a>
-    <button class="btn btn-primary btn-sm text-center ms-2">
+    <button class="btn btn-primary btn-sm text-center ms-3" (click)="showCardHelpInstall()">
       Instalación
     </button>
-  
+
   </div>
 
   <h4 style="margin-top: 8vh; color:black;">Complementos (Plugin's) para Autocad</h4>
@@ -77,7 +77,7 @@
     </div>
   </div>
 
-  
+
   <div *ngIf="showControlesGeograficos" class="card" style="width: 18rem; position:absolute; top: 25vh; left: 5%">
     <div class="card-body">
       <p class="card-text">
@@ -101,6 +101,33 @@
     </div>
     <div class="card-footer text-center">
       <button class="btn btn-primary btn-sm" (click)="switchShowCardHelpAreaPoligonos()">Cerrar</button>
+    </div>
+  </div>
+
+  <div *ngIf="showHelpInstall" class="card" style="width: 60rem; position:absolute; top: 10vh; left: 5%">
+    <div class="card-body">
+      <h6><u>Para instalar complementos (plugins):</u></h6>
+      <p class="card-text" style="font-family: Arial; font-size: 14px; line-height: 1.2;">
+        Cada complemento (plugin) es un archivo con extensión ".dll". Por ejemplo el que cálcula áreas es PoligonosAreas.dll.<br><br>
+        Cuando se realiza la instalación aceptando las opciones por defecto, este archivo de tipo dll quedará en la carpeta 
+        "Archivos de programa/Argengis/Poligonos Areas/PoligonosAreas.dll" (en el caso de este ejemplo).<br><br>
+
+        <u>Es importante tener en claro la ubicación del complemento</u> porque para utilizarlo hay que tipear en la línea de comandos
+        del cad el comando <b>"Netload"</b> y presionar Enter.<br><br>
+ 
+        Este comando muestra una pantalla de selección de archivos, propia de Windows, y en esa pantalla hay que localizar y 
+        seleccionar este archivo dll ("PoligonosAreas.dll" en este ejemplo). Con esto el complemento quedá incorporado al cad
+        como un comando más.<br><br>
+
+        Por último, en la línea de comandos del cad, escribir "calcarea" (para este ejemplo) y presionar Enter para comenzar la 
+        ejecución del complemento (o plugin).<br><br>
+        
+        Al finalizar la instalación de cualquier plugin, queda una carpeta en el escritorio de Windows con el nombre del plugin
+        descargado, conteniendo un archivo de texto con instrucciones.
+      </p>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-primary btn-sm" (click)="showCardHelpInstall()">Cerrar</button>
     </div>
   </div>
 </div>
