@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule} from '@angular/common';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GetDatosWebService } from '../../servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.service'
 import { CapaArbaPartidosService } from '../../servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from '../../servicios/capa-circuitos.service';
 import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
+
 //import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 
@@ -13,6 +16,11 @@ let miMapa: any;
 let controlLayers;
 @Component({
   selector: 'app-mapa',
+  standalone: true,
+  imports: [
+    CommonModule,
+    NavbarComponent
+  ],
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']
 })
