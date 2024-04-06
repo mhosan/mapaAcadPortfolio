@@ -18,14 +18,14 @@ import { CadComponent } from './components/cad/cad.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    CadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NavbarComponent,
-    MapaComponent
+    MapaComponent,
+    CadComponent
   ],
   providers: [
     GetDatosWebService,
