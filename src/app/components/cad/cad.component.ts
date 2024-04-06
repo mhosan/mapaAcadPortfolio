@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule} from '@angular/common';
+import { RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-cad',
@@ -7,7 +8,9 @@ import { CommonModule} from '@angular/common';
   styleUrls: ['./cad.component.css'],
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterLink,
+    RouterOutlet
   ]
 })
 export class CadComponent {

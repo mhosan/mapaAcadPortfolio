@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule} from '@angular/common';
+import { RouterLink, RouterOutlet} from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GetDatosWebService } from '../../servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.service'
@@ -19,7 +20,9 @@ let controlLayers;
   standalone: true,
   imports: [
     CommonModule,
-    NavbarComponent
+    NavbarComponent,
+    RouterLink,
+    RouterOutlet
   ],
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']

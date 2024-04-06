@@ -16,8 +16,7 @@ import { CadComponent } from './components/cad/cad.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +24,8 @@ import { CadComponent } from './components/cad/cad.component';
     HttpClientModule,
     NavbarComponent,
     MapaComponent,
-    CadComponent
+    CadComponent,
+    HomeComponent
   ],
   providers: [
     GetDatosWebService,
