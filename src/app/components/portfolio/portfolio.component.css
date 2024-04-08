@@ -31,7 +31,8 @@ body {
     grid-area: header;
     border-radius: 6px;
     text-align: center;
-    padding-top: 5px;
+    padding: 3px;
+    
 }
 .container aside {
     background-color: rgb(222, 225, 228);

@@ -10,14 +10,19 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
-  { path: 'portfolio', component: PortfolioComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'portfolio', component: PortfolioComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
- 
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: true,
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
