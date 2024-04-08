@@ -43,3 +43,12 @@ h3 {
   .card .card-body {
     overflow: auto;
   }
+  .footer {
+    background-color: #09f;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    font-style: italic;
+  }
