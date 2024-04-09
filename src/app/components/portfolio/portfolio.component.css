@@ -42,7 +42,7 @@ body {
 .container main {
     background-color: rgb(222, 225, 228);
     grid-area: content;
-    overflow: auto;
+    /* overflow: auto; */
     border-radius: 6px;
 }
 .container footer {
