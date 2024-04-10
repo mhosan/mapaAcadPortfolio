@@ -1,32 +1,35 @@
-
-nav  {
+nav {
     height: 33px;
     padding-top: 2px;
 }
 
-nav > a {
-    background-color: rgb(159, 198, 224); 
+nav>a {
+    background-color: rgb(159, 198, 224);
     color: black;
-    border-radius: 3px; 
+    border-radius: 3px;
     padding-left: 7px;
     padding-right: 7px;
     padding-top: 3px;
     padding-bottom: 5px;
     margin-left: 5px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:small;
+    font-size: small;
 }
 
 main p:first-of-type {
     text-align: center;
-    font-style:italic;
-  }
+    font-style: italic;
+}
+
+#tecnoFavoritas {
+    background-color: blue;
+}
 
 footer {
     background-color: rgb(159, 198, 224);
-    color: black;   
+    color: black;
 }
 
-footer > a {
+footer>a {
     color: black;
 }

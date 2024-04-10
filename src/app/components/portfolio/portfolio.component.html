@@ -1,18 +1,27 @@
 <section class="container">
-    
+
     <header class="row text-center mb-2 sticky-top bg-white">
+        
         <a routerLink="/" class="btn btn-primary btn-sm col-1 mb-1 mt-2" style="width: 5vw; height: 30px;">Home</a>
-        <h3 class="col">Portfolio de M.H.</h3>
-        <img class="col" title="Marcelito"
-             src="assets/images/perfil.png" 
-             alt="Una foto de M.H."
-             style='max-width: 12vh; max-height: 12vh; '>
-        <a class="col" download href="cvHosan.pdf">Descargar cv</a>
+        <h3 class="col">
+            Portfolio de M.H.
+            <a download href="cvHosan.pdf">
+                <img src="assets/images/download-pdf.png" alt="Bajar CV"
+                style='max-width: 5vh; max-height: 5vh;' title="Descargar C.V.">
+            </a>
+        </h3>
+        
+        <div class="col-1">
+            <img title="Marcelito" src="assets/images/perfil.png" alt="Una foto de M.H."
+                style='max-width: 12vh; max-height: 12vh; '>
+            
+        </div>
 
         <nav style="background-color: rgb(194, 226, 247); border-radius: 6px;">
             <a routerLink="/portfolio" fragment="experiencia">Experiencia</a>
             <a routerLink="/portfolio" fragment="proyectos">Proyectos</a>
-            <a target="_blank" href="https://github.com/mhosan" ref="noreferrer">Repos Github</a>
+            <a target="_blank" href="https://github.com/mhosan" ref="noreferrer">Repo Github</a>
+            <a target="_blank" href="https://gitlab.com/users/mhosan/projects" ref="noreferrer">Repo GitLab</a>
             <a routerLink="/portfolio" fragment="tecnoFavoritas">Mis tecnologías favoritas</a>
         </nav>
     </header>
@@ -49,6 +58,7 @@
                 </li>
             </ul>
         </section>
+
         <section id="tecnoFavoritas">
             <h2>Tecnologías favoritas</h2>
             <ol type="a">
@@ -61,7 +71,7 @@
             </ol>
         </section>
 
-        
+
 
         <section>
             <h2>Preguntas frecuentes</h2>
