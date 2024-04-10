@@ -1,19 +1,20 @@
 <section class="container">
-    <div class="row">&nbsp;</div>
-    <header class="row text-center mb-2 sticky-top bg-white" >
-        <a routerLink="/" class="btn btn-primary btn-sm col-1 mb-1 mt-2" style="width: 5vw; height: 30px;" >Home</a>
+    
+    <header class="row text-center mb-2 sticky-top bg-white">
+        <a routerLink="/" class="btn btn-primary btn-sm col-1 mb-1 mt-2" style="width: 5vw; height: 30px;">Home</a>
         <h3 class="col">Portfolio de M.H.</h3>
+        <img class="col" title="Marcelito"
+             src="assets/images/perfil.png" 
+             alt="Una foto de M.H."
+             style='max-width: 12vh; max-height: 12vh; '>
         <nav style="background-color: rgb(194, 226, 247); border-radius: 6px;">
-            
-                <a routerLink="/portfolio" fragment="experiencia" >Experiencia</a>
-                <a routerLink="/portfolio" fragment="proyectos" >Proyectos</a>
-                <a target="_blank" href="https://github.com/mhosan"  ref="noreferrer">Repos Github</a>
-                <a routerLink="/portfolio" fragment="tecnoFavoritas">Mis tecnologías favoritas</a>
-                   
-                    
+            <a routerLink="/portfolio" fragment="experiencia">Experiencia</a>
+            <a routerLink="/portfolio" fragment="proyectos">Proyectos</a>
+            <a target="_blank" href="https://github.com/mhosan" ref="noreferrer">Repos Github</a>
+            <a routerLink="/portfolio" fragment="tecnoFavoritas">Mis tecnologías favoritas</a>
         </nav>
     </header>
-    
+
     <main>
         <p>+ 30 años experiencia en sistemas.
             Desarrollador desktop y web.
@@ -47,7 +48,7 @@
             </ul>
         </section>
         <section id="tecnoFavoritas">
-            <h2 >Tecnologías favoritas</h2>
+            <h2>Tecnologías favoritas</h2>
             <ol type="a">
                 <li>Html</li>
                 <li>Css</li>
@@ -58,10 +59,6 @@
             </ol>
         </section>
 
-        <!-- etiquetas de reemplazo -no se cierran- (img, input)
-        en imagenes se puede poner style="width:100%; aspect-ratio: x/y"
-        x e y sacarlos del navegador ventana inspeccion -->
-        <img width="150" title="Marcelito" src="/images/perfil.png" alt="Una foto de M.H.">
         <br><a download href="cvHosan.pdf">Descargar cv</a>
 
         <section>
@@ -137,9 +134,9 @@
             </form>
         </section>
     </main>
-    <footer>
-        <h5> <em>Copyright &copy; Marcelo Hosan.</em> </h5>
-        <a href="mailto:mhosan@gmail.com">Enviarme un correo!</a>
-        <a href="tel:+542214295363">Llamar por tel.</a>
+    <footer class="row text-center sticky-bottom">
+        <em class="col">Copyright &copy; Marcelo Hosan.</em>
+        <a class="col" href="mailto:mhosan@gmail.com"><em>Enviarme un correo</em></a>
+        <!-- <a class="col" href="tel:+542214295363">Llamar por tel.</a> -->
     </footer>
 </section>
