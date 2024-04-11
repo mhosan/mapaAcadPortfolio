@@ -6,11 +6,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule, Routes} from 
   selector: 'app-tres',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet
+    CommonModule
+   
   ],
   templateUrl: './tres.component.html',
   styleUrls: ['./tres.component.css']

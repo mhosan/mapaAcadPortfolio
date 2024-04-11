@@ -8,11 +8,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule, Routes } from
   templateUrl: './uno.component.html',
   styleUrls: ['./uno.component.css'],
   imports: [
-    CommonModule,
-    RouterModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet
+    CommonModule
   ]
 })
 export default class UnoComponent {

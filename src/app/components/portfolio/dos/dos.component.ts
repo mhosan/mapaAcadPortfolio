@@ -6,11 +6,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule, Routes} from 
   selector: 'app-dos',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet
+    CommonModule
+
   ],
   templateUrl: './dos.component.html',
   styleUrls: ['./dos.component.css']

@@ -2,8 +2,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
