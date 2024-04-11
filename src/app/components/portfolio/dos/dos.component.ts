@@ -6,12 +6,11 @@ import { RouterLink, RouterOutlet, RouterModule, Routes} from '@angular/router';
   selector: 'app-dos',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterLink,
-    RouterOutlet],
+    CommonModule
+  ],
   templateUrl: './dos.component.html',
   styleUrls: ['./dos.component.css']
 })
-export class DosComponent {
+export default class DosComponent {
 
 }

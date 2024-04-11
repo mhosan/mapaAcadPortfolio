@@ -6,13 +6,11 @@ import { RouterLink, RouterOutlet, RouterModule, Routes} from '@angular/router';
   selector: 'app-tres',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterLink,
-    RouterOutlet
+    CommonModule
   ],
   templateUrl: './tres.component.html',
   styleUrls: ['./tres.component.css']
 })
-export class TresComponent {
+export default class TresComponent {
 
 }

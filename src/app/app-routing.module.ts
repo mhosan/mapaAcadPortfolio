@@ -9,18 +9,24 @@ export const routes: Routes = [
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
   {
-    path: 'portfolio',
-    loadComponent: () => import('./components/portfolio/portfolio.component').then(
-      m => m.PortfolioComponent)
+    path: 'portfolio', loadComponent: () => import('./components/portfolio/portfolio.component'),
+    children: [
+      {
+        path: 'uno',
+        title: "Uno",
+        loadComponent: () => import('./components/portfolio/uno/uno.component')
+      },
+      { path: 'dos', 
+        title: "Dos",
+        loadComponent: () => import("./components/portfolio/dos/dos.component") 
+      },
+      { path: 'tres',
+        title: "Tres", 
+        loadComponent: () => import("./components/portfolio/tres/tres.component") 
+      }
+    ]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 ];
 
-
-/* 
-{
-    path: 'portfolio',
-    loadChildren: () => import('./components/portfolioFolder/routes')
-  },
- */

@@ -13,6 +13,6 @@ import { RouterLink, RouterOutlet, RouterModule, Routes} from '@angular/router';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.css']
 })
-export class PortfolioComponent {
+export default class PortfolioComponent {
 
 }
