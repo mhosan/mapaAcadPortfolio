@@ -7,6 +7,10 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'portfolio', loadComponent: () => import('./components/portfolio/portfolio.component'),
     children: [
+      { path: 'vacia',
+      title: "Vacia",
+        loadComponent: () => import('./components/portfolio/empty-page/empty-page.component')
+      },
       { path: 'uno',
       title: "Uno",
         loadComponent: () => import('./components/portfolio/uno/uno.component')
@@ -20,7 +24,7 @@ export const routes: Routes = [
         loadComponent: () => import("./components/portfolio/tres/tres.component") 
       },
       { path: '**',
-        redirectTo: 'uno'
+        redirectTo: 'vacia'
       }
     ]
   },
