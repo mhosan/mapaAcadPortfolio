@@ -21,6 +21,8 @@
             <a routerLink="./dos">Experiencia</a>
             <a routerLink="./tres">Proyectos</a>
             <a routerLink="./uno">Tecnologías favoritas</a>
+            <a routerLink="./cuatro">Preguntas frecuentes</a>
+            <a routerLink="./cinco">Formulario de contacto</a>
             <!-- <a routerLink="/portfolio" fragment="proyectos">Proyectos</a> -->
             <a target="_blank" href="https://github.com/mhosan" ref="noreferrer">Repo Github</a>
             <a target="_blank" href="https://gitlab.com/users/mhosan/projects" ref="noreferrer">Repo GitLab</a>
@@ -33,80 +35,8 @@
             + 9 años Angular.
         </p>
         <router-outlet></router-outlet>
-
-        <section>
-            <h2>Preguntas frecuentes</h2>
-            <details>
-                <summary>
-                    Los plugines de cad son gratuitos?
-                </summary>
-                <p>Los plugines son inicialmente gratuitos, pero en algún
-                    momento serán de pago.
-                </p>
-            </details>
-            <details>
-                <summary>
-                    Los plugines de cad funcionan con cualqueir versión del programa cad?
-                </summary>
-                <p>Esto plugines están desarrollados y testeados en la versión 2022 del progama cad</p>
-            </details>
-        </section>
-
-        <section>
-            <h2>Formulario de contacto</h2>
-            <form method="post" action="/">
-                <fieldset>
-                    <legend>Información personal</legend>
-                    <div>
-                        <label for="name">Nombre</label><!-- se puede tambien envolver el
-                    input con el label y en ese caso no es necesario poner el for y
-                    se puede omitir el id del input -->
-                        <input type="text" id="name" name="name" placeholder="Ingresar nombre" required>
-                    </div>
-                    <div>
-                        <label for="email">email</label>
-                        <input type="email" id="email" name="email" placeholder="email" required>
-                    </div><!-- usar div para agrupar y poner display: block -->
-                </fieldset>
-                <fieldset>
-                    <legend>Información adicional</legend>
-                    <label for="telefono">Tel.</label>
-                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}">
-                </fieldset>
-                <fieldset>
-                    <legend>Otros</legend>
-                    <div><label for="why">Por que tema es el contacto</label>
-                        <select name="why" id="why">
-                            <option value="1">Trabajo</option>
-                            <option value="2">Duda</option>
-                            <option value="3">Mas información</option>
-                        </select>
-                    </div>
-                    <div>
-                        <datalist id="lenguajes">
-                            <option value="Javascript"></option>
-                            <option value="Python"></option>
-                            <option value="Java"></option>
-                            <option value="C#"></option>
-                        </datalist>
-                        <label for="lenguajes">Seleccionar un lenguaje</label>
-                        <input list="lenguajes" name="lenguajes">
-                    </div>
-                    <div>
-                        <label for="terminos">¿Aceptas los términos?</label>
-                        <input type="checkbox" id="terminos" name="terminos" required>
-                    </div>
-                </fieldset>
-                <!-- <input type="submit" value="Enviar contacto"> -->
-                <!-- se puede usar input o button para enviar el formulario,
-                pero button es mas claro y los botones que están dentro de un
-                formulario son todos de tipo submit, por lo tanto tambien se puede
-                eliminar el atributo type="submit". Si quiero un boton dentro de un
-                formulario y que no sea tipo submite hay que ponerle type="button" -->
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
     </main>
+
     <footer class="row text-center sticky-bottom">
         <em class="col">Copyright &copy; Marcelo Hosan.</em>
         <a class="col" href="mailto:mhosan@gmail.com"><em>Enviarme un correo</em></a>

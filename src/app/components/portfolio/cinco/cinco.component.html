@@ -1,0 +1,52 @@
+<h2>Formulario de contacto</h2>
+            <form method="post" action="/">
+                <fieldset>
+                    <legend>Información personal</legend>
+                    <div>
+                        <label for="name">Nombre</label><!-- se puede tambien envolver el
+                    input con el label y en ese caso no es necesario poner el for y
+                    se puede omitir el id del input -->
+                        <input type="text" id="name" name="name" placeholder="Ingresar nombre" required>
+                    </div>
+                    <div>
+                        <label for="email">email</label>
+                        <input type="email" id="email" name="email" placeholder="email" required>
+                    </div><!-- usar div para agrupar y poner display: block -->
+                </fieldset>
+                <fieldset>
+                    <legend>Información adicional</legend>
+                    <label for="telefono">Tel.</label>
+                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}">
+                </fieldset>
+                <fieldset>
+                    <legend>Otros</legend>
+                    <div><label for="why">Por que tema es el contacto</label>
+                        <select name="why" id="why">
+                            <option value="1">Trabajo</option>
+                            <option value="2">Duda</option>
+                            <option value="3">Mas información</option>
+                        </select>
+                    </div>
+                    <div>
+                        <datalist id="lenguajes">
+                            <option value="Javascript"></option>
+                            <option value="Python"></option>
+                            <option value="Java"></option>
+                            <option value="C#"></option>
+                        </datalist>
+                        <label for="lenguajes">Seleccionar un lenguaje</label>
+                        <input list="lenguajes" name="lenguajes">
+                    </div>
+                    <div>
+                        <label for="terminos">¿Aceptas los términos?</label>
+                        <input type="checkbox" id="terminos" name="terminos" required>
+                    </div>
+                </fieldset>
+                <!-- <input type="submit" value="Enviar contacto"> -->
+                <!-- se puede usar input o button para enviar el formulario,
+                pero button es mas claro y los botones que están dentro de un
+                formulario son todos de tipo submit, por lo tanto tambien se puede
+                eliminar el atributo type="submit". Si quiero un boton dentro de un
+                formulario y que no sea tipo submite hay que ponerle type="button" -->
+                <button type="submit">Enviar</button>
+            </form>

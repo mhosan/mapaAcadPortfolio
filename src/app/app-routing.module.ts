@@ -7,10 +7,6 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'portfolio', loadComponent: () => import('./components/portfolio/portfolio.component'),
     children: [
-      { path: 'vacia',
-      title: "Vacia",
-        loadComponent: () => import('./components/portfolio/empty-page/empty-page.component')
-      },
       { path: 'uno',
       title: "Uno",
         loadComponent: () => import('./components/portfolio/uno/uno.component')
@@ -23,8 +19,16 @@ export const routes: Routes = [
         title: "Tres", 
         loadComponent: () => import("./components/portfolio/tres/tres.component") 
       },
+      { path: 'cuatro',
+        title: "Cuatro", 
+        loadComponent: () => import("./components/portfolio/cuatro/cuatro.component") 
+      },
+      { path: 'cinco',
+      title: "Cinco", 
+      loadComponent: () => import("./components/portfolio/cinco/cinco.component") 
+    },
       { path: '**',
-        redirectTo: 'vacia'
+        redirectTo: 'uno'
       }
     ]
   },

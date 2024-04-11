@@ -22,10 +22,15 @@ main p:first-of-type {
 }
 
 footer {
+    position: fixed;
+    width: 101%;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgb(159, 198, 224);
     color: black;
 }
 
-footer>a {
+footer > a {
     color: black;
 }
