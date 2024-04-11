@@ -2,21 +2,17 @@
 
     <header class="row text-center mb-2 sticky-top bg-white">
         
-        <a routerLink="/" class="btn btn-primary btn-sm col-1 mb-1 mt-2" style="width: 5vw; height: 30px;">Home</a>
-        <h3 class="col">
+        <a routerLink="/" class="btn btn-primary btn-sm col mb-1 mt-2" style="width: 5vw; height: 30px;">Home</a>
+
+        <h3 class="col-10">
             Portfolio de M.H.
-            <a download href="cvHosan.pdf">
-                <img src="assets/images/download-pdf.png" alt="Bajar CV"
-                style='max-width: 5vh; max-height: 5vh;' title="Descargar C.V.">
-            </a>
         </h3>
         
-        <div class="col-1">
-            <img title="Marcelito" src="assets/images/perfil.png" alt="Una foto de M.H."
-                style='max-width: 12vh; max-height: 12vh; '>
-            
-        </div>
-
+        <a class="col" download href="cvHosan.pdf">
+            <img src="assets/images/download-pdf.png" alt="Bajar CV"
+            style='max-width: 5vh; max-height: 5vh;' title="Descargar C.V.">
+        </a>
+        
         <nav style="background-color: rgb(194, 226, 247); border-radius: 6px;">
             <a routerLink="./dos">Experiencia</a>
             <a routerLink="./tres">Proyectos</a>
@@ -30,10 +26,17 @@
     </header>
 
     <main>
-        <p>+ 30 años experiencia en sistemas.
+        <div class="row">
+        <p class="col-11">+ 30 años experiencia en sistemas.
             Desarrollador desktop y web.
             + 9 años Angular.
         </p>
+        <div class="col-1">
+            <img title="Marcelito" src="assets/images/perfil.png" alt="Una foto de M.H."
+                style='max-width: 12vh; max-height: 12vh; '>
+            
+        </div>
+    </div>
         <router-outlet></router-outlet>
     </main>
 
