@@ -1,3 +1,16 @@
+.fondo {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        height: 100vh;
+        background-image: url('../../../assets/images/pxfuel.com.jpg'); /*url('../../../assets/images/tablet.png');*/
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+}
+
 nav {
     height: 33px;
     padding-top: 2px;
