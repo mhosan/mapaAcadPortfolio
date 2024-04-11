@@ -3,12 +3,16 @@ import { MainComponent } from "./app/components/main/main.component";
 import { provideRouter } from '@angular/router';
 import { provideAnimations} from '@angular/platform-browser/animations';
 import { routes } from './app/app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
+import { importProvidersFrom } from "@angular/core";
 
 
 bootstrapApplication(MainComponent, {
   providers: [
+    importProvidersFrom(HttpClientModule),
     provideAnimations(),
-    provideRouter(routes)
+    provideRouter(routes),
+    
   ]
 })
   .catch(err => console.error(err));
