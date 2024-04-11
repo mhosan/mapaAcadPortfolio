@@ -8,10 +8,19 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
-  { path: 'portfolio', //load lazy
-    loadComponent: ()=> import('./components/portfolio/portfolio.component').then(
+  {
+    path: 'portfolio',
+    loadComponent: () => import('./components/portfolio/portfolio.component').then(
       m => m.PortfolioComponent)
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: HomeComponent },
 ];
+
+
+/* 
+{
+    path: 'portfolio',
+    loadChildren: () => import('./components/portfolioFolder/routes')
+  },
+ */
