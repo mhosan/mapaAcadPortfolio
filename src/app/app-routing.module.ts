@@ -23,10 +23,6 @@ export const routes: Routes = [
         title: "Cuatro", 
         loadComponent: () => import("./components/portfolio/cuatro/cuatro.component") 
       },
-      { path: 'cinco',
-      title: "Cinco", 
-      loadComponent: () => import("./components/portfolio/cinco/cinco.component") 
-    },
       { path: '**',
         redirectTo: 'uno'
       }
