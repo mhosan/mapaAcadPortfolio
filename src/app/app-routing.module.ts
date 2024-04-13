@@ -24,7 +24,7 @@ export const routes: Routes = [
         loadComponent: () => import("./components/portfolio/cuatro/cuatro.component") 
       },
       { path: '**',
-        redirectTo: 'uno'
+        redirectTo: 'dos'
       }
     ]
   },

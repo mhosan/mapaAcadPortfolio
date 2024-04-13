@@ -1,19 +1,20 @@
 <section class="container-fluid fondo" style="position: fixed; height:100vh;">
 
-    <header class="row text-center mb-2 sticky-top bg-white">
-        
-        <a routerLink="/" class="btn btn-primary btn-sm col mb-1 mt-2" style="width: 5vw; height: 30px;">Home</a>
+    <header class="row text-center mb-2 sticky-top">
+
+        <a routerLink="/" class="btn btn-secondary btn-sm col-1 mb-1 mt-1"
+            style="width: 5vw; height: 30px; margin-left: 45px;">Home</a>
 
         <h3 class="col-10">
             Portfolio de M.H.
         </h3>
-        
-        <a class="col mt-2" download href="cvHosan.pdf">
-            <img src="assets/images/bajar3.png" alt="Bajar CV"
-            style='max-width: 5vh; max-height: 5vh;' title="Descargar C.V.">
+
+        <a class="col mt-1" download href="cvHosan.pdf">
+            <img src="assets/images/bajar3.png" alt="Bajar CV" style='max-width: 5vh; max-height: 5vh;'
+                title="Descargar C.V.">
         </a>
-        
-        <nav style="background-color: rgb(194, 226, 247); border-radius: 6px;">
+
+        <nav style="background-color: rgb(200, 200, 200); border-radius: 6px;"> <!-- rgb(194, 226, 247) -->
             <a routerLink="./dos">Experiencia</a>
             <a routerLink="./tres">Proyectos</a>
             <a routerLink="./uno">Tecnologías favoritas</a>
@@ -21,21 +22,23 @@
             <!-- <a routerLink="/portfolio" fragment="proyectos">Proyectos</a> -->
             <a target="_blank" href="https://github.com/mhosan" ref="noreferrer">Repo Github</a>
             <a target="_blank" href="https://gitlab.com/users/mhosan/projects" ref="noreferrer">Repo GitLab</a>
+            <a target="_blank" href="https://bitbucket.org/mhosan/workspace/repositories/" ref="noreferrer">Repo Bitbucket</a>
+            
         </nav>
     </header>
 
     <main>
         <div class="row">
-        <p class="col-11">+ 30 años experiencia en sistemas.
-            Desarrollador desktop y web.
-            + 9 años Angular.
-        </p>
-        <div class="col-1">
-            <img title="Marcelito" src="assets/images/perfil-removebg-preview.png" alt="Una foto de M.H."
-                style='max-width: 12vh; max-height: 12vh; '>
-            
+            <p class="col-11">+ 30 años experiencia en sistemas.
+                Desarrollador desktop y web.
+                + 9 años Angular.
+            </p>
+            <div class="col">
+                <img title="Marcelito" src="assets/images/perfil-removebg-preview.png" alt="Una foto de M.H."
+                    style='position:absolute; right: 1vw; max-width: 10vh; max-height: 10vh;'>
+
+            </div>
         </div>
-    </div>
         <router-outlet></router-outlet>
     </main>
 
