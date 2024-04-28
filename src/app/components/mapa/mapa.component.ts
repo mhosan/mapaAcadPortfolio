@@ -228,15 +228,17 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // el wfs educacion gob ar, no es conae...
+  // el wfs educacion gob ar, no es conae, son las universidades
   //===================================================================
   capaConaeRiesgo() {
-   /*  if (miMapa.hasLayer(this.layerConaeRiesgo)) {
-      miMapa.removeLayer(this.layerConaeRiesgo);
-    } */
+    if (!this.layerConaeRiesgo === undefined) {
+      if (miMapa.hasLayer(this.layerConaeRiesgo)) {
+        miMapa.removeLayer(this.layerConaeRiesgo);
+      }
+    }
     this.servicioDatosWeb.getWfsConaeRiesgoEpi()
       .subscribe(respuestaJson => {
-        //console.log('Conae respondió: ', respuestaJson);
+        //console.log('Educacion respondió: ', respuestaJson);
         this.layerConaeRiesgo = this.servicioConaeRiesgo.getConaeRiesgo(respuestaJson);
         miMapa.addLayer(this.layerConaeRiesgo);
         miMapa.fitBounds(this.layerConaeRiesgo.getBounds());
@@ -379,7 +381,7 @@ export class MapaComponent implements OnInit {
     //console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
     if (!seleccion['capaBase']) {               //<---- es una capa overlay
       switch (seleccion['encendido']) {
-        case true:                              //hay que apagar la capa
+        case true:                              //hay que apagar la capa conaeRiesgo
           switch (seleccion['nombre']) {
             case 'partidos':
               if (miMapa.hasLayer(this.layerWFSArba)) {
@@ -394,6 +396,11 @@ export class MapaComponent implements OnInit {
             case 'circuitos':
               if (miMapa.hasLayer(this.layerCircuitos)) {
                 miMapa.removeLayer(this.layerCircuitos);
+              }
+              break;
+            case 'conaeRiesgo':
+              if (miMapa.hasLayer(this.layerConaeRiesgo)) {
+                miMapa.removeLayer(this.layerConaeRiesgo);
               }
               break;
           }

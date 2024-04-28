@@ -38,7 +38,8 @@ export class GetDatosWebService {
   // educacion gob ar, universidades
   //===================================================================
   getWfsConaeRiesgoEpi(): Observable<any> {
-    let laUrlCompleta = 'https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Ainstitucion_universitaria&maxFeatures=50&outputFormat=application%2Fjson';
+    let laUrlCompleta = 'https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Ainstitucion_universitaria&maxFeatures=1450&outputFormat=application%2Fjson';
+    let otraUrl ='https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Aestablecimiento_educativo&maxFeatures=64490&outputFormat=application%2Fjson';
     this.elJsonConaeRiesgo = this.http.get<any>(laUrlCompleta);
     return this.elJsonConaeRiesgo;
   }

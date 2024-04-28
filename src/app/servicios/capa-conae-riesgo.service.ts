@@ -31,25 +31,33 @@ export class CapaConaeRiesgoService {
         return miMarcadorCircular;
       },
       onEachFeature: function (feature, layer) {
-        /* var popupContent = `
+        var popupContent = `
         <table class="table table-striped table-borderless table-sm" style="font-family: 'Arial Narrow'">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" class="text-center">Organismo</th>
-              <th scope="col" class="text-center">Nombre</th>
-              <th scope="col" class="text-center">Partido</th>
+              <th scope="col" class="text-center">Regimen</th>
+              <th scope="col" class="text-center">Universidad</th>
+              <th scope="col" class="text-center">Unidad Acad.</th>
+              <th scope="col" class="text-center">Niveles</th>
+              <th scope="col" class="text-center">Domicilio</th>
+             
+             
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="text-center">${feature.properties.organismo}</td>  
-              <td class="text-center">${feature.properties.nombre}</td>
-              <td class="text-center">${feature.properties.partido}</td>
+              <td class="text-center">${feature.properties.regimen}</td>  
+              <td class="text-center">${feature.properties.universidad}</td>
+              <td class="text-center">${feature.properties.unidad_academica}</td>
+              <td class="text-center">${feature.properties.niveles}</td>
+              <td class="text-center">${feature.properties.domicilio}</td>
+            
+             
             </tr>
           </tbody>
         </table>
-      `; */
-        // layer.bindPopup(popupContent);
+      `; 
+        layer.bindPopup(popupContent);
 
         // layer.on({
         //   mouseover: (e:any) =>{

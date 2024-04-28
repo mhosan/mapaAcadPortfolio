@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
     };
     this.capasOverlay[3] = {
       id: 3,
-      nombreFantasia: "Conae Riesgo WFS",
+      nombreFantasia: "Universidades. (WFS Educ.gob.ar)",
       capaBase: false,
       nombre: 'conaeRiesgo',
       encendido: false
