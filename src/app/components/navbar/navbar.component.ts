@@ -43,6 +43,13 @@ export class NavbarComponent implements OnInit {
       nombre: 'circuitos',
       encendido: false
     };
+    this.capasOverlay[3] = {
+      id: 3,
+      nombreFantasia: "Conae Riesgo WFS",
+      capaBase: false,
+      nombre: 'conaeRiesgo',
+      encendido: false
+    };
     //----------------------------------------------------------------
     this.capasBase[0] = {
       id: 0,
@@ -105,6 +112,13 @@ export class NavbarComponent implements OnInit {
       nombreFantasia: "Terrestris Osm",
       capaBase: true,
       nombre: 'wmsTerrestrisOsm',
+      encendido: false
+    };
+    this.capasBase[9] = {
+      id: 9,
+      nombreFantasia: "Esri World Topo Map",
+      capaBase: true,
+      nombre: 'openmap',
       encendido: false
     };
 

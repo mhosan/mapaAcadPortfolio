@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule} from '@angular/common';
-import { RouterLink, RouterOutlet} from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GetDatosWebService } from '../../servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.service'
@@ -10,11 +10,11 @@ import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
 
 //import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { CapaConaeRiesgoService } from 'src/app/servicios/capa-conae-riesgo.service';
 
 declare let L;
-
 let miMapa: any;
-let controlLayers;
+
 @Component({
   selector: 'app-mapa',
   standalone: true,
@@ -30,6 +30,7 @@ let controlLayers;
 export class MapaComponent implements OnInit {
   title = 'mhMapa';
   public layerWFSIgn: any;
+  public layerConaeRiesgo: any;
   public layerWFSArba: any;
   public layerCircuitos: any;
   public layerSecciones: any;
@@ -57,16 +58,16 @@ export class MapaComponent implements OnInit {
     private servicioIGN: CapaIgnPartidosService,
     private servicioArba: CapaArbaPartidosService,
     private servicioCircuitos: CapaCircuitosService,
-    private servicioSecciones: CapaSeccionesService) { }
+    private servicioSecciones: CapaSeccionesService,
+    private servicioConaeRiesgo: CapaConaeRiesgoService) { }
 
   ngOnInit(): void {
     L.Icon.Default.imagePath = "assets/leaflet/"
     this.iniciarMapa();
     this.agregarLayerGroupMarcadores();
-    
+
   }
 
-  
 
   //===================================================================
   // Agregar layer para los marcadores
@@ -81,7 +82,7 @@ export class MapaComponent implements OnInit {
   //===================================================================
   iniciarMapa() {
     //-----------------------------------------------------------------
-    this.googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+    this.googleHybrid = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
@@ -89,7 +90,7 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    this.osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
+    this.osm2 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
@@ -97,14 +98,14 @@ export class MapaComponent implements OnInit {
       minZoom: 1, maxZoom: 20
     });
 
-    //-----------------------------------------------------------------
-    this.openmap = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+    //esri world topo map-----------------------------------------------------------------
+    this.openmap = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       attribution: 'terms and feedback'
     });
     //-----------------------------------------------------------------
 
     //-----------------------------------------------------------------
-    this.googleMaps = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    this.googleMaps = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
       detectRetina: true
@@ -123,9 +124,9 @@ export class MapaComponent implements OnInit {
     //-----------------------------------------------------------------
     //https://www.terrestris.de/en/
     this.wmsTerrestrisTopo = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', { layers: 'TOPO-OSM-WMS' });
-    this.wmsTerrestrisOsm = L.tileLayer.wms('http://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
-    //-----------------------------------------------------------------
 
+    this.wmsTerrestrisOsm = L.tileLayer.wms('https://ows.mundialis.de/services/service?', { layers: 'OSM-WMS' });
+    //-----------------------------------------------------------------
 
     miMapa = L.map('mapid', {
       contextmenu: true,
@@ -154,6 +155,8 @@ export class MapaComponent implements OnInit {
       zoomControl: false,
       maxZoom: 20
     }).addLayer(this.osm2);
+    this.capaBaseActiva = this.osm2;
+
     L.control.scale().addTo(miMapa);
     /* L.control.coordinates({
       position:"bottomleft", //optional default "bootomright"
@@ -172,8 +175,10 @@ export class MapaComponent implements OnInit {
  }).addTo(miMapa); */
 
     L.control.coordinates({
-      labelTemplateLat: "Lat.: {y}",
-      labelTemplateLng: "Lon.: {x},"
+      labelTemplateLat: "Latitud:  {y}",
+      labelTemplateLng: "Longitud:  {x},",
+      decimals: 2,
+      useDMS: false
     }).addTo(miMapa);
 
     L.control.zoom({
@@ -182,9 +187,6 @@ export class MapaComponent implements OnInit {
 
     /* let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
       miMapa.addLayer(marker); */
-
-    this.capaBaseActiva = this.osm2;
-
   }  //<--------------------------------------end iniciarMapa
 
 
@@ -210,7 +212,7 @@ export class MapaComponent implements OnInit {
 
 
   //===================================================================
-  // el wfs del ign, ojo es muy lento! este lee de la web
+  // NO USAR - el wfs del ign, ojo es muy lento! este lee de la web
   //===================================================================
   capaWFSIgn() {
     if (miMapa.hasLayer(this.layerWFSIgn)) {
@@ -222,6 +224,22 @@ export class MapaComponent implements OnInit {
         this.layerWFSIgn = this.servicioIGN.getWfs(respuestaJson, 'Partido');
         miMapa.addLayer(this.layerWFSIgn);
         miMapa.fitBounds(this.layerWFSIgn.getBounds());
+      });
+  }
+
+  //===================================================================
+  // el wfs de la Conae, con riesgo epidemiologico getWfsConaeRiesgoEpi
+  //===================================================================
+  capaConaeRiesgo() {
+   /*  if (miMapa.hasLayer(this.layerConaeRiesgo)) {
+      miMapa.removeLayer(this.layerConaeRiesgo);
+    } */
+    this.servicioDatosWeb.getWfsConaeRiesgoEpi()
+      .subscribe(respuestaJson => {
+        //console.log('Conae respondió: ', respuestaJson);
+        this.layerConaeRiesgo = this.servicioConaeRiesgo.getConaeRiesgo(respuestaJson);
+        miMapa.addLayer(this.layerConaeRiesgo);
+        miMapa.fitBounds(this.layerConaeRiesgo.getBounds());
       });
   }
 
@@ -359,7 +377,7 @@ export class MapaComponent implements OnInit {
 
     let laCapa: any;
     //console.log(`La capa seleccionada es: ${seleccion['nombre']}, capaBase: ${seleccion['capaBase']} y su estado actual de encendido es: ${seleccion['encendido']}`);
-    if (!seleccion['capaBase']) {               //es una capa overlay
+    if (!seleccion['capaBase']) {               //<---- es una capa overlay
       switch (seleccion['encendido']) {
         case true:                              //hay que apagar la capa
           switch (seleccion['nombre']) {
@@ -391,10 +409,13 @@ export class MapaComponent implements OnInit {
             case 'circuitos':
               this.capaCircuitos();
               break;
+            case 'conaeRiesgo':
+              this.capaConaeRiesgo();
+              break;
           }
           break;
       }
-    } else {                                    //es una capa base
+    } else {                                    //<---- es una capa base
       switch (seleccion['nombreFantasia']) {
         case 'ArgenMap IGN (xyz)':
           if (miMapa.hasLayer(this.capaBaseActiva)) {
@@ -458,6 +479,13 @@ export class MapaComponent implements OnInit {
           }
           this.wmsTerrestrisOsm.addTo(miMapa);
           this.capaBaseActiva = this.wmsTerrestrisOsm;
+          break;
+        case 'Esri World Topo Map':
+          if (miMapa.hasLayer(this.capaBaseActiva)) {
+            miMapa.removeLayer(this.capaBaseActiva);
+          }
+          this.openmap.addTo(miMapa);
+          this.capaBaseActiva = this.openmap;
           break;
       }
     }
@@ -573,9 +601,9 @@ export class MapaComponent implements OnInit {
           { color: 'blue', opacity: 0.5, weight: 2 }     //centro
         ]
       },
-      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',      
+      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',
     }).addTo(miMapa);
-    
+
     const tables = document.querySelectorAll('table');
     console.log(tables);
 
@@ -583,9 +611,9 @@ export class MapaComponent implements OnInit {
 
     L.Routing.Formatter = L.Class.extend({
       options: {
-      language: 'it'
-      } 
-    }); 
+        language: 'it'
+      }
+    });
 
     let divRuteo = document.getElementsByClassName("leaflet-routing-container")[0] as HTMLElement;
     divRuteo.style.position = "absolute";
@@ -593,7 +621,7 @@ export class MapaComponent implements OnInit {
     divRuteo.style.top = "3vh";
     const botonCerrarRuteo = document.createElement("button");
     botonCerrarRuteo.textContent = "Cerrar ruteo";
-    botonCerrarRuteo.className ="btn btn-primary btn-sm mt-1 mb-1 ms-1";
+    botonCerrarRuteo.className = "btn btn-primary btn-sm mt-1 mb-1 ms-1";
     botonCerrarRuteo.onclick = () => {
       console.log("Se hizo clic en el botón");
       this.controlRuteo.remove();

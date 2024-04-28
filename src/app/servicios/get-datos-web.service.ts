@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class GetDatosWebService {
   elJsonDelIGN: any;
+  elJsonConaeRiesgo: any;
   elJsonDeArba: any;
   constructor(private http: HttpClient) { }
 
@@ -25,11 +26,21 @@ export class GetDatosWebService {
   // cuando lee el wms del ign se pone muy lento
   //===================================================================
   getWfsIgn(): Observable<any> {
-    //let laUrlCompleta = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json';
+    let laUrlCompleta = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json';
     //let laUrlFiltrada = 'https://wms.ign.gob.ar/geoserver/ows?service=wfs&version=1.1.0&request=GetFeature&typeName=ign:departamento&outputFormat=application/json&CQL_FILTER=geometryType=%27MultiPolygon%27&PROPERTYNAME=gna&CQL_FILTER=gna=%27Partido%27';
     //this.elJsonDelIGN = this.http.get<any>(laUrlCompleta);
-    this.elJsonDelIGN = this.http.get<any>('./assets/partidos.geojson');
+    //this.elJsonDelIGN = this.http.get<any>('./assets/partidos.geojson');
+    this.elJsonDelIGN = this.http.get<any>(laUrlCompleta);
     return this.elJsonDelIGN;
+  }
+
+  //===================================================================
+  // conae riesgo
+  //===================================================================
+  getWfsConaeRiesgoEpi(): Observable<any> {
+    let laUrlCompleta = 'https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Ainstitucion_universitaria&maxFeatures=50&outputFormat=application%2Fjson';
+    this.elJsonConaeRiesgo = this.http.get<any>(laUrlCompleta);
+    return this.elJsonConaeRiesgo;
   }
 
   
