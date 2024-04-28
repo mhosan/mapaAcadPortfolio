@@ -228,7 +228,7 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // el wfs de la Conae, con riesgo epidemiologico getWfsConaeRiesgoEpi
+  // el wfs educacion gob ar, no es conae...
   //===================================================================
   capaConaeRiesgo() {
    /*  if (miMapa.hasLayer(this.layerConaeRiesgo)) {

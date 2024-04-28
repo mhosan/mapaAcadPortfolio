@@ -21,16 +21,16 @@ export class CapaConaeRiesgoService {
       opacity: 1,
       fillOpacity: 0.5
     };
-    this.capaConaeRiesgo = L.geoJson(elJson);
-    /* this.capaConaeRiesgo = L.geoJson(elJson, {
+
+    this.capaConaeRiesgo = L.geoJson(elJson, {
       pointToLayer: function (feature, latlng) {
         let miPopup = L.popup().setContent('hola mundo');
         let miMarcadorCircular = L.circleMarker(latlng, estiloPunto);
-        miMarcadorCircular.bindPopup(miPopup); */
+        miMarcadorCircular.bindPopup(miPopup); 
         //return L.circleMarker(latlng, estiloPunto);
-        //return miMarcadorCircular;
-      //},
-      //onEachFeature: function (feature, layer) {
+        return miMarcadorCircular;
+      },
+      onEachFeature: function (feature, layer) {
         /* var popupContent = `
         <table class="table table-striped table-borderless table-sm" style="font-family: 'Arial Narrow'">
           <thead class="thead-dark">
@@ -74,8 +74,8 @@ export class CapaConaeRiesgoService {
         //     laCapa.bindTooltip(miTooltip);
         //   }
         // });
-      //}
-    //});
+      }
+    });
     return this.capaConaeRiesgo;
   }
 

@@ -35,7 +35,7 @@ export class GetDatosWebService {
   }
 
   //===================================================================
-  // conae riesgo
+  // educacion gob ar, universidades
   //===================================================================
   getWfsConaeRiesgoEpi(): Observable<any> {
     let laUrlCompleta = 'https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Ainstitucion_universitaria&maxFeatures=50&outputFormat=application%2Fjson';
