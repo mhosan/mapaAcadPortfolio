@@ -7,12 +7,14 @@ import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.servic
 import { CapaArbaPartidosService } from '../../servicios/capa-arba-partidos.service'
 import { CapaCircuitosService } from '../../servicios/capa-circuitos.service';
 import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
-
+import * as turf from '@turf/turf';
 //import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { CapaConaeRiesgoService } from 'src/app/servicios/capa-conae-riesgo.service';
 
 declare let L;
+
+
 let miMapa: any;
 
 @Component({
@@ -634,6 +636,11 @@ export class MapaComponent implements OnInit {
       this.controlRuteo.remove();
     };
     divRuteo.appendChild(botonCerrarRuteo);
+  }
+
+  turf(){
+    const puntoUno =turf.point([-34.889176, -58.046951]);
+    console.log(puntoUno);
   }
 
 }
