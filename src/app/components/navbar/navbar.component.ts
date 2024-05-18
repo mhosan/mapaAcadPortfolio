@@ -45,14 +45,14 @@ export class NavbarComponent implements OnInit {
     };
     this.capasOverlay[3] = {
       id: 3,
-      nombreFantasia: "Universidades. (WFS Educ.gob.ar)",
+      nombreFantasia: "Universidades (WFS https://mapa.educacion.gob.ar). Features tot: 1450. Viendo: 1450",
       capaBase: false,
       nombre: 'conaeRiesgo',
       encendido: false
     };
     this.capasOverlay[4] = {
       id: 4,
-      nombreFantasia: "Establecim. Educ. (WFS Educ.gob.ar)",
+      nombreFantasia: "Establecimientos Educativos (WFS https://mapa.educacion.gob.ar). Features tot: 64490. Viendo: 5000",
       capaBase: false,
       nombre: 'establecimientosEducativos',
       encendido: false
