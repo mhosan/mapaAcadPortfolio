@@ -50,7 +50,16 @@ export class NavbarComponent implements OnInit {
       nombre: 'conaeRiesgo',
       encendido: false
     };
+    this.capasOverlay[4] = {
+      id: 4,
+      nombreFantasia: "Establecim. Educ. (WFS Educ.gob.ar)",
+      capaBase: false,
+      nombre: 'establecimientosEducativos',
+      encendido: false
+    };
+
     //----------------------------------------------------------------
+    
     this.capasBase[0] = {
       id: 0,
       nombreFantasia: "Open Street Map",
@@ -148,10 +157,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  capaSeleccionadaOverlay(
-    idCapaSeleccionada: number,
-    tipoCapaSeleccionada: boolean,
-    nombreCapaSeleccionada: string,
+  capaSeleccionadaOverlay(idCapaSeleccionada: number, tipoCapaSeleccionada: boolean, nombreCapaSeleccionada: string,
     encendidoCapaSeleccionada: boolean) {
     let capaEnviar = {
       id: idCapaSeleccionada,

@@ -10,6 +10,7 @@ export class GetDatosWebService {
   elJsonDelIGN: any;
   elJsonConaeRiesgo: any;
   elJsonDeArba: any;
+  elJsonEstablecimientosEducativos: any;
   constructor(private http: HttpClient) { }
 
   getSeccionesElectorales(): Observable<any> {
@@ -42,6 +43,16 @@ export class GetDatosWebService {
     let otraUrl ='https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Aestablecimiento_educativo&maxFeatures=64490&outputFormat=application%2Fjson';
     this.elJsonConaeRiesgo = this.http.get<any>(laUrlCompleta);
     return this.elJsonConaeRiesgo;
+  }
+
+  //===================================================================
+  // educacion gob ar, establecimientos educativos
+  //===================================================================
+  getWfsEstablecimientosEducativos(): Observable<any> {
+    let laUrlCompleta = 'https://mapa.educacion.gob.ar/geoserver/publico/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=publico%3Aestablecimiento_educativo&maxFeatures=5000&outputFormat=application%2Fjson';
+    let otraUrl ='';
+    this.elJsonEstablecimientosEducativos = this.http.get<any>(laUrlCompleta);
+    return this.elJsonEstablecimientosEducativos;
   }
 
   

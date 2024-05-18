@@ -11,10 +11,9 @@ import * as turf from '@turf/turf';
 //import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { CapaConaeRiesgoService } from 'src/app/servicios/capa-conae-riesgo.service';
+import { CapaEstabEducaService} from 'src/app/servicios/capa-estabEduca.service';
 
 declare let L;
-
-
 let miMapa: any;
 
 @Component({
@@ -33,6 +32,7 @@ export class MapaComponent implements OnInit {
   title = 'mhMapa';
   public layerWFSIgn: any;
   public layerConaeRiesgo: any;
+  public layerEstablecimientosEducativos: any;
   public layerWFSArba: any;
   public layerCircuitos: any;
   public layerSecciones: any;
@@ -61,7 +61,8 @@ export class MapaComponent implements OnInit {
     private servicioArba: CapaArbaPartidosService,
     private servicioCircuitos: CapaCircuitosService,
     private servicioSecciones: CapaSeccionesService,
-    private servicioConaeRiesgo: CapaConaeRiesgoService) { }
+    private servicioConaeRiesgo: CapaConaeRiesgoService,
+    private servicioEstablecimientosEducativos: CapaEstabEducaService) { }
 
   ngOnInit(): void {
     L.Icon.Default.imagePath = "assets/leaflet/"
@@ -230,7 +231,8 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // el wfs educacion gob ar, no es conae, son las universidades
+  // el wfs educacion gob ar, no es conae ni conaeRiesto, son las universidades
+  // TODO: cambiar el nombre de este metodo!
   //===================================================================
   capaConaeRiesgo() {
     if (!this.layerConaeRiesgo === undefined) {
@@ -244,6 +246,24 @@ export class MapaComponent implements OnInit {
         this.layerConaeRiesgo = this.servicioConaeRiesgo.getConaeRiesgo(respuestaJson);
         miMapa.addLayer(this.layerConaeRiesgo);
         miMapa.fitBounds(this.layerConaeRiesgo.getBounds());
+      });
+  }
+
+  //===================================================================
+  // el wfs educacion gob ar, establecimientos educativos
+  //===================================================================
+  capaEstablecimientosEducativos() {
+    if (!this.layerEstablecimientosEducativos === undefined) {
+      if (miMapa.hasLayer(this.layerEstablecimientosEducativos)) {
+        miMapa.removeLayer(this.layerEstablecimientosEducativos);
+      }
+    }
+    this.servicioDatosWeb.getWfsEstablecimientosEducativos()
+      .subscribe(respuestaJson => {
+        //console.log('Educacion respondió: ', respuestaJson);
+        this.layerEstablecimientosEducativos = this.servicioEstablecimientosEducativos.getEstabEduca(respuestaJson);
+        miMapa.addLayer(this.layerEstablecimientosEducativos);
+        miMapa.fitBounds(this.layerEstablecimientosEducativos.getBounds());
       });
   }
 
@@ -359,7 +379,7 @@ export class MapaComponent implements OnInit {
   }
 
   //===================================================================
-  // gestor de msgs de la navBar
+  // gestor de msgs de la navBar <---
   //=================================================================== 
   navBarMsgDrv(seleccion: {}) {
     if (seleccion['accion']) {
@@ -405,6 +425,10 @@ export class MapaComponent implements OnInit {
                 miMapa.removeLayer(this.layerConaeRiesgo);
               }
               break;
+            case 'establecimientosEducativos':
+              if (miMapa.hasLayer(this.layerEstablecimientosEducativos)) {
+                miMapa.removeLayer(this.layerEstablecimientosEducativos);
+              }
           }
           break;
         case false:                             //hay que encender la capa 
@@ -421,6 +445,8 @@ export class MapaComponent implements OnInit {
             case 'conaeRiesgo':
               this.capaConaeRiesgo();
               break;
+            case 'establecimientosEducativos':
+              this.capaEstablecimientosEducativos();
           }
           break;
       }
@@ -638,8 +664,8 @@ export class MapaComponent implements OnInit {
     divRuteo.appendChild(botonCerrarRuteo);
   }
 
-  turf(){
-    const puntoUno =turf.point([-34.889176, -58.046951]);
+  turf() {
+    const puntoUno = turf.point([-34.889176, -58.046951]);
     console.log(puntoUno);
   }
 
