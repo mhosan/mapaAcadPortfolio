@@ -2,8 +2,8 @@
     <h1>Argengis</h1>
     <h3>Empowering CAD + GIS</h3>
     <div class="parent">
+
         <div class="card me-5" style="width: 18rem;">
-            <!--  <img src="assets/ruteo/ruteoLlegada01.png" alt="..." > -->
             <h5 class="card-header text-center">Visor Gis Web<!-- Web GIS Viewer --></h5>
             <div class="card-body">
                 <p class="card-text">
@@ -40,10 +40,26 @@
                     La versión de prueba funciona en su totalidad, sin ninguna restricción, por siete días.
                 </p>
             </div>
-
-
             <div class="card-footer text-center">
                 <a routerLink="/cad" class="btn btn-primary btn-sm">Cad</a>
+            </div>
+        </div>
+
+        <div class="card me-5" style="width: 18rem;">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <h5 class="card-header text-center">IA pruebas</h5>
+            <div class="card-body">
+                <p class="card-text">
+                    Pruebas con modelos de IA.
+                    Esta pruebas se realizan tomando modelos open source desde Hugging Face
+                    <a href="https://huggingface.co/">huggingface.co</a>
+                </p>
+                <p class="card-text">
+                    Pruebas con image to text y text generation
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <a routerLink="/cad" class="btn btn-primary btn-sm">IA</a>
             </div>
         </div>
 
@@ -52,6 +68,11 @@
         </div>
     </div>
     <footer class="footer">
-        <a routerLink="/portfolio" style="color: black;">Portfolio</a> &copy; M.Hosan 2024
+        <!-- <button style="background-color: #f0f0f0; border: 1px solid #ccc; padding: 5px 10px; color: black;"> -->
+        <button style="color: white;" class="btn btn-primary btn-sm">
+            <a routerLink="/portfolio" style="color: white; text-decoration: none;">Portfolio</a>
+        </button>
+        &copy; M.Hosan 2024
     </footer>
+    
 </div>
