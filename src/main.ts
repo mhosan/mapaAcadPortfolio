@@ -7,7 +7,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { importProvidersFrom } from "@angular/core";
 
 
-bootstrapApplication(MainComponent, {
+bootstrapApplication(MainComponent, {  //aqui va un segundo parametro, que apunta a un archivo de configuración como
+                                        //app.config.ts. En este caso se puso el contenido de ese archivo directam.
   providers: [
     importProvidersFrom(HttpClientModule),
     provideAnimations(),
