@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
+import { IaComponent } from './components/ia/ia.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
+  { path: 'ia', component: IaComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 ];
