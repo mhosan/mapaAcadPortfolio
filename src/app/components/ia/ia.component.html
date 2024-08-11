@@ -3,3 +3,19 @@
       <a routerLink="/home" class="btn btn-primary btn-sm">Home</a>
     </div>
 </div>
+<div>
+    <h2>Select or paste an image</h2>
+  
+    <!-- Input para subir una imagen desde el equipo -->
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  
+    <!-- Input para pegar una URL de imagen -->
+    <input type="text" [(ngModel)]="imageUrl" placeholder="Paste image URL here" (input)="onUrlInput()" />
+  
+    <!-- Imagen dinámica -->
+    <div *ngIf="selectedImage">
+      <h3>Selected Image:</h3>
+      <img [src]="selectedImage" alt="Selected Image" width="300" />
+    </div>
+  </div>
+  
