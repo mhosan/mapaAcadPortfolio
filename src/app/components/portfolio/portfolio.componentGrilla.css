@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 60px 0.999fr 60px;
+    min-height: 98vh; 
+    max-height: 98vh; 
+    width: 100vw;                /* importante para que ocupe toda la altura de la pantalla */
+    grid-template-areas:
+        "header header sidebar"         /*con este formato se entinde mejor como està hecho  */
+        "content content content"
+        "footer footer footer";
+    justify-items:stretch;
+    gap: 1vh;
+    margin-top: 1vh;
+}
+@media (width > 400px){                 /*para tamaño grande el sidebar va a la izquierda  */
+    .container {                        /*pero para tamaño chico el sidebar va arriba  */
+        grid-template-areas:            /*si se quiere dejar un hueco se pone un punto  */
+            "header header header"
+            "content content content"
+            "footer footer footer"
+    }
+}
+
+.container header {
+    /* min-width: 90vw;
+    max-width: 90vw; 
+    position: fixed; */
+    background-color: rgb(212, 217, 221);
+    grid-area: header;
+    border-radius: 6px;
+    text-align: center;
+    padding: 3px;
+    
+    
+}
+.container aside {
+    background-color: rgb(222, 225, 228);
+    grid-area: sidebar;
+    border-radius: 6px;
+}
+.container main {
+    background-color: rgb(222, 225, 228);
+    grid-area: content;
+    /* overflow: auto; */
+    border-radius: 6px;
+}
+.container footer {
+    background-color: rgb(212, 217, 221);
+    grid-area: footer;
+    border-radius: 6px;
+    position: fixed;
+    bottom: 0;
+}

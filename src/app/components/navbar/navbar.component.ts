@@ -1,10 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { CommonModule} from '@angular/common';
 import { Layer } from '../../models/layer';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule
+  ]
 })
 export class NavbarComponent implements OnInit {
   @Output() msgNavbar: EventEmitter<any>;
@@ -38,7 +43,23 @@ export class NavbarComponent implements OnInit {
       nombre: 'circuitos',
       encendido: false
     };
+    this.capasOverlay[3] = {
+      id: 3,
+      nombreFantasia: "Universidades (WFS https://mapa.educacion.gob.ar). Features tot: 1450. Viendo: 1450",
+      capaBase: false,
+      nombre: 'conaeRiesgo',
+      encendido: false
+    };
+    this.capasOverlay[4] = {
+      id: 4,
+      nombreFantasia: "Establecimientos Educativos (WFS https://mapa.educacion.gob.ar). Features tot: 64490. Viendo: 5000",
+      capaBase: false,
+      nombre: 'establecimientosEducativos',
+      encendido: false
+    };
+
     //----------------------------------------------------------------
+    
     this.capasBase[0] = {
       id: 0,
       nombreFantasia: "Open Street Map",
@@ -102,6 +123,13 @@ export class NavbarComponent implements OnInit {
       nombre: 'wmsTerrestrisOsm',
       encendido: false
     };
+    this.capasBase[9] = {
+      id: 9,
+      nombreFantasia: "Esri World Topo Map",
+      capaBase: true,
+      nombre: 'openmap',
+      encendido: false
+    };
 
   }
 
@@ -129,10 +157,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  capaSeleccionadaOverlay(
-    idCapaSeleccionada: number,
-    tipoCapaSeleccionada: boolean,
-    nombreCapaSeleccionada: string,
+  capaSeleccionadaOverlay(idCapaSeleccionada: number, tipoCapaSeleccionada: boolean, nombreCapaSeleccionada: string,
     encendidoCapaSeleccionada: boolean) {
     let capaEnviar = {
       id: idCapaSeleccionada,

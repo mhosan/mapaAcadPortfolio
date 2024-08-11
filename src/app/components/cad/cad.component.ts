@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
+import { CommonModule} from '@angular/common';
+import { RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-cad',
   templateUrl: './cad.component.html',
-  styleUrls: ['./cad.component.css']
+  styleUrls: ['./cad.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterOutlet
+  ]
 })
 export class CadComponent {
   public showControlesGeograficos: boolean = false;

@@ -1,0 +1,149 @@
+<section class="row justify-content-center">
+    <div class="col col-11">
+        <h2>Proyectos</h2>
+        <ul type="none">
+            <li>
+                <details>
+                    <summary><u>ARBA (Agencia de Recaudación de la Provincia de Buenos Aires):</u></summary>
+                    Desarrollos varios. Entre ellos visores gis web propositos generales
+                </details>
+            </li>
+
+            <li>
+                <details>
+                    <summary><u>Municip. La Plata:</u> Sistema control certificaciones mensuales de
+                        obras viales geolocalizadas. </summary>
+                    Desarrollo hecho con ArcView y Cristal Reports.
+                </details>
+            </li>
+
+            <li>
+                <details>
+                    <summary><u>C.P.A:</u> Desarrollo aplicación CAD para el Consejo Prof. de Agrim de la Pcia. de
+                        Bs.As.</summary>
+                    Aplicación desktop, desarrollada con .Net Framework 4.8 y la libreria Vector Draw, https://www.vdraw.com 
+                    <!-- <a target="_blank" href="https://www.vdraw.com/">Vector Draw</a> -->. Permite editar archivos CAD en
+                    formato
+                    DXF. 2008 - 2013
+                </details>
+            </li>
+
+            <li>
+                <details>
+                    <summary>
+                        <u>
+                            Instituto Provincial de la
+                            Administración Pública ( <a target="_blank" href="https://www.ipap.gba.gob.ar/">IPAP</a> ):
+                            <!-- IPAP (https://www.ipap.gba.gob.ar) Instituto Provincial de la Administración Pública: -->
+                        </u>
+                        Aplicación SPA hecha con Angular para gestión de cursos de capacitación GIS impartidos en el
+                        IPAP.</summary>
+                    <ul>
+                        <li>
+                            Url: <a href='http://mhtest.alwaysdata.net/#/home'
+                                target="_blank">http://mhtest.alwaysdata.net/#/home"</a>
+                                <!-- Url: http://mhtest.alwaysdata.net/#/home -->
+                        </li>
+                        <li>
+                            <!-- Hosting en <a href="https://www.alwaysdata.com/en/" target="_blank">Always Data</a> -->
+                            Hosteada en https://www.alwaysdata.com/en/
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details>
+                    <summary><u>Visor gis Web de mapas (Desarrollo personal):</u></summary>
+
+                    <ul>
+                        <li>
+                            Permite seleccionar, en la Pcia. de Bs. As, Partidos, escuelas y circuitos electorales.
+                        </li>
+                        <li>
+                            Contiene un geolocalizador con dos opciones:
+                            <ol>
+                                <li>
+                                    <strong>Local</strong>, con la Api de la Secretaria de Modernización dependiente
+                                    de la Presidencia de la Nación Argentina (https://datos.gob.ar/apis), es la primer
+                                    opción, aparece como "S.Modern.".
+                                </li>
+                                <li>
+                                    <strong>Global</strong> con la libreria LocationIQ: https://locationiq.com/. Es
+                                    la segunda opción, aparece como "LocationIq".
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            Incluye gráficos COVID-19 (Chartjs). Hecho con Angular 9, Leaflet 1.4.0 y Bootstrap 4.4
+                        </li>
+                        <li>
+                            Hecho con Angular 9, Leaflet 1.4.0 y Bootstrap 4.4.
+                        </li>
+                        <li>
+                            Persiste datos en Firebase. Es una aplicación web con backend como servicio (BaaS):
+                            Firebase proporciona servicios backend preconfigurados y escalables.
+                        </li>
+                        <li>
+                            Se usó mapbox/leaflet-omnivore para que Leaflet admitiera los formatos CSV, GPX, KML,
+                            WKT y
+                            TopoJson.
+                        </li>
+                        <li>
+                            Url: <a target="_blank" href='https://argengis.web.app/'>https://argengis.web.app</a>
+                            <!-- Url: https://argengis.web.app -->
+                        </li>
+                    </ul>
+                </details>
+            </li>
+
+            <li>
+                <details>
+                <summary><u>Imagen Docker con visor gis web. Año 2018 (Desarrollo personal):</u> </summary>
+                <ul>
+                    <li>
+                        Hecho con Angular 6, Leaflet 1.4, Bootstrap y Ngnix:
+                    </li>
+                    <li>
+                        <!-- Imagen en Docker Hub: <a target="_blank"
+                            href="https://hub.docker.com/r/mhosan/docker-angular-map">hub.docker.com/mhosan</a> -->
+                            Imagen en Docker Hub: https://hub.docker.com/r/mhosan/docker-angular-map    
+                    </li>
+                    <li>
+                        Para ejecutar en local: Tipear el comando <code>docker run -p 8087:80 mhosan/docker-angular-map</code> y
+                        luego en el navegador utilizar la url <u><em>localhost:8087</em></u>.
+                    </li>
+                    <li>
+                        <!-- Repositorio de la aplicación (público): <a target="_blank" href="https://github.com/mhosan/mapaDockerizado">mapaDockerizado</a> -->
+                        Repositorio de la aplicación (público): https://github.com/mhosan/mapaDockerizado
+                    </li>
+                </ul>
+            </details>
+            </li>
+            <li>
+                <details>
+                <summary><u>Aplicación para control de presión arterial (Desarrollo personal):</u> </summary>
+                <ul>
+                    <li>
+                        Desarrollada en Angular 6.1.10 con formularios reactivos, Angular CLI 6.2.9, Node 10.16.0.
+                    </li>
+                    <li>
+                        Los datos se guardan en Firebase (NoSql)
+                    </li>
+                    <li>
+                        Los gráficos están hechos con D3.js 5.9.2 y el maquetado con Bootstrap 4
+                    </li>
+                    <li>
+                        Url: <a target="_blank" href='https://presion-mh.web.app/'>Presión arterial</a>
+                        <!-- Url: https://presion-mh.web.app/ -->
+                    </li>
+                    <li>
+                        <!-- Repositorio de la aplicación (público): <a target="_blank" href="https://gitlab.com/mhosan/presion-arterial">GitLab</a> -->
+                        Repositorio de la aplicación (público): https://gitlab.com/mhosan/presion-arterial
+                    </li>
+                </ul>
+            </details>
+            </li>
+
+        </ul>
+    </div>
+</section>

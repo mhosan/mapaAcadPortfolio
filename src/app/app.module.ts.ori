@@ -16,17 +16,16 @@ import { CadComponent } from './components/cad/cad.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MapaComponent,
-    NavbarComponent,
-    HomeComponent,
-    CadComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    HttpClientModule
+    HttpClientModule,
+    NavbarComponent,
+    MapaComponent,
+    CadComponent,
+    HomeComponent
   ],
   providers: [
     GetDatosWebService,

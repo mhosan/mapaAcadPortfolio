@@ -1,23 +1,37 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
-import { PortfolioComponent } from './components/portfolio/portfolio.component'
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'portfolio', loadComponent: () => import('./components/portfolio/portfolio.component'),
+    children: [
+      { path: 'uno',
+      title: "Uno",
+        loadComponent: () => import('./components/portfolio/uno/uno.component')
+      },
+      { path: 'dos', 
+        title: "Dos",
+        loadComponent: () => import("./components/portfolio/dos/dos.component") 
+      },
+      { path: 'tres',
+        title: "Tres", 
+        loadComponent: () => import("./components/portfolio/tres/tres.component") 
+      },
+      { path: 'cuatro',
+        title: "Cuatro", 
+        loadComponent: () => import("./components/portfolio/cuatro/cuatro.component") 
+      },
+      { path: '**',
+        redirectTo: 'dos'
+      }
+    ]
+  },
   { path: 'home', component: HomeComponent },
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
-  { path: 'portfolio', component: PortfolioComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: '**', component: HomeComponent }
- 
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: HomeComponent },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

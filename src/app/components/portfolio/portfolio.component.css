@@ -1,49 +1,63 @@
-body {
-    margin: 0;
+.fondo {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        height: 100vh;
+        background-image: url('../../../assets/images/unsplash3.jpg'); /*url('../../../assets/images/tablet.png');*/
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 65px 0.999fr 70px;
-    min-height: 98vh; 
-    max-height: 98vh;                 /* importante para que ocupe toda la altura de la pantalla */
-    grid-template-areas:
-        "header header sidebar"         /*con este formato se entinde mejor como està hecho  */
-        "content content content"
-        "footer footer footer";
-    justify-items:stretch;
-    gap: 1vh;
-    margin-top: 1vh;
-}
-@media (width > 400px){                 /*para tamaño grande el sidebar va a la izquierda  */
-    .container {                        /*pero para tamaño chico el sidebar va arriba  */
-        grid-template-areas:            /*si se quiere dejar un hueco se pone un punto  */
-            "header header header"
-            "sidebar content content"
-            "footer footer footer"
-    }
+nav {
+    height: 33px;
+    padding-top: 2px;
 }
 
-.container header {
-    
-    background-color: rgb(212, 217, 221);
-    grid-area: header;
-    border-radius: 6px;
+nav > a {
+    background-color: rgb(220, 220, 220);
+    color: black;
+    border-radius: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
 }
-.container aside {
-    background-color: rgb(222, 225, 228);
-    grid-area: sidebar;
-    border-radius: 6px;
+
+main p:first-of-type {
+    text-align: center;
+    font-style: italic;
 }
-.container main {
-    background-color: rgb(222, 225, 228);
-    grid-area: content;
-    overflow: auto;
-    border-radius: 6px;
+
+footer {
+    position: fixed;
+    width: 101%;
+    left: 0;
+    right: 0;
+    bottom: 0.5vh;
+    background-color: rgb(200, 200, 200);
+    color: black;
+    min-height: 5px;
+    font-size: small;
 }
-.container footer {
-    background-color: rgb(212, 217, 221);
-    grid-area: footer;
-    border-radius: 6px;
+
+footer > a {
+    color: black;
+}
+
+div > p {
+    color: rgb(200,200,200);
+}
+
+header {
+    background-color: rgb(50,50,50);
+}
+
+header > h3 {
+    color: rgb(200, 200, 200);
 }
