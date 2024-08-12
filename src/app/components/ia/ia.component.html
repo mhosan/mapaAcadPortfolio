@@ -17,5 +17,10 @@
       <h3>Selected Image:</h3>
       <img [src]="selectedImage" alt="Selected Image" width="300" />
     </div>
+    
+    <div *ngIf="generatedText">
+        <h3>Generated Text:</h3>
+        <p>{{ generatedText }}</p>
+      </div>
   </div>
   
