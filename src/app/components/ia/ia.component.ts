@@ -45,6 +45,10 @@ export class IaComponent {
 
   // Método para manejar la entrada de la URL de la imagen
   onUrlInput(): void {
+    if (this.selectedImage) {
+      this.selectedImage = '';
+    }
+
     this.http.get(this.imageUrl, { responseType: 'blob' }).pipe(
       catchError(err => {
         console.error('Error al obtener la imagen', err);

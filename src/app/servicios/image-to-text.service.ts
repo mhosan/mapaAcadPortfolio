@@ -10,7 +10,10 @@ export class ImageToTextService {
   private apiKey = "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";
   //private apiUrl = 'https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning';
   //private apiUrl = 'https://api-inference.huggingface.co/models/microsoft/git-base';
-  private apiUrl = 'https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large';
+  //private apiUrl = 'https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large';
+  //private apiUrl = 'https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base';
+  private apiUrl = 'https://api-inference.huggingface.co/models/ifmain/vit-gpt2-image2promt-stable-diffusion';
+  
   constructor(private http: HttpClient) { }
 
   convertImageToText(data: Blob): Observable<any> {
