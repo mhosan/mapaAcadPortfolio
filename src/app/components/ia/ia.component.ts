@@ -37,7 +37,7 @@ export class IaComponent {
       reader.readAsDataURL(file);// Esto ejecuta el reader y convierte la imagen a un string base64
       const blob = new Blob([file], { type: file.type });
       this.imageToTextService.convertImageToText(blob).subscribe(response => {
-        this.generatedText = response[0]?.generated_text || 'No text generated';
+        this.generatedText = response[0]?.generated_text || 'No se generó texto.';
         console.log(`resultado: ${this.generatedText}`);
       });
     }
@@ -60,7 +60,7 @@ export class IaComponent {
         // Crear una URL a partir del Blob para mostrar la imagen
         this.selectedImage = URL.createObjectURL(blob);
         this.imageToTextService.convertImageToText(file).subscribe(response => {
-          this.generatedText = response[0]?.generated_text || 'No text generated';
+          this.generatedText = response[0]?.generated_text || 'No se generó texto.';
           console.log(`resultado: ${this.generatedText}`);
         });
       }
