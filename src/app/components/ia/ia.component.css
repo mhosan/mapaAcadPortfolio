@@ -8,4 +8,18 @@ div {
     padding: 5px;
     background-color: #f9f9f9;
   }
+  .tight {
+    margin: 0; /* Elimina el margen */
+    padding: 0; /* Elimina el padding */
+  }
+  
+  .image-section p,
+  .text-section p {
+    margin-bottom: 2px; /* Ajusta este valor según el espacio que desees */
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+  
   
