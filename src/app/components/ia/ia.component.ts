@@ -41,10 +41,27 @@ export class IaComponent {
       reader.readAsDataURL(file);// Esto ejecuta el reader. Y convierte la imagen a un string base64
 
       const blob = new Blob([file], { type: file.type });
-      this.imageToTextService.convertImageToText(blob).subscribe(response => {
-        this.generatedText = response[0]?.generated_text || 'No se generó texto.';
-        console.log(`resultado: ${this.generatedText}`);
-      });
+      this.imageToTextService.convertImageToText(blob)
+        /* subscribe(response => {
+          this.generatedText = response[0]?.generated_text || 'No se generó texto.';
+          console.log(`resultado: ${this.generatedText}`);
+        }); */
+        .subscribe({
+          next: (response) => {
+            this.generatedText = response[0]?.generated_text || 'No se generó texto.';
+            console.log(`Resultado: ${this.generatedText}`);
+          },
+          error: (err) => {
+            if (err?.error?.message?.includes('loading') || err?.status === 503) {
+              // Detecta si el error está relacionado con la carga del modelo
+              this.generatedText = 'El modelo aún se está cargando. Por favor, intentar nuevamente en unos momentos.';
+            } else {
+              // Manejador genérico para otros errores
+              this.generatedText = 'Ocurrió un error al generar el texto.';
+            }
+            console.error('Error en la conversión de imagen a texto:', err);
+          }
+        });
     }
   }
 
