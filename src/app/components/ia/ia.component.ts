@@ -26,6 +26,10 @@ export class IaComponent {
 
   constructor(private imageToTextService: ImageToTextService, private http: HttpClient) { }
 
+  /**
+   * Este metodo se utiliza cuando el usuario selecciona una imagen desde el equipo local,
+   * y busca en su file system algún archivo jpg o png.
+   */
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -34,7 +38,8 @@ export class IaComponent {
       reader.onload = () => {
         this.selectedImage = reader.result;
       }
-      reader.readAsDataURL(file);// Esto ejecuta el reader y convierte la imagen a un string base64
+      reader.readAsDataURL(file);// Esto ejecuta el reader. Y convierte la imagen a un string base64
+
       const blob = new Blob([file], { type: file.type });
       this.imageToTextService.convertImageToText(blob).subscribe(response => {
         this.generatedText = response[0]?.generated_text || 'No se generó texto.';
@@ -43,7 +48,10 @@ export class IaComponent {
     }
   }
 
-  // Método para manejar la entrada de la URL de la imagen
+  /**
+   * Este método se ejecuta cuando el usuario ingresa la imagen por medio
+   * de una url, en lugar de seleccionarla desde el equipo local.
+   */
   onUrlInput(): void {
     if (this.selectedImage) {
       this.selectedImage = '';
