@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';  // <-- Importar FormsModule
@@ -20,6 +20,8 @@ import { of } from 'rxjs';
   styleUrl: './ia.component.css'
 })
 export class IaComponent {
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Referencia al input de tipo file
+
   selectedImage: string | ArrayBuffer | null = null;
   imageUrl: string = '';
   generatedText: string = '';
@@ -39,27 +41,15 @@ export class IaComponent {
         this.selectedImage = reader.result;
       }
       reader.readAsDataURL(file);// Esto ejecuta el reader. Y convierte la imagen a un string base64
-
       const blob = new Blob([file], { type: file.type });
       this.imageToTextService.convertImageToText(blob)
-        /* subscribe(response => {
-          this.generatedText = response[0]?.generated_text || 'No se generó texto.';
-          console.log(`resultado: ${this.generatedText}`);
-        }); */
         .subscribe({
           next: (response) => {
             this.generatedText = response[0]?.generated_text || 'No se generó texto.';
             console.log(`Resultado: ${this.generatedText}`);
           },
           error: (err) => {
-            if (err?.error?.message?.includes('loading') || err?.status === 503) {
-              // Detecta si el error está relacionado con la carga del modelo
-              this.generatedText = 'El modelo aún se está cargando. Por favor, intentar nuevamente en unos momentos.';
-            } else {
-              // Manejador genérico para otros errores
-              this.generatedText = 'Ocurrió un error al generar el texto.';
-            }
-            console.error('Error en la conversión de imagen a texto:', err);
+           this.errorDriver(err);
           }
         });
     }
@@ -70,10 +60,11 @@ export class IaComponent {
    * de una url, en lugar de seleccionarla desde el equipo local.
    */
   onUrlInput(): void {
-    if (this.selectedImage) {
-      this.selectedImage = '';
+    // Si se ingresa una URL, resetear el input de tipo file
+    if (this.fileInput) {
+      this.fileInput.nativeElement.value = ''; // Borrar el valor del input file
     }
-
+    this.selectedImage = '';
     this.http.get(this.imageUrl, { responseType: 'blob' }).pipe(
       catchError(err => {
         console.error('Error al obtener la imagen', err);
@@ -84,12 +75,30 @@ export class IaComponent {
         const file = new File([blob], 'image.jpg');  // Nombre del archivo temporal
         // Crear una URL a partir del Blob para mostrar la imagen
         this.selectedImage = URL.createObjectURL(blob);
-        this.imageToTextService.convertImageToText(file).subscribe(response => {
-          this.generatedText = response[0]?.generated_text || 'No se generó texto.';
-          console.log(`resultado: ${this.generatedText}`);
+        this.imageToTextService.convertImageToText(file)
+          .subscribe(response => {
+            this.generatedText = response[0]?.generated_text || 'No se generó texto.';
+            console.log(`resultado: ${this.generatedText}`);
+          },
+        error =>{
+          this.errorDriver(error);
         });
       }
     });
+  }
+
+  /**
+   * Manejador de errores de la API Inference
+   */
+  errorDriver(err:any){
+    if (err?.error?.message?.includes('loading') || err?.status === 503) {
+      // Detecta si el error está relacionado con la carga del modelo
+      this.generatedText = 'El modelo aún se está cargando. Por favor, intentar nuevamente en unos momentos.';
+    } else {
+      // Manejador genérico para otros errores
+      this.generatedText = `Ocurrió un error al generar el texto: ${JSON.stringify(err.message)}`
+    }
+    console.error('Error en la conversión de imagen a texto:', err);
   }
 
 }

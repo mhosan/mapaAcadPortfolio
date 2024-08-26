@@ -5,27 +5,27 @@
 </div>
 
 <div class="container text-center">
+
   <h3>Seleccionar una imagen o pegar la url de una imagen</h3>
-  <h5>Modelo utilizado:<a href="https://huggingface.co/Salesforce/blip-image-captioning-base"
+  <h5>Modelo utilizado: <a href="https://huggingface.co/Salesforce/blip-image-captioning-base"
       target="_blank">Salesforce/blip-image-captioning-base</a>
   </h5>
   <div class="row">
     <!-- Input para subir una imagen desde el equipo -->
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-  </div>
-  <div class="row">
+    <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" />
+    <br><br>
     <!-- Input para pegar una URL de imagen -->
     <input class="ms-2" type="text" [(ngModel)]="imageUrl" placeholder="Pegar aqui la URL de la imagen"
       (input)="onUrlInput()" />
   </div>
-  <div class="row">
+
+  <div class="row" >
     <div class="col">
       <div *ngIf="selectedImage" class="image-section">
         <p class="tight bold">Imagen seleccionada:</p>
-        <img [src]="selectedImage" alt="Selected Image" width="300" />
+        <img [src]="selectedImage" alt="Selected Image" width="500" />
       </div>
     </div>
-
     <div class="col">
       <div *ngIf="generatedText" class="text-section">
         <p class="tight bold">Texto generado:</p>
@@ -33,4 +33,5 @@
       </div>
     </div>
   </div>
+
 </div>
