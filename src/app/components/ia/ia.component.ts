@@ -57,7 +57,8 @@ export class IaComponent {
               this.generatedText = 'El modelo aún se está cargando. Por favor, intentar nuevamente en unos momentos.';
             } else {
               // Manejador genérico para otros errores
-              this.generatedText = 'Ocurrió un error al generar el texto.';
+              //this.generatedText = 'Ocurrió un error al generar el texto.';
+              this.generatedText = `Ocurrió un error al generar el texto: ${JSON.stringify(err.headers.message)}`
             }
             console.error('Error en la conversión de imagen a texto:', err);
           }
