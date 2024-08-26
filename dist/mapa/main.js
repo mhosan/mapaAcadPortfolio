@@ -288,9 +288,9 @@ class HomeComponent {
     selectors: [["app-home"]],
     standalone: true,
     features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
-    decls: 48,
+    decls: 50,
     vars: 0,
-    consts: [[1, "container-fluid", "fondo"], [1, "parent"], [1, "card", "me-5", 2, "width", "18rem", "margin-top", "-3rem"], [1, "card-header", "text-center"], [1, "card-body"], [1, "card-text"], [1, "card-footer", "text-center"], ["routerLink", "/mapa", 1, "btn", "btn-primary", "btn-sm"], [1, "card", "me-5", 2, "width", "18rem", "; margin-top", "-3rem"], ["routerLink", "/cad", 1, "btn", "btn-primary", "btn-sm"], ["href", "https://huggingface.co/", "target", "_blank"], ["routerLink", "/ia", 1, "btn", "btn-primary", "btn-sm"], [1, "footer"], [1, "btn", "btn-primary", "btn-sm", 2, "color", "white"], ["routerLink", "/portfolio", 2, "color", "white", "text-decoration", "none"]],
+    consts: [[1, "container-fluid", "fondo"], [1, "parent"], [1, "card", "me-5", 2, "width", "18rem", "margin-top", "-3rem"], [1, "card-header", "text-center"], [1, "card-body"], [1, "card-text"], [1, "card-footer", "text-center"], ["routerLink", "/mapa", 1, "btn", "btn-primary", "btn-sm"], [1, "card", "me-5", 2, "width", "18rem", "; margin-top", "-3rem"], ["routerLink", "/cad", 1, "btn", "btn-primary", "btn-sm"], ["href", "https://huggingface.co/", "target", "_blank"], ["href", "https://huggingface.co/Salesforce/blip-image-captioning-base", "target", "_blank"], ["routerLink", "/ia", 1, "btn", "btn-primary", "btn-sm"], [1, "footer"], [1, "btn", "btn-primary", "btn-sm", 2, "color", "white"], ["routerLink", "/portfolio", 2, "color", "white", "text-decoration", "none"]],
     template: function HomeComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0)(1, "h1");
@@ -333,17 +333,19 @@ class HomeComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "huggingface.co");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "p", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, " Pruebas con image to text, con el modelo Salesforce/blip-image-captioning-base. ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 6)(40, "a", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, "IA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, " Prueba de image to text, con el modelo ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "a", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](40, "Salesforce/blip-image-captioning-base");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](42, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "div", 6)(42, "a", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](43, "IA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](44, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](43, "footer", 12)(44, "button", 13)(45, "a", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, "Portfolio");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "footer", 13)(46, "button", 14)(47, "a", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](48, "Portfolio");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](47, " \u00A9 M.Hosan 2024 ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](49, " \u00A9 M.Hosan 2024 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
       }
     },
@@ -419,6 +421,10 @@ class IaComponent {
     this.imageUrl = '';
     this.generatedText = '';
   }
+  /**
+   * Este metodo se utiliza cuando el usuario selecciona una imagen desde el equipo local,
+   * y busca en su file system algún archivo jpg o png.
+   */
   onFileSelected(event) {
     const input = event.target;
     if (input.files && input.files.length > 0) {
@@ -427,17 +433,36 @@ class IaComponent {
       reader.onload = () => {
         this.selectedImage = reader.result;
       };
-      reader.readAsDataURL(file); // Esto ejecuta el reader y convierte la imagen a un string base64
+      reader.readAsDataURL(file); // Esto ejecuta el reader. Y convierte la imagen a un string base64
       const blob = new Blob([file], {
         type: file.type
       });
-      this.imageToTextService.convertImageToText(blob).subscribe(response => {
+      this.imageToTextService.convertImageToText(blob)
+      /* subscribe(response => {
         this.generatedText = response[0]?.generated_text || 'No se generó texto.';
         console.log(`resultado: ${this.generatedText}`);
+      }); */.subscribe({
+        next: response => {
+          this.generatedText = response[0]?.generated_text || 'No se generó texto.';
+          console.log(`Resultado: ${this.generatedText}`);
+        },
+        error: err => {
+          if (err?.error?.message?.includes('loading') || err?.status === 503) {
+            // Detecta si el error está relacionado con la carga del modelo
+            this.generatedText = 'El modelo aún se está cargando. Por favor, intentar nuevamente en unos momentos.';
+          } else {
+            // Manejador genérico para otros errores
+            this.generatedText = 'Ocurrió un error al generar el texto.';
+          }
+          console.error('Error en la conversión de imagen a texto:', err);
+        }
       });
     }
   }
-  // Método para manejar la entrada de la URL de la imagen
+  /**
+   * Este método se ejecuta cuando el usuario ingresa la imagen por medio
+   * de una url, en lugar de seleccionarla desde el equipo local.
+   */
   onUrlInput() {
     if (this.selectedImage) {
       this.selectedImage = '';
