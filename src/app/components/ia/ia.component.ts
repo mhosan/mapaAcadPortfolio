@@ -8,16 +8,15 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-ia',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterOutlet,
-    FormsModule
-  ],
-  templateUrl: './ia.component.html',
-  styleUrl: './ia.component.css'
+    selector: 'app-ia',
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterOutlet,
+        FormsModule
+    ],
+    templateUrl: './ia.component.html',
+    styleUrl: './ia.component.css'
 })
 export class IaComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Referencia al input de tipo file

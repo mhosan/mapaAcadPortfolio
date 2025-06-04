@@ -16,16 +16,15 @@ declare let L;
 let miMapa: any;
 
 @Component({
-  selector: 'app-mapa',
-  standalone: true,
-  imports: [
-    CommonModule,
-    NavbarComponent,
-    RouterLink,
-    RouterOutlet
-  ],
-  templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.css']
+    selector: 'app-mapa',
+    imports: [
+        CommonModule,
+        NavbarComponent,
+        RouterLink,
+        RouterOutlet
+    ],
+    templateUrl: './mapa.component.html',
+    styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
   title = 'mhMapa';

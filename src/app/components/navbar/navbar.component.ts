@@ -3,13 +3,12 @@ import { CommonModule} from '@angular/common';
 import { Layer } from '../../models/layer';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  standalone: true,
-  imports: [
-    CommonModule
-  ]
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    imports: [
+        CommonModule
+    ]
 })
 export class NavbarComponent implements OnInit {
   @Output() msgNavbar: EventEmitter<any>;
