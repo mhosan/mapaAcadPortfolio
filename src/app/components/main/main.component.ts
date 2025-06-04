@@ -4,6 +4,7 @@ import { RouterModule, RouterLink, RouterLinkActive, RouterOutlet } from '@angul
 
 @Component({
     selector: 'app-main',
+    standalone: true,
     imports: [
         CommonModule,
         RouterModule,

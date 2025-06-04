@@ -17,6 +17,7 @@ let miMapa: any;
 
 @Component({
     selector: 'app-mapa',
+    standalone: true,
     imports: [
         CommonModule,
         NavbarComponent,
