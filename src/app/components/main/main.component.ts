@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-main',
@@ -8,8 +8,6 @@ import { RouterModule, RouterLink, RouterLinkActive, RouterOutlet } from '@angul
     imports: [
         CommonModule,
         RouterModule,
-        RouterLink,
-        RouterLinkActive,
         RouterOutlet
     ],
     templateUrl: './main.component.html',
