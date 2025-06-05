@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';  // <-- Importar FormsModule
 import { ImageToTextService } from 'src/app/servicios/image-to-text.service';
 import { HttpClient } from '@angular/common/http';
@@ -9,10 +9,10 @@ import { of } from 'rxjs';
 
 @Component({
     selector: 'app-ia',
+    standalone: true,
     imports: [
         CommonModule,
         RouterLink,
-        RouterOutlet,
         FormsModule
     ],
     templateUrl: './ia.component.html',
