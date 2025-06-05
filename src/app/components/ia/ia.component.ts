@@ -9,7 +9,6 @@ import { of } from 'rxjs';
 
 @Component({
     selector: 'app-ia',
-    standalone: true,
     imports: [
         CommonModule,
         RouterLink,

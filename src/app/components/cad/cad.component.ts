@@ -4,7 +4,6 @@ import { RouterLink} from '@angular/router';
 
 @Component({
     selector: 'app-cad',
-    standalone: true,
     templateUrl: './cad.component.html',
     styleUrls: ['./cad.component.css'],
     imports: [

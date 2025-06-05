@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-uno',
-    standalone: true,
     templateUrl: './uno.component.html',
     styleUrls: ['./uno.component.css'],
     imports: [

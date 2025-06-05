@@ -4,7 +4,6 @@ import { RouterLink, RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-portfolio',
-    standalone: true,
     imports: [
         CommonModule,
         RouterModule,

@@ -4,7 +4,6 @@ import { RouterModule} from '@angular/router';
 
 @Component({
     selector: 'app-dos',
-    standalone: true,
     imports: [
         CommonModule,
         RouterModule
