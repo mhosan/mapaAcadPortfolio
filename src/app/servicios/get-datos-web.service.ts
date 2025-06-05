@@ -63,6 +63,6 @@ export class GetDatosWebService {
     //let laUrlSecGobAmbSust = 'http://geo2.ambiente.gob.ar/geoserver/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=ordenamiento:apn_sifal2016&outputFormat=application/json'
     //this.elJsonDeArba = this.http.get<any>(laUrlSecGobAmbSust);
     this.elJsonDeArba = this.http.get<any>("./assets/partidos.txt");
-    return this.elJsonDeArba;
+    return this.elJsonDeArba; 
   }
 }
