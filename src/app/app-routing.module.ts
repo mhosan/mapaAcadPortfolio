@@ -3,6 +3,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
 import { IaComponent } from './components/ia/ia.component';
+import { Llm7ChatComponent } from './components/llm7-chat/llm7-chat.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +35,7 @@ export const routes: Routes = [
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
   { path: 'ia', component: IaComponent },
+  { path: 'llm7', component: Llm7ChatComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 ];

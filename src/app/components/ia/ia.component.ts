@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
-import { FormsModule } from '@angular/forms';  // <-- Importar FormsModule
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
 import { ImageToTextService } from 'src/app/servicios/image-to-text.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -9,10 +9,10 @@ import { of } from 'rxjs';
 
 @Component({
     selector: 'app-ia',
+    standalone: true,
     imports: [
         CommonModule,
         RouterLink,
-        RouterOutlet,
         FormsModule
     ],
     templateUrl: './ia.component.html',
@@ -29,7 +29,7 @@ export class IaComponent {
 
   /**
    * Este metodo se utiliza cuando el usuario selecciona una imagen desde el equipo local,
-   * y busca en su file system algún archivo jpg o png.
+   * buscando en su file system algún archivo jpg o png.
    */
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
