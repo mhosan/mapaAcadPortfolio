@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+//import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GetDatosWebService } from '../../servicios/get-datos-web.service';
 import { CapaIgnPartidosService } from '../../servicios/capa-ign-partidos.service'
@@ -17,12 +17,9 @@ let miMapa: any;
 
 @Component({
     selector: 'app-mapa',
-    standalone: true,
     imports: [
         CommonModule,
-        NavbarComponent,
-        RouterLink,
-        RouterOutlet
+        NavbarComponent
     ],
     templateUrl: './mapa.component.html',
     styleUrls: ['./mapa.component.css']

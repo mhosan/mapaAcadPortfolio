@@ -14,7 +14,12 @@ export class CapaCircuitosService {
     this.capaCircuitos = L.geoJson(elJson, {
       filter: elFiltradorDeCircuitos,
       style: (feature) => {
-        return { color: 'rgb(255, 32, 0)', "weight": 0.5, "opacity": 0.60, "fillColor": "#000000", "fillOpacity": 0.1 };
+        return { 
+          color: 'rgb(255, 32, 0)', 
+          "weight": 0.5, 
+          "opacity": 0.60, 
+          "fillColor": "#000000", 
+          "fillOpacity": 0.1 };
       },
       onEachFeature: (feature, layer) => {
         let colorBordeOriginal: string = '';

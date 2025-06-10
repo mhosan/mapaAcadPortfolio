@@ -31,10 +31,18 @@ export class ImageToTextService {
   convertImageToText(data: Blob): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.apiKey}`,
-      'Content-Type': 'application/json'
+      //'Content-Type': 'application/json'
+      'Content-Type': data.type || 'application/octet-stream'
     });
 
-    return this.http.post<any>(this.apiUrl, data, { headers });
+    //return this.http.post<any>(this.apiUrl, data, { headers });
+
+    return this.http.post<any>(this.apiUrl, data, { headers }).pipe(
+      catchError(error => {
+        console.error('Error en la llamada a la API de Hugging Face:', error);
+        return throwError(() => new Error('Fallo al procesar la imagen con la API.'));
+      })
+    );
 
   }
 }

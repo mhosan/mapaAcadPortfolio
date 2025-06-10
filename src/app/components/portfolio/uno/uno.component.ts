@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-uno',
@@ -8,9 +8,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule } from '@angul
     styleUrls: ['./uno.component.css'],
     imports: [
         CommonModule,
-        RouterLink,
-        RouterLinkActive,
-        RouterOutlet,
         RouterModule
     ]
 })

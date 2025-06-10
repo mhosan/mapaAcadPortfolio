@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule, Routes} from '@angular/router';
+import { RouterLink, RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-portfolio',
@@ -8,7 +8,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule, Routes} from 
         CommonModule,
         RouterModule,
         RouterLink,
-        RouterLinkActive,
         RouterOutlet
     ],
     templateUrl: './portfolio.component.html',

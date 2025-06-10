@@ -1,7 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms'; 
+=======
+import { FormsModule } from '@angular/forms';  // <-- Importar FormsModule
+>>>>>>> e144e66a774e494564c87e8ed716a621542c23b3
 import { ImageToTextService } from 'src/app/servicios/image-to-text.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
