@@ -35,7 +35,7 @@ export const routes: Routes = [
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
   { path: 'ia', component: IaComponent },
-  { path: 'llm7', component: Llm7ChatComponent },
+  { path: 'llm7', loadComponent: () => import('./components/llm7-chat/llm7-chat.component').then(m => m.Llm7ChatComponent) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 ];

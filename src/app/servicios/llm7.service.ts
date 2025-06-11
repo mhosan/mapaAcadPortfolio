@@ -12,8 +12,11 @@ export class Llm7Service {
   constructor() {
     // Puedes configurar el modelo y la API key aquí si es necesario
     this.llm = new ChatLLM7({
-      // apiKey: 'TU_API_KEY', // Si es necesario
-      // model: 'llama-3-sonar-large-32k-online', // O el modelo que prefieras
+      //modelName: 'llama-3-sonar-large-32k-online',
+      modelName:'deepseek-r1',
+      //modelName: "gpt-4.1-nano", // Default
+      temperature: 0.8,
+      // maxTokens: 150,
     });
   }
 
