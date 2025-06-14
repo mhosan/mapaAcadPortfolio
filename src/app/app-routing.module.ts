@@ -4,6 +4,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
 import { ImgToTxtComponent } from './components/imgToTxt/imgToTxt.component';
 import { Llm7ChatComponent } from './components/llm7-chat/llm7-chat.component';
+import { IaComponent } from './components/ia/ia.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
   { path: 'imgToTxt', component: ImgToTxtComponent },
+  { path: 'chat', component: IaComponent},
   { path: 'llm7', loadComponent: () => import('./components/llm7-chat/llm7-chat.component').then(m => m.Llm7ChatComponent) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
