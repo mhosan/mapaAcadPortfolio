@@ -8,17 +8,17 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-    selector: 'app-ia',
+    selector: 'app-img-to-txt',
     standalone: true,
     imports: [
         CommonModule,
         RouterLink,
         FormsModule
     ],
-    templateUrl: './ia.component.html',
-    styleUrl: './ia.component.css'
+    templateUrl: './imgToTxt.component.html',
+    styleUrls: ['./imgToTxt.component.css']
 })
-export class IaComponent {
+export class ImgToTxtComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Referencia al input de tipo file
 
   selectedImage: string | ArrayBuffer | null = null;

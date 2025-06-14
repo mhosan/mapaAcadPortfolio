@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CadComponent } from './components/cad/cad.component';
-import { IaComponent } from './components/ia/ia.component';
+import { ImgToTxtComponent } from './components/imgToTxt/imgToTxt.component';
 import { Llm7ChatComponent } from './components/llm7-chat/llm7-chat.component';
 
 
@@ -34,7 +34,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'mapa', component: MapaComponent },
   { path: 'cad', component: CadComponent },
-  { path: 'ia', component: IaComponent },
+  { path: 'imgToTxt', component: ImgToTxtComponent },
   { path: 'llm7', loadComponent: () => import('./components/llm7-chat/llm7-chat.component').then(m => m.Llm7ChatComponent) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },

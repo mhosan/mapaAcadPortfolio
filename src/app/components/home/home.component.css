@@ -3,7 +3,7 @@
   padding: 0;
   /*box-sizing: border-box;*/
   height: 100vh;
-  background-image: url('../../../assets/images/fondo1.jpg'); /*url('../../../assets/images/tablet.png');*/
+  background-image: url('/assets/images/fondo1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
