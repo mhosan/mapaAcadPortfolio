@@ -174,6 +174,7 @@ export class MapaComponent implements OnInit {
  }).addTo(miMapa); */
 
     L.control.coordinates({
+      position: "bottomleft",
       labelTemplateLat: "Latitud:  {y}",
       labelTemplateLng: "Longitud:  {x},",
       decimals: 2,
@@ -181,7 +182,7 @@ export class MapaComponent implements OnInit {
     }).addTo(miMapa);
 
     L.control.zoom({
-      position: 'bottomright'
+      position: 'topleft'
     }).addTo(miMapa);
 
     /* let marker = L.marker([-34.893832, -57.957300]).bindPopup('Ud. está aqui!');
