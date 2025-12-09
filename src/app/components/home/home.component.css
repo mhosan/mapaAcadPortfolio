@@ -44,11 +44,36 @@ h3 {
     overflow: auto;
   }
   .footer {
-    background-color: #09f;
+    background-color: rgb(10, 94, 150);
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 5px;
+    padding: 10px; /* Increased padding slightly */
     text-align: center;
     font-style: italic;
+    display: flex; /* Flexbox for alignment */
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Space between items */
+    color: white; /* Ensure base text is white */
+  }
+
+  .btn-portfolio {
+    background-color: #ff9800; /* Orange to contrast with blue, avoiding violet */
+    color: black;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 20px;
+    border-radius: 8px; /* Rounded pill shape */
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid black; /* Make it pop more */
+  }
+
+  .btn-portfolio:hover {
+    background-color: #e65100; /* Darker orange on hover */
+    transform: scale(1.05); /* Slight grow effect */
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+    color: black;
   }
