@@ -12,11 +12,12 @@
     </div>
   </form>
   <p>Se envia la información (ciudad) a un backend (https://serverminimo.onrender.com/api/weather)
-    el cual toma el dato de
-    la ciudad y llama a un MCP que provee el pronostico del tiempo en formato JSON.
-    Y luego envia el JSON a un LLM que lo formatea a lenguaje natural.
+    el cual, con el dato de la ciudad, llama a un MCP que provee el pronostico del tiempo en formato JSON.
+    Al recibir la respuesta en fromato JSON, la envia a un LLM que devuelve el pronostico en lenguaje natural.
     El servidor MCP está en Vercel: https://mcpserver-hazel.vercel.app/.
     El repositorio del MCP está en GitHub:https://github.com/mhosan/mcpserver
+    El servidor serverminimo está en Render: https://serverminimo.onrender.com/ (tiene delay en el primer request)
+    El repositorio del serverminimo está en GitHub:https://github.com/mhosan/serverminimo
   </p>
   <div *ngIf="loading">Cargando...</div>
   <textarea *ngIf="resultado && !loading" class="form-control" [value]="resultado" readonly rows="6" style="resize: vertical;"></textarea>
