@@ -16627,30 +16627,57 @@
                 }
             };
 
-            module.exports = L.Routing = {
-                Control: Control,
-                Itinerary: Itinerary,
-                Line: Line,
-                OSRMv1: OSRMv1,
-                Plan: Plan,
-                Waypoint: Waypoint,
-                Autocomplete: Autocomplete,
-                Formatter: Formatter,
-                GeocoderElement: GeocoderElement,
-                Localization: Localization,
-                ItineraryBuilder: ItineraryBuilder,
+            if (typeof module !== 'undefined') {
+                module.exports = L.Routing = {
+                    Control: Control,
+                    Itinerary: Itinerary,
+                    Line: Line,
+                    OSRMv1: OSRMv1,
+                    Plan: Plan,
+                    Waypoint: Waypoint,
+                    Autocomplete: Autocomplete,
+                    Formatter: Formatter,
+                    GeocoderElement: GeocoderElement,
+                    Localization: Localization,
+                    ItineraryBuilder: ItineraryBuilder,
 
-                // Legacy; remove these in next major release
-                control: L.routing.control,
-                itinerary: L.routing.itinerary,
-                line: L.routing.line,
-                plan: L.routing.plan,
-                waypoint: L.routing.waypoint,
-                osrmv1: L.routing.osrmv1,
-                geocoderElement: L.routing.geocoderElement,
-                mapbox: L.routing.mapbox,
-                errorControl: L.routing.errorControl,
-            };
+                    // Legacy; remove these in next major release
+                    control: L.routing.control,
+                    itinerary: L.routing.itinerary,
+                    line: L.routing.line,
+                    plan: L.routing.plan,
+                    waypoint: L.routing.waypoint,
+                    osrmv1: L.routing.osrmv1,
+                    geocoderElement: L.routing.geocoderElement,
+                    mapbox: L.routing.mapbox,
+                    errorControl: L.routing.errorControl,
+                };
+            } else {
+                L.Routing = {
+                    Control: Control,
+                    Itinerary: Itinerary,
+                    Line: Line,
+                    OSRMv1: OSRMv1,
+                    Plan: Plan,
+                    Waypoint: Waypoint,
+                    Autocomplete: Autocomplete,
+                    Formatter: Formatter,
+                    GeocoderElement: GeocoderElement,
+                    Localization: Localization,
+                    ItineraryBuilder: ItineraryBuilder,
+
+                    // Legacy; remove these in next major release
+                    control: L.routing.control,
+                    itinerary: L.routing.itinerary,
+                    line: L.routing.line,
+                    plan: L.routing.plan,
+                    waypoint: L.routing.waypoint,
+                    osrmv1: L.routing.osrmv1,
+                    geocoderElement: L.routing.geocoderElement,
+                    mapbox: L.routing.mapbox,
+                    errorControl: L.routing.errorControl,
+                };
+            }
 
         }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
     }, { "./autocomplete": 48, "./control": 49, "./error-control": 50, "./formatter": 51, "./geocoder-element": 52, "./itinerary": 55, "./itinerary-builder": 54, "./line": 56, "./localization": 57, "./mapbox": 58, "./osrm-v1": 59, "./plan": 60, "./waypoint": 61 }], 54: [function (_dereq_, module, exports) {
