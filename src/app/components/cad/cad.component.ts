@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule} from '@angular/common';
+
 import { RouterLink} from '@angular/router';
 
 @Component({
@@ -7,9 +7,8 @@ import { RouterLink} from '@angular/router';
     templateUrl: './cad.component.html',
     styleUrls: ['./cad.component.css'],
     imports: [
-        CommonModule,
-        RouterLink
-    ]
+    RouterLink
+]
 })
 export class CadComponent {
   public showControlesGeograficos: boolean = false;

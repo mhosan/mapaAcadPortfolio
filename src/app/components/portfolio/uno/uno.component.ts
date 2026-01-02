@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -7,9 +7,8 @@ import { RouterModule } from '@angular/router';
     templateUrl: './uno.component.html',
     styleUrls: ['./uno.component.css'],
     imports: [
-        CommonModule,
-        RouterModule
-    ]
+    RouterModule
+]
 })
 export default class UnoComponent {
 

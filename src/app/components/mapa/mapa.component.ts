@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 //import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { GetDatosWebService } from '../../servicios/get-datos-web.service';
@@ -18,9 +18,8 @@ let miMapa: any;
 @Component({
     selector: 'app-mapa',
     imports: [
-        CommonModule,
-        NavbarComponent
-    ],
+    NavbarComponent
+],
     templateUrl: './mapa.component.html',
     styleUrls: ['./mapa.component.css']
 })

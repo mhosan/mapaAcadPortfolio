@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { ImageToTextService } from 'src/app/servicios/image-to-text.service';
@@ -11,10 +11,9 @@ import { of } from 'rxjs';
     selector: 'app-img-to-txt',
     standalone: true,
     imports: [
-        CommonModule,
-        RouterLink,
-        FormsModule
-    ],
+    RouterLink,
+    FormsModule
+],
     templateUrl: './imgToTxt.component.html',
     styleUrls: ['./imgToTxt.component.css']
 })

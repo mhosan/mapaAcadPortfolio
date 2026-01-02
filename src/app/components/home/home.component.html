@@ -1,113 +1,115 @@
 <div class="container-fluid fondo">
-    <h1>Argengis</h1>
-    <h3>Empowering CAD + GIS</h3>
-    <div class="parent">
+  <h1>Argengis</h1>
+  <h3>Empowering CAD + GIS</h3>
+  <div class="parent">
 
-        <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
-            <h5 class="card-header text-center">Visor Gis Web<!-- Web GIS Viewer --></h5>
-            <div class="card-body">
-                <p class="card-text">
-                    <!-- Web GIS viewer with management of base layers and overlay layers. It features a routing function to
-                    establish the optimal route between two points. -->
-                    Visor Gis web con manejo de capas base y capas superpuestas (overlays). Contiene una función de
-                    ruteo
-                    para establecer la ruta optima entre dos puntos.
-                </p>
-                <p class="card-text">
-                    <!-- It's a free version that works without restrictions. It's intended as a base map for web GIS developments. -->
-                    Es una versión libre que funciona sin restricciones. Está pensada como un mapa base para desarrollos
-                    gis web.
-                </p>
-            </div>
-            <div class="card-footer text-center">
-                <a routerLink="/mapa" class="btn btn-primary btn-sm">Gis (map)</a>
-            </div>
-        </div>
-
-        <div class="card me-5" style="width: 18rem;; margin-top: -3rem;">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
-            <h5 class="card-header text-center">Add-ons (Plugins) para Autocad</h5>
-            <div class="card-body">
-                <p class="card-text">
-                    Add-ons (Plugins) para Autocad
-                    <!-- These add-ons run within the application. They must be downloaded and installed on the computer
-                    where AutoCAD is running. -->
-                    Estos complementos se ejecutan dentro de la aplicación cad. Deben ser descargados e instalados en la
-                    computadora donde se los quiere utilizar.
-                </p>
-                <p class="card-text">
-                    <!-- The trial version works fully, without restrictions, for free, for seven days. -->
-                    La versión de prueba funciona en su totalidad, sin ninguna restricción, por siete días.
-                </p>
-            </div>
-            <div class="card-footer text-center">
-                <a routerLink="/cad" class="btn btn-primary btn-sm">Cad</a>
-            </div>
-        </div>
-
-        <!-- Card de IA pruebas oculta con *ngIf para fácil reactivación -->
-        <div class="card me-5" style="width: 18rem; margin-top: -3rem;" *ngIf="false">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
-            <h5 class="card-header text-center">IA pruebas</h5>
-            <div class="card-body">
-                <p class="card-text">
-                    Pruebas con modelos de IA.
-                    Esta pruebas se realizan tomando modelos open source desde Hugging Face
-                    <a href="https://huggingface.co/" target="_blank">huggingface.co</a>
-                </p>
-                <p class="card-text">
-                    Prueba de image to text, con el modelo
-                    <a href="https://huggingface.co/Salesforce/blip-image-captioning-base"
-                        target="_blank">Salesforce/blip-image-captioning-base</a>
-                </p>
-            </div>
-            <div class="card-footer text-center">
-                <a routerLink="/ia" class="btn btn-primary btn-sm">IA</a>
-            </div>
-        </div>
-
-        <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
-            <h5 class="card-header text-center">Chat LLM7</h5>
-            <div class="card-body">
-                <p class="card-text">
-                    Interacción con un modelo de lenguaje LLM7 directamente
-                    desde la web. Al enviar una pregunta recibe una respuesta
-                    generada por IA en tiempo real.
-                </p>
-                <p class="card-text">
-                    Utiliza la integración con <a href="https://llm7.io/" target="_blank">llm7.io</a> para experimentar
-                    el poder de los LLMs.
-                </p>
-            </div>
-            <div class="card-footer text-center">
-                <a routerLink="/llm7" class="btn btn-primary btn-sm">Probar Chat LLM7</a>
-            </div>
-        </div>
-
-
-        <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
-            <h5 class="card-header text-center">Chat vía MCP server</h5>
-            <div class="card-body">
-                <p class="card-text">
-                    Utilizar un servidor MCP armado para devolver el estado del tiempo
-                    en un ciudad. El resultado se envia a un LLM y se recibe una respuesta
-                    generada por IA en tiempo real.
-                </p>
-            </div>
-            <div class="card-footer text-center">
-                <a routerLink="/chat" class="btn btn-primary btn-sm">Probar Chat LLM7</a>
-            </div>
-        </div>
-
-        <div>
-        </div>
+    <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
+      <h5 class="card-header text-center">Visor Gis Web<!-- Web GIS Viewer --></h5>
+      <div class="card-body">
+        <p class="card-text">
+          <!-- Web GIS viewer with management of base layers and overlay layers. It features a routing function to
+          establish the optimal route between two points. -->
+          Visor Gis web con manejo de capas base y capas superpuestas (overlays). Contiene una función de
+          ruteo
+          para establecer la ruta optima entre dos puntos.
+        </p>
+        <p class="card-text">
+          <!-- It's a free version that works without restrictions. It's intended as a base map for web GIS developments. -->
+          Es una versión libre que funciona sin restricciones. Está pensada como un mapa base para desarrollos
+          gis web.
+        </p>
+      </div>
+      <div class="card-footer text-center">
+        <a routerLink="/mapa" class="btn btn-primary btn-sm">Gis (map)</a>
+      </div>
     </div>
-    <footer class="footer">
-        <a routerLink="/portfolio" class="portfolio-btn">
-            <span class="portfolio-icon">📁</span>
-            <span class="portfolio-text">Portfolio</span>
-        </a>
-        <div class="copyright">&copy; M.Hosan 2024</div>
-    </footer>
+
+    <div class="card me-5" style="width: 18rem;; margin-top: -3rem;">
+      <!-- <img src="..." class="card-img-top" alt="..."> -->
+      <h5 class="card-header text-center">Add-ons (Plugins) para Autocad</h5>
+      <div class="card-body">
+        <p class="card-text">
+          Add-ons (Plugins) para Autocad
+          <!-- These add-ons run within the application. They must be downloaded and installed on the computer
+          where AutoCAD is running. -->
+          Estos complementos se ejecutan dentro de la aplicación cad. Deben ser descargados e instalados en la
+          computadora donde se los quiere utilizar.
+        </p>
+        <p class="card-text">
+          <!-- The trial version works fully, without restrictions, for free, for seven days. -->
+          La versión de prueba funciona en su totalidad, sin ninguna restricción, por siete días.
+        </p>
+      </div>
+      <div class="card-footer text-center">
+        <a routerLink="/cad" class="btn btn-primary btn-sm">Cad</a>
+      </div>
+    </div>
+
+    <!-- Card de IA pruebas oculta con *ngIf para fácil reactivación -->
+    @if (false) {
+      <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <h5 class="card-header text-center">IA pruebas</h5>
+        <div class="card-body">
+          <p class="card-text">
+            Pruebas con modelos de IA.
+            Esta pruebas se realizan tomando modelos open source desde Hugging Face
+            <a href="https://huggingface.co/" target="_blank">huggingface.co</a>
+          </p>
+          <p class="card-text">
+            Prueba de image to text, con el modelo
+            <a href="https://huggingface.co/Salesforce/blip-image-captioning-base"
+            target="_blank">Salesforce/blip-image-captioning-base</a>
+          </p>
+        </div>
+        <div class="card-footer text-center">
+          <a routerLink="/ia" class="btn btn-primary btn-sm">IA</a>
+        </div>
+      </div>
+    }
+
+    <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
+      <h5 class="card-header text-center">Chat LLM7</h5>
+      <div class="card-body">
+        <p class="card-text">
+          Interacción con un modelo de lenguaje LLM7 directamente
+          desde la web. Al enviar una pregunta recibe una respuesta
+          generada por IA en tiempo real.
+        </p>
+        <p class="card-text">
+          Utiliza la integración con <a href="https://llm7.io/" target="_blank">llm7.io</a> para experimentar
+          el poder de los LLMs.
+        </p>
+      </div>
+      <div class="card-footer text-center">
+        <a routerLink="/llm7" class="btn btn-primary btn-sm">Probar Chat LLM7</a>
+      </div>
+    </div>
+
+
+    <div class="card me-5" style="width: 18rem; margin-top: -3rem;">
+      <h5 class="card-header text-center">Chat vía MCP server</h5>
+      <div class="card-body">
+        <p class="card-text">
+          Utilizar un servidor MCP armado para devolver el estado del tiempo
+          en un ciudad. El resultado se envia a un LLM y se recibe una respuesta
+          generada por IA en tiempo real.
+        </p>
+      </div>
+      <div class="card-footer text-center">
+        <a routerLink="/chat" class="btn btn-primary btn-sm">Probar Chat LLM7</a>
+      </div>
+    </div>
+
+    <div>
+    </div>
+  </div>
+  <footer class="footer">
+    <a routerLink="/portfolio" class="portfolio-btn">
+      <span class="portfolio-icon">📁</span>
+      <span class="portfolio-text">Portfolio</span>
+    </a>
+    <div class="copyright">&copy; M.Hosan 2024</div>
+  </footer>
 
 </div>

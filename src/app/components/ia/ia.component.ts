@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { RouterLink} from '@angular/router';
 
@@ -11,7 +11,7 @@ import { IaOrquestadorService } from '../../servicios/ia-orquestador.service';
     standalone: true,
     templateUrl: './ia.component.html',
     styleUrl: './ia.component.css',
-    imports: [HttpClientModule, CommonModule, FormsModule, RouterLink]
+    imports: [HttpClientModule, FormsModule, RouterLink]
 })
 export class IaComponent {
   ciudad: string = '';

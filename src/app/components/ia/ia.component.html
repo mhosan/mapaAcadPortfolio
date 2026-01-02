@@ -3,22 +3,26 @@
   <h2 >Pronostico del tiempo</h2>
   <p>Probar un MCP que provee el pronostico del tiempo, en formato JSON, luego el LLM lo formatea a lenguaje natural.</p>
   <br>
-  <br>
-  <h5>Ingresar una ciudad</h5>
-  <form (ngSubmit)="obtenerPronostico()" class="mb-3">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Ciudad" [(ngModel)]="ciudad" name="ciudad" required>
-      <button class="btn btn-primary" type="submit" [disabled]="loading">OK</button>
+    <br>
+      <h5>Ingresar una ciudad</h5>
+      <form (ngSubmit)="obtenerPronostico()" class="mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Ciudad" [(ngModel)]="ciudad" name="ciudad" required>
+          <button class="btn btn-primary" type="submit" [disabled]="loading">OK</button>
+        </div>
+      </form>
+      <p>Se envia la información (ciudad) a un backend (https://serverminimo.onrender.com/api/weather)
+        el cual, con el dato de la ciudad, llama a un MCP que provee el pronostico del tiempo en formato JSON.
+        Al recibir la respuesta en fromato JSON, la envia a un LLM que devuelve el pronostico en lenguaje natural.
+        El servidor MCP está en Vercel: https://mcpserver-hazel.vercel.app/.
+        El repositorio del MCP está en GitHub:https://github.com/mhosan/mcpserver
+        El servidor serverminimo está en Render: https://serverminimo.onrender.com/ (tiene delay en el primer request)
+        El repositorio del serverminimo está en GitHub:https://github.com/mhosan/serverminimo
+      </p>
+      @if (loading) {
+        <div>Cargando...</div>
+      }
+      @if (resultado && !loading) {
+        <textarea class="form-control" [value]="resultado" readonly rows="6" style="resize: vertical;"></textarea>
+      }
     </div>
-  </form>
-  <p>Se envia la información (ciudad) a un backend (https://serverminimo.onrender.com/api/weather)
-    el cual, con el dato de la ciudad, llama a un MCP que provee el pronostico del tiempo en formato JSON.
-    Al recibir la respuesta en fromato JSON, la envia a un LLM que devuelve el pronostico en lenguaje natural.
-    El servidor MCP está en Vercel: https://mcpserver-hazel.vercel.app/.
-    El repositorio del MCP está en GitHub:https://github.com/mhosan/mcpserver
-    El servidor serverminimo está en Render: https://serverminimo.onrender.com/ (tiene delay en el primer request)
-    El repositorio del serverminimo está en GitHub:https://github.com/mhosan/serverminimo
-  </p>
-  <div *ngIf="loading">Cargando...</div>
-  <textarea *ngIf="resultado && !loading" class="form-control" [value]="resultado" readonly rows="6" style="resize: vertical;"></textarea>
-</div>
