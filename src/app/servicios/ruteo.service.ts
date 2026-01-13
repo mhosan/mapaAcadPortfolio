@@ -121,9 +121,10 @@ export class RuteoService {
                 puntoB._latlng
             ],
             router: L.Routing.osrmv1({
-                serviceUrl: 'https://router.project-osrm.org/route/v1'
+                serviceUrl: 'https://router.project-osrm.org/route/v1',
+                language: 'es'
             }),
-            language: 'it',
+            language: 'es',
             collapsible: true,
             autoRoute: true,
             routeWhileDragging: true,
