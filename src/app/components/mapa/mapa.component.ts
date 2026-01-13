@@ -10,18 +10,20 @@ import { CapaSeccionesService } from '../../servicios/capa-secciones.service';
 //import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { CapaConaeRiesgoService } from 'src/app/servicios/capa-conae-riesgo.service';
-import { CapaEstabEducaService} from 'src/app/servicios/capa-estabEduca.service';
+import { CapaEstabEducaService } from 'src/app/servicios/capa-estabEduca.service';
+import { RuteoService } from 'src/app/servicios/ruteo.service';
+
 
 declare let L;
 let miMapa: any;
 
 @Component({
-    selector: 'app-mapa',
-    imports: [
+  selector: 'app-mapa',
+  imports: [
     NavbarComponent
-],
-    templateUrl: './mapa.component.html',
-    styleUrls: ['./mapa.component.css']
+  ],
+  templateUrl: './mapa.component.html',
+  styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
   title = 'mhMapa';
@@ -43,13 +45,7 @@ export class MapaComponent implements OnInit {
   public urlImagen: any;
   public imagenNasaVisible: boolean = false;
   public capaBaseActiva: any;
-  public marcadorRuteoPuntoA: any;
-  public marcadorRuteoPuntoB: any;
-  public marcadoresLayerA: any;
-  public marcadoresLayerB: any;
-  public vengoDe: string = " ";
   public cardPuntosRuteo: boolean;
-  public controlRuteo: any;
 
   constructor(private servicioDatosWeb: GetDatosWebService,
     private servicioIGN: CapaIgnPartidosService,
@@ -57,23 +53,16 @@ export class MapaComponent implements OnInit {
     private servicioCircuitos: CapaCircuitosService,
     private servicioSecciones: CapaSeccionesService,
     private servicioConaeRiesgo: CapaConaeRiesgoService,
-    private servicioEstablecimientosEducativos: CapaEstabEducaService) { }
+    private servicioEstablecimientosEducativos: CapaEstabEducaService,
+    public ruteoService: RuteoService) { }
 
   ngOnInit(): void {
     L.Icon.Default.imagePath = "assets/leaflet/"
     this.iniciarMapa();
-    this.agregarLayerGroupMarcadores();
-
+    this.ruteoService.setMap(miMapa);
   }
 
 
-  //===================================================================
-  // Agregar layer para los marcadores
-  //===================================================================
-  agregarLayerGroupMarcadores() {
-    this.marcadoresLayerA = L.layerGroup().addTo(miMapa);
-    this.marcadoresLayerB = L.layerGroup().addTo(miMapa);
-  }
 
   //===================================================================
   // Iniciar el mapa
@@ -392,7 +381,7 @@ export class MapaComponent implements OnInit {
     }
     if (seleccion === 'activarRuteo') {
       console.log('Activar ruteo');
-      this.cardPuntosRuteo = true
+      this.cardPuntosRuteo = true;
     }
 
     let laCapa: any;
@@ -521,143 +510,20 @@ export class MapaComponent implements OnInit {
       }
     }
   }
-
   //===================================================================
-  // ruteo, seleccionar punto inicio
+  // Métodos de Ruteo (delegados al servicio)
   //===================================================================
   ruteoPuntoA() {
-    const iconoSalida = L.icon({
-      iconUrl: 'assets/ruteo/ruteoSalida03.png',
-      iconSize: [27, 30],
-      iconAnchor: [12, 22],
-      popupAnchor: [1, -20],
-    });
-    this.seleccionUbicacion(true, iconoSalida);
-    this.vengoDe = "A";
+    this.ruteoService.ruteoPuntoA();
   }
 
-  //===================================================================
-  // ruteo, seleccionar punto final
-  //===================================================================
   ruteoPuntoB() {
-    const iconoLlegada = L.icon({
-      iconUrl: 'assets/ruteo/ruteoLlegada03.png',
-      iconSize: [27, 30],
-      iconAnchor: [12, 22],
-      popupAnchor: [1, -20],
-    });
-    this.seleccionUbicacion(true, iconoLlegada);
-    this.vengoDe = "B";
+    this.ruteoService.ruteoPuntoB();
   }
 
-  //===================================================================
-  // comenzar el ruteo
-  //===================================================================
   comenzarRuteo() {
-    this.seleccionUbicacion(false, "-");
-    console.log(this.marcadorRuteoPuntoA._latlng);
-    console.log(this.marcadorRuteoPuntoB._latlng);
+    this.ruteoService.comenzarRuteo();
     this.cardPuntosRuteo = false;
-    this.iniciarRuteo(this.marcadorRuteoPuntoA, this.marcadorRuteoPuntoB);
-    this.marcadoresLayerA.clearLayers();
-    this.marcadoresLayerB.clearLayers();
-  }
-
-  //===================================================================
-  // ACTIVAR seleccion de una posición en el mapa (viene de seleccionar
-  // punto A o B)
-  //===================================================================
-  seleccionUbicacion(activar: boolean, iconoAUtilizar: any) {
-    if (activar) {
-      miMapa.on('click', (e) => {
-        let coordPunto = e.latlng;
-
-        let marcadorPunto = L.marker(coordPunto, { icon: iconoAUtilizar, draggable: 'true' })
-          .bindPopup(coordPunto.toString());
-        localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
-          lat: coordPunto.lat,
-          lng: coordPunto.lng
-        }));
-
-        marcadorPunto.on('dragend', (event) => {
-          marcadorPunto = event.target;
-          coordPunto = "";
-          coordPunto = marcadorPunto.getLatLng();
-          marcadorPunto.setLatLng(coordPunto, { icon: iconoAUtilizar, draggable: 'true' }).bindPopup(coordPunto.toString()).update();
-          localStorage.setItem(`punto${this.vengoDe}`, JSON.stringify({
-            lat: coordPunto.lat,
-            lng: coordPunto.lng
-          }));
-        })
-
-        if (this.vengoDe === "A") {
-          this.marcadorRuteoPuntoA = marcadorPunto;
-          miMapa.addLayer(this.marcadorRuteoPuntoA);
-          this.marcadoresLayerA.clearLayers();
-          this.marcadoresLayerA.addLayer(this.marcadorRuteoPuntoA);
-        } else if (this.vengoDe === "B") {
-          this.marcadorRuteoPuntoB = marcadorPunto;
-          miMapa.addLayer(this.marcadorRuteoPuntoB);
-          this.marcadoresLayerB.clearLayers();
-          this.marcadoresLayerB.addLayer(this.marcadorRuteoPuntoB);
-        }
-      });
-    } else {
-      miMapa.off('click');
-    }
-  }
-
-  //===================================================================
-  // Iniciar ruteo
-  //===================================================================
-  iniciarRuteo(puntoA: any, puntoB: any) {
-    this.controlRuteo = L.Routing.control({
-      waypoints: [
-        puntoA._latlng,
-        puntoB._latlng
-      ],
-      router: L.Routing.osrmv1({
-        serviceUrl: 'https://router.project-osrm.org/route/v1'
-      }),
-      language: 'it',
-      collapsible: true,
-      autoRoute: true,
-      routeWhileDragging: true,
-      reverseWaypoints: true,
-      showAlternatives: true,
-      altLineOptions: {
-        styles: [
-          { color: 'black', opacity: 0.15, weight: 9 },  //sombra
-          { color: 'white', opacity: 0.8, weight: 6 },   //contorno
-          { color: 'blue', opacity: 0.5, weight: 2 }     //centro
-        ]
-      },
-      summaryTemplate: '<h2>Trayectoria: {name}</h2><h3>Distancia: {distance}, Tiempo: {time}</h3>',
-    }).addTo(miMapa);
-
-    const tables = document.querySelectorAll('table');
-    console.log(tables);
-
-    L.Routing.errorControl(this.controlRuteo).addTo(miMapa);
-
-    L.Routing.Formatter = L.Class.extend({
-      options: {
-        language: 'it'
-      }
-    });
-
-    let divRuteo = document.getElementsByClassName("leaflet-routing-container")[0] as HTMLElement;
-    divRuteo.style.position = "absolute";
-    divRuteo.style.left = "-150vh";
-    divRuteo.style.top = "3vh";
-    const botonCerrarRuteo = document.createElement("button");
-    botonCerrarRuteo.textContent = "Cerrar ruteo";
-    botonCerrarRuteo.className = "btn btn-primary btn-sm mt-1 mb-1 ms-1";
-    botonCerrarRuteo.onclick = () => {
-      console.log("Se hizo clic en el botón");
-      this.controlRuteo.remove();
-    };
-    divRuteo.appendChild(botonCerrarRuteo);
   }
 
 }
