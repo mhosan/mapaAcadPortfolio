@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class IaOrquestadorService {
-  private apiUrl = 'https://serverminimo.onrender.com/api/weather'; 
+  private apiUrl = 'https://server-minimo.vercel.app/api/weather';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   obtenerResumenPronostico(ciudad: string): Observable<any> {
     return this.http.post(this.apiUrl, { city: ciudad });
